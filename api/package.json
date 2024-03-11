@@ -20,11 +20,23 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^10.0.0",
+    "@nestjs/common": "^10.3.3",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
+    "call-bind": "^1.0.7",
+    "define-data-property": "^1.1.4",
+    "function-bind": "^1.1.2",
+    "get-intrinsic": "^1.2.4",
+    "gopd": "^1.0.1",
+    "has-property-descriptors": "^1.0.2",
+    "has-proto": "^1.0.3",
+    "has-symbols": "^1.0.3",
+    "object-inspect": "^1.13.1",
+    "qs": "^6.11.0",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "safe-buffer": "^5.2.1",
+    "side-channel": "^1.0.5"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
