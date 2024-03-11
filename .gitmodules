@@ -1,7 +1,0 @@
-[submodule "projet_dev3"]
-	path = projet_dev3
-	url = https://github.com/hugotnbx/projet_dev3
-
-[submodule "iziplan_backend"]
-    path = iziplan_backend
-    url = https://github.com/hugotnbx/projet_dev3
