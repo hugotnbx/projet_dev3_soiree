@@ -8,6 +8,6 @@ export class AppService {
   faitRien():undefined{
   }
   rien(): string{
-    return 'toujours rien';
+    return 'malheuresement toujours rien';
   }
 }
