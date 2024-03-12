@@ -13,7 +13,7 @@ import { DataSource } from 'typeorm';
       port: 3306,
       username: 'root',
       password: 'root',
-      database: 'test',
+      database: 'iziplan_db.sql',
       entities: [],
       synchronize: true //attention à enlever lors de la production
     })
@@ -21,4 +21,6 @@ import { DataSource } from 'typeorm';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataSource:DataSource){}
+}
