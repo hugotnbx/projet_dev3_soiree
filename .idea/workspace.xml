@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7afcb6e0-278d-4385-b10b-845a307a5284" name="Changes" comment="new web">
+    <list default="true" id="7afcb6e0-278d-4385-b10b-845a307a5284" name="Changes" comment="rajout components et routes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/app.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,22 +26,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "/Users/weilizheng/Library/CloudStorage/OneDrive-EPHECasbl/bac2/Q2/devWeb3/iziplan/projet_dev3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Users/weilizheng/Library/CloudStorage/OneDrive-EPHECasbl/bac2/Q2/devWeb3/iziplan/projet_dev3/api/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/weilizheng/Library/CloudStorage/OneDrive-EPHECasbl/bac2/Q2/devWeb3/iziplan/projet_dev3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/weilizheng/Library/CloudStorage/OneDrive-EPHECasbl/bac2/Q2/devWeb3/iziplan/projet_dev3/api/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -55,7 +55,8 @@
       <workItem from="1710191451235" duration="641000" />
       <workItem from="1710192094068" duration="256000" />
       <workItem from="1710192351439" duration="3852000" />
-      <workItem from="1710196219546" duration="3791000" />
+      <workItem from="1710196219546" duration="4656000" />
+      <workItem from="1710236586060" duration="2203000" />
     </task>
     <task id="LOCAL-00001" summary="restart projet">
       <created>1710192732726</created>
@@ -71,7 +72,21 @@
       <option name="project" value="LOCAL" />
       <updated>1710193029241</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="La route était longue mais c'est fait&#10;&#10;&#10;(Fine ferns and fine jays&#10;Dig fat frail jade and grave flames&#10;Flat dunes fear dim kings&#10;&#10;&#10;&#10;Long chemin fut parcouru ici&#10;Dans nos pensées évasifs on a trouvé&#10;Un moyen d'échapper au fatjade)&#10;Ft. Le H, Huglock">
+      <created>1710200114731</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710200114731</updated>
+    </task>
+    <task id="LOCAL-00004" summary="rajout components et routes">
+      <created>1710200285676</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710200285676</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -80,6 +95,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="restart projet" />
     <MESSAGE value="new web" />
-    <option name="LAST_COMMIT_MESSAGE" value="new web" />
+    <MESSAGE value="La route était longue mais c'est fait&#10;&#10;&#10;(Fine ferns and fine jays&#10;Dig fat frail jade and grave flames&#10;Flat dunes fear dim kings&#10;&#10;&#10;&#10;Long chemin fut parcouru ici&#10;Dans nos pensées évasifs on a trouvé&#10;Un moyen d'échapper au fatjade)&#10;Ft. Le H, Huglock" />
+    <MESSAGE value="rajout components et routes" />
+    <option name="LAST_COMMIT_MESSAGE" value="rajout components et routes" />
   </component>
 </project>
