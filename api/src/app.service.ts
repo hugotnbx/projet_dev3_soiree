@@ -7,4 +7,7 @@ export class AppService {
   }
   faitRien():undefined{
   }
+  rien(): string{
+    return 'toujours rien';
+  }
 }
