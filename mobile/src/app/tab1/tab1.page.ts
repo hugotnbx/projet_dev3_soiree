@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  //constructor() {}
+  events:any[]=[
+    {nom:"event1",desc:"ganf",date:"11/02/2023"},
+    {nom:"MathildeMahBabe",desc:"ganf",date:"11/02/2023"}
+  ]
 
 }
