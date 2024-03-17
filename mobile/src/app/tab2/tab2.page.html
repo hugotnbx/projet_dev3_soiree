@@ -13,4 +13,59 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-list>
+    <ion-item>
+      <ion-input
+        label="Événement"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: Bière entre pote"
+      >
+      <ion-icon slot="start" name="beer-outline" aria-hidden="true"></ion-icon>
+      </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+        label="Lieu"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: Chez Mathilde"
+      >
+      <ion-icon slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+        label="Date et heure"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: Mardi 12/01/2024 à 19h"
+      >
+      <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+        label="Lit(s) disponible(s)"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: 6lits"
+      >
+      <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+
+    <ion-input
+        label="Date"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: Mardi 12/01/2024"
+      >
+      <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  </ion-list>
 </ion-content>
