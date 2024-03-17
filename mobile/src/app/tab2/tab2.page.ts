@@ -7,6 +7,30 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  //constructor() {}
+  
+  evenement:string="";
+  nomLieu:string="";
+  date:string="";
+  lits:number=0;
+  bob:number=0;
+
+  event:any={
+    evenement:"",
+    lieu:"",
+    date:"",
+    lits:0,
+    bob:0
+  };
+
+  creationEvent(){
+    this.event.evenement = this.evenement;
+    this.event.lieu = this.nomLieu;
+    this.event.date = this.date;
+    this.event.lits = this.lits;
+    this.event.bob = this.bob;
+    console.log(this.event);
+  }
+
 
 }
