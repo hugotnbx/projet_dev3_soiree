@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Création événement
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,72 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large" >Création événement</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-list>
+    <ion-item>
+      <ion-input
+        label="Événement"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: Bière entre pote"
+        [(ngModel)]="evenement"
+      >
+      <ion-icon slot="start" name="beer-outline" aria-hidden="true"></ion-icon>
+      </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+        label="Lieu"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: Chez Mathilde"
+        [(ngModel)]="nomLieu"
+      >
+      <ion-icon slot="start" name="location-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+        label="Date et heure"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: Mardi 12/01/2024 à 19h"
+        [(ngModel)]="date"
+      >
+      <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+        label="Lit(s) disponible(s)"
+        labelPlacement="stacked"
+        [clearInput]="false"
+        placeholder="ex: 6lits"
+        [(ngModel)]="lits"
+      >
+      <ion-icon slot="start" name="bed-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+
+    <ion-input
+        label="Bob(s)"
+        labelPlacement="stacked"
+        [clearInput]="false"
+        placeholder="ex: 5 bobs"
+        [(ngModel)]="bob"
+      >
+      <ion-icon slot="start" name="car-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  </ion-list>
+  <ion-button shape="round" size="small" (click)="">
+    Créer
+    <ion-icon name="send-outline"></ion-icon>  
+  </ion-button>
 </ion-content>
