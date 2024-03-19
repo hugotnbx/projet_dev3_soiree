@@ -10,7 +10,7 @@ async function bootstrap() {
   .setTitle('Accueil example')
   .setDescription('The cats Accueil description')
   .setVersion('1.0')
-  .addTag('accueil')
+  .addTag('Accueil')
   .addTag('iziplan')
   .build();
 const document = SwaggerModule.createDocument(app, config);
