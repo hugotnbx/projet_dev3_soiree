@@ -8,6 +8,7 @@ import { EvenementComponent } from './components/evenement/evenement.component';
 import { CreationComponent } from './components/creation/creation.component';
 import { InvitationsComponent } from './components/invitations/invitations.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProfilComponent } from './components/profil/profil.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    IonicModule.forRoot({})
   ],
   providers: [
     provideClientHydration()
