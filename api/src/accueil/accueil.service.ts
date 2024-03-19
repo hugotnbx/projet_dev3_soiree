@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAccueilDto } from './dto/create-accueil.dto';
-import { UpdateAccueilDto } from './dto/update-accueil.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Accueil } from './entities/accueil.entity';
+import { AccueilDto } from './dto/accueil.dto';
+
 
 @Injectable()
 export class AccueilService {
-  create(createAccueilDto: CreateAccueilDto) {
-    return 'This action adds a new accueil';
-  }
+    constructor(
+      @InjectRepository(Accueil)
+      private readonly accueilRepository: Repository<Accueil>,
+    ) {}
 
-  findAll() {
-    return `This action returns all accueil`;
-  }
+    async findAll(): Promise<Accueil[]> {
+        return await this.accueilRepository.find();
+    }
 
-  findOne(id: number) {
-    return `This action returns a #${id} accueil`;
+    async  create(accueilDto : AccueilDto) {
+        const accueilEntities = new Accueil();
+        accueilEntities.id = accueilDto.id;
+        accueilEntities.nom = accueilDto.nom;
+        accueilEntities.date= accueilDto.date;
+        accueilEntities.lieu = accueilDto.lieu;
+        const accueil = this.accueilRepository.create(accueilEntities);
+        await this.accueilRepository.save(accueil);
+        return accueil;
+    
+      }
+      async update(id : number , data : Partial<Accueil> ){
+        await this.accueilRepository.update({id},data);
+        const accueil= this.accueilRepository.findOne({where:{id}})
+        return accueil 
+    }
   }
-
-  update(id: number, updateAccueilDto: UpdateAccueilDto) {
-    return `This action updates a #${id} accueil`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} accueil`;
-  }
-}

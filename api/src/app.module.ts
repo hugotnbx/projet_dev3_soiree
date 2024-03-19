@@ -10,11 +10,11 @@ import { DataSource } from 'typeorm';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'iziplan_db.sql',
-      entities: [],
+      port: 3333,
+      username: 'iziplan_user',
+      password: 'iziplan_psw',
+      database: 'iziplan_db',
+      entities: ['././dist/accueil/entities/accueil.entity.js'],
       synchronize: true //attention à enlever lors de la production
     })
   ],
