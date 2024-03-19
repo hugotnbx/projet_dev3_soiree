@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: iziplan_container
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: iziplan_root
+      MYSQL_DATABASE: iziplan_db
+      MYSQL_USER: iziplan_user
+      MYSQL_PASSWORD: iziplan_psw
+    ports:
+      - "3333:3306"

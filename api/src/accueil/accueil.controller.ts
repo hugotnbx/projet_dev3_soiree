@@ -1,34 +1,24 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete , Put } from '@nestjs/common';
 import { AccueilService } from './accueil.service';
-import { CreateAccueilDto } from './dto/create-accueil.dto';
-import { UpdateAccueilDto } from './dto/update-accueil.dto';
+import { Accueil } from './entities/accueil.entity';
+import { AccueilDto } from './dto/accueil.dto';
 
 @Controller('accueil')
 export class AccueilController {
   constructor(private readonly accueilService: AccueilService) {}
 
-  @Post()
-  create(@Body() createAccueilDto: CreateAccueilDto) {
-    return this.accueilService.create(createAccueilDto);
-  }
-
   @Get()
-  findAll() {
+  getAll():Promise<Accueil[]>{
     return this.accueilService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.accueilService.findOne(+id);
+  @Post()
+  create(@Body() accueilDto:AccueilDto):Promise<Accueil>{
+    return this.accueilService.create(accueilDto);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAccueilDto: UpdateAccueilDto) {
-    return this.accueilService.update(+id, updateAccueilDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.accueilService.remove(+id);
+  @Put('/:id')
+  update(@Param('id') id : number , @Body()accueilDto:AccueilDto): Promise<Accueil>{
+    return this.accueilService.update(id,accueilDto);
   }
 }
