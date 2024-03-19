@@ -16,6 +16,10 @@ export class AccueilService {
         return await this.accueilRepository.find();
     }
 
+    async read(id:number): Promise<Accueil>{
+        return await this.accueilRepository.findOne({where:{id}})
+    }
+
     async  create(accueilDto : AccueilDto) {
         const accueilEntities = new Accueil();
         accueilEntities.id = accueilDto.id;
@@ -31,5 +35,13 @@ export class AccueilService {
         await this.accueilRepository.update({id},data);
         const accueil= this.accueilRepository.findOne({where:{id}})
         return accueil 
-    }
+      }
+
+      async delete(id : number){
+          const accueil =await this.accueilRepository.findOne({ where: { id } });
+          await this.accueilRepository.delete({id});
+          return accueil ;
+      }
+
+
   }
