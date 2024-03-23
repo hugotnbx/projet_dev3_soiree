@@ -14,10 +14,11 @@ export class CreationProfilComponent{
   tel:string="";
   description:string="";
   adresse:string="";
+  newProfil:profil = new profil(this.nom,this.prenom,this.insta,this.facebook,this.tel,this.description,this.adresse);
 
-  profil:profil= new profil(this.nom,this.prenom,this.insta,this.facebook,this.tel,this.description,this.adresse);
-  sendProfil(){
-    console.log(this.profil);
+  creationProfil(){
+    this.newProfil= new profil(this.nom,this.prenom,this.insta,this.facebook,this.tel,this.description,this.adresse);
+    console.log(this.newProfil);
   }
 }  /*implements OnInit {
 
