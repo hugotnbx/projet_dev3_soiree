@@ -12,7 +12,7 @@
       <ion-title size="large" class="ion-text-center">Mes événements</ion-title>
     </ion-toolbar>
 
-    <ion-card *ngFor="let event of events" class="ion-text-center">
+    <ion-card *ngFor="let event of events;index as i" class="ion-text-center" [routerLink]="['/evenement']">
       <ion-card-header>
         <ion-card-title>{{ event.nom }}</ion-card-title>
         <ion-card-subtitle>{{ event.date }}</ion-card-subtitle>

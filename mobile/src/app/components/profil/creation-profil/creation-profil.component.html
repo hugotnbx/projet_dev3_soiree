@@ -1,3 +1,74 @@
-<p>
-  creation-profil works!
-</p>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Création profil
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-card>
+
+      <ion-card-header>
+          <ion-input
+            label="Nom"
+            labelPlacement="stacked"
+            [clearInput]="true"
+            placeholder="ex: Marcel"
+            [(ngModel)]="nom"
+          >
+          <ion-icon slot="start" name="at-outline" aria-hidden="true"></ion-icon>
+          </ion-input>
+
+          <ion-input
+        label="Prénom"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: Marssel"
+        [(ngModel)]="prenom"
+        ></ion-input>
+
+        <ion-input
+        label="Adresse"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: Chaussée de méfess"
+        [(ngModel)]="adresse"
+        ></ion-input>
+
+        <ion-input
+        label="Adresse"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: +32 314 43 43 34"
+        [(ngModel)]="tel"
+        ></ion-input>
+
+        <ion-input
+        label="Instagram"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: @selsurmars"
+        [(ngModel)]="insta"
+        ></ion-input>
+
+        <ion-input
+        label="Facebook"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: Marssel Marcel"
+        [(ngModel)]="facebook"
+        ></ion-input>
+
+        <ion-input
+        label="Description"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: Je me présente je m'appelle Marssel je voudrais bien réussir ma vie"
+        [(ngModel)]="description"
+        ></ion-input>
+
+      </ion-card-header>
+
+  </ion-card>
+</ion-content>
