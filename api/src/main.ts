@@ -12,6 +12,7 @@ async function bootstrap() {
   .setVersion('1.0')
   .addTag('Accueil')
   .addTag('iziplan')
+  .addTag('Utilisateur')
   .build();
 const document = SwaggerModule.createDocument(app, config);
 SwaggerModule.setup('api', app , document);

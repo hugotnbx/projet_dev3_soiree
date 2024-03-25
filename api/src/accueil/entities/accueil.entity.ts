@@ -17,3 +17,22 @@ export class Accueil {
     @Column()
     lieu:string;
 }
+
+@Entity()
+export class Utilisateur{
+    @PrimaryGeneratedColumn()
+    id_utilisateur:number;
+
+    @Column({ length: 50 })
+    nom: string;
+
+    @Column({ length: 50 })
+    prenom: string;
+
+    @Column({ length: 100 })
+    email: string;
+
+    @Column({ length: 20 })
+    numeroTelephone: string;
+
+}
