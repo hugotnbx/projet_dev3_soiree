@@ -9,6 +9,9 @@ export class Accueil {
     nom:string;
 
     @Column()
+    heure:string;
+
+    @Column()
     date:string;
 
     @Column()
