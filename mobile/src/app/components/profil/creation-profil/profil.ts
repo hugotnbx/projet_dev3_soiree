@@ -1,20 +1,22 @@
-export class profil{
-    nom:string;
-    prenom:string;
-    description:string;
-    insta:string;
-    facebook:string;
-    tel:string
-    adresse:string
+import { Profil } from "src/app/interfaces/profil";
 
-    constructor(nom:string,prenom:string,insta:string,facebook:string,tel:string,description:string,adresse:string){
-        this.nom=nom;
-        this.prenom=prenom;
-        this.insta=insta;
-        this.facebook=facebook;
-        this.tel=tel;
-        this.description=description;
-        this.adresse=adresse;
+export class profil implements Profil{
+    name:string;
+    firstName:string;
+    instagram:string;
+    facebook:string;
+    numberPhone:string;
+    description:string;
+    address:string;
+
+    constructor(userData:Profil){
+        this.name=userData.name;
+        this.firstName=userData.firstName;
+        this.instagram=userData.instagram;
+        this.facebook=userData.facebook;
+        this.numberPhone=userData.numberPhone;
+        this.description=userData.description;
+        this.address=userData.address;
     }
 }
 
