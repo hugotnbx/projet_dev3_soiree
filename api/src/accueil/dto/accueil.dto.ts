@@ -20,15 +20,27 @@ export class AccueilDto {
     readonly  heure: string ;
 
     @ApiProperty({
-        required:false,
+        required:true,
         type:'string',
     })
     readonly   lieu :string ;
 
     @ApiProperty({
-        required:false,
+        required:true,
         type:'string',
     })
     readonly  date : string;
+
+    @ApiProperty({
+        required:false,
+        type:'number',
+    })
+    readonly  nbrLit: number ;
+
+    @ApiProperty({
+        required:true,
+        type:'number',
+    })
+    readonly  nbrBob: number ;
 
 }

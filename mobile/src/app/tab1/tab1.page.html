@@ -12,13 +12,13 @@
       <ion-title size="large" class="ion-text-center">Mes événements</ion-title>
     </ion-toolbar>
 
-    <ion-card *ngFor="let event of events;index as i" class="ion-text-center" [routerLink]="['/evenement']">
+    <ion-card *ngFor="let d in data;index as i" class="ion-text-center" [routerLink]="['/evenement']">
       <ion-card-header>
-        <ion-card-title>{{ event.nom }}</ion-card-title>
-        <ion-card-subtitle>{{ event.date }}</ion-card-subtitle>
+        <ion-card-title>{{ d.nom }}</ion-card-title>
+        <ion-card-subtitle>{{ d.date }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        {{ event.desc }}      
+        {{ d.desc }}      
       </ion-card-content>
     </ion-card>
   </ion-header>

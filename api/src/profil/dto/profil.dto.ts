@@ -3,65 +3,62 @@ import { ApiProperty } from "@nestjs/swagger";
 export class ProfilDto {
     @ApiProperty({
         required:true,
-        type: Number,
+        type: "number",
     })
     readonly  idProfil: number;
 
     @ApiProperty({
         required:true,
-        type: String,
+        type: "string",
     })
     readonly  name: string ;
 
     @ApiProperty({
         required:true,
-        type: String,
+        type: "string",
     })
     readonly  firstName: string ;
 
     @ApiProperty({
         required:true,
-        type: String,
-    })
-    readonly  description : string;
-
-    @ApiProperty({
-        required:true,
-        type: String,
+        type: "string",
     })
     readonly  mail: string ;
 
     @ApiProperty({
         required:true,
-        type: String,
+        type: "string",
     })
     readonly  numberPhone : string;
 
     @ApiProperty({
-        required:true,
-        type: String,
+        required:false,
+        type: "string",
     })
     readonly  address : string;
 
     @ApiProperty({
-        required:true,
-        type: String,
+        required:false,
+        type: "string",
     })
     readonly  instagram : string;
 
     @ApiProperty({
-        required:true,
-        type: String,
+        required:false,
+        type: "string",
     })
     readonly  facebook : string;
 
     @ApiProperty({
-        required:true,
-        type: String,
+        required:false,
+        type: "string",
+    })
+    readonly  description : string;
+
+    @ApiProperty({
+        required:false,
+        type: "string",
     })
     readonly  bank : string;
-
-  
-    
 
 }

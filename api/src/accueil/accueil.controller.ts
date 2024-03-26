@@ -27,11 +27,11 @@ export class AccueilController {
   @Get('/id')
   @ApiResponse({
     status :201,
-    description:"Liste des messages",
+    description:"reception event",
   })
   @ApiResponse({
     status :404,
-    description:"no page",
+    description:"no page. try again!",
   })
   getById(@Param ('id')id : number):Promise<Accueil>{
     return this.accueilService.read(id);
@@ -40,11 +40,11 @@ export class AccueilController {
   @Post()
   @ApiResponse({
     status :201,
-    description:"Liste des messages",
+    description:"creation event",
   })
   @ApiResponse({
     status :404,
-    description:"no page",
+    description:"no page. try again!",
   })
   create(@Body() accueilDto:AccueilDto):Promise<Accueil>{
     return this.accueilService.create(accueilDto);
@@ -53,11 +53,11 @@ export class AccueilController {
   @Put('/:id')
   @ApiResponse({
     status :201,
-    description:"Liste des messages",
+    description:"modification event",
   })
   @ApiResponse({
     status :404,
-    description:"no page",
+    description:"no page. try again!",
   })
   update(@Param('id') id : number , @Body()accueilDto:AccueilDto): Promise<Accueil>{
     return this.accueilService.update(id,accueilDto);
@@ -66,11 +66,11 @@ export class AccueilController {
   @Delete('/:id')
   @ApiResponse({
     status :201,
-    description:"Liste des messages",
+    description:"suppression event",
   })
   @ApiResponse({
     status :404,
-    description:"no page",
+    description:"no page. try again!",
   })
   delete(@Param('id') id : number ): Promise<Accueil>{
     return this.accueilService.delete(id);

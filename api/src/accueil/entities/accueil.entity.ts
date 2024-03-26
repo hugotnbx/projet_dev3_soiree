@@ -16,4 +16,10 @@ export class Accueil {
 
     @Column()
     lieu:string;
+
+    @Column()
+    nbrLit:number;
+
+    @Column()
+    nbrBob:number;
 }
