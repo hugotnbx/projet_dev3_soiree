@@ -11,8 +11,8 @@ async function bootstrap() {
   .setDescription('The cats Accueil description')
   .setVersion('1.0')
   .addTag('Accueil')
+  .addTag('Profil')
   .addTag('iziplan')
-  .addTag('Utilisateur')
   .build();
 const document = SwaggerModule.createDocument(app, config);
 SwaggerModule.setup('api', app , document);
