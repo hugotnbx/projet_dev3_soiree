@@ -13,18 +13,18 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card>
+  <ion-card *ngIf="profil">
     <ion-card-header id="photoProfil">
       <div class="img-box">
         <img src="../../assets/profil/">
       </div> 
-      <ion-card-title>Hugo Neutre</ion-card-title>
+      <ion-card-title>{{profil.firstName}} {{profil.name}}</ion-card-title>
       <ion-card-subtitle>&#64;lebgdubat7</ion-card-subtitle>
     </ion-card-header>
   
     <ion-card-content>
       <h1>Description</h1>
-      <p>Neutre dans l'affaire</p>
+      <p>{{profil.description}}</p>
 
     </ion-card-content>
   </ion-card>
@@ -41,18 +41,18 @@
     <ion-card>  
       <ion-card-content>
         <ion-icon name="logo-instagram" size="large"></ion-icon>
-        <label>&#64;hugoneutre</label>
+        <label>{{profil.instagram}}</label>
         
         <br>
 
         <ion-icon name="logo-facebook" size="large"></ion-icon>
-        <label>Hugo Neutre</label>
+        <label>{{profil.facebook}}</label>
       </ion-card-content>
     </ion-card>
     
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Avenue du Trone 112, 1360 Perwez</ion-card-title>
+      <ion-card-title>{{profil.address}}</ion-card-title>
       <ion-card-subtitle>Adresse</ion-card-subtitle>
     </ion-card-header>
 
@@ -60,7 +60,7 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>+32 485 92 45 48</ion-card-title>
+      <ion-card-title>{{profil.numberPhone}}</ion-card-title>
       <ion-card-subtitle>Téléphone</ion-card-subtitle>
     </ion-card-header>
 

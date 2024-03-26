@@ -18,10 +18,9 @@ export class Tab1Page {
     .catch((error)=>{console.log("Erreur de chargement des données")});
     console.log(data)*/
     
-    this.readApi("http://localhost:3000/accueil/")
+    this.readApi("http://localhost:64000/accueil/")
     .subscribe((data) =>{
       console.log(data);
-
       this.events= data;
 
     });
