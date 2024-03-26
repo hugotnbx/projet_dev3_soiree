@@ -1,9 +1,10 @@
 export interface Profil {
     name:string;
     firstName:string;
+    mail:string;
+    numberPhone:string;
+    address:string;
     instagram:string;
     facebook:string;
-    numberPhone:string;
     description:string;
-    address:string;
 }

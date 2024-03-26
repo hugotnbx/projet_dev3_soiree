@@ -13,11 +13,12 @@ export class CreationProfilComponent implements OnInit {
   userData:Profil={
     name:"",
     firstName:"",
+    mail:"",
+    numberPhone:"",
+    address:"",
     instagram:"",
     facebook:"",
-    numberPhone:"",
     description:"",
-    address:"",
   }
   
   newProfil:profil = new profil(this.userData);

@@ -46,6 +46,16 @@
 
           <ion-item>
             <ion-input
+        label="Mail"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: marcel.marssel@ezplan.be"
+        [(ngModel)]="userData.mail"
+        ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
         label="Telephone"
         labelPlacement="stacked"
         [clearInput]="true"
@@ -83,7 +93,6 @@
         [(ngModel)]="userData.description"
         ></ion-input>
           </ion-item>
-
 
 
         </ion-list>
