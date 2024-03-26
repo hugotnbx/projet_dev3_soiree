@@ -7,17 +7,22 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  events:any;
 
   constructor(public http:HttpClient) {
+
+
     
     /*let data = fetch('http://localhost:3000/accueil')
     .then((response)=> response.json())
     .catch((error)=>{console.log("Erreur de chargement des données")});
     console.log(data)*/
     
-    this.readApi("http://localhost:3000/accueil")
+    this.readApi("http://localhost:3000/accueil/")
     .subscribe((data) =>{
       console.log(data);
+
+      this.events= data;
 
     });
   }
