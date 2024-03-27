@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { profil } from './profil';
 import { Profil } from 'src/app/interfaces/profil';
+import { json } from 'express';
 
 @Component({
   selector: 'app-creation-profil',
@@ -11,6 +12,7 @@ export class CreationProfilComponent implements OnInit {
 
   //constructor() { }
   userData:Profil={
+    id:"",
     name:"",
     firstName:"",
     mail:"",
@@ -21,10 +23,11 @@ export class CreationProfilComponent implements OnInit {
     description:"",
   }
   
-  newProfil:profil = new profil(this.userData);
+  newProfil:any;
 
   creationProfil(){
     this.newProfil= new profil(this.userData);
+    JSON.stringify(this.newProfil);
     console.log(this.newProfil);
   }
 
