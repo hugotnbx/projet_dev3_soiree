@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { EventProfil } from './entities/event-profil.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EventProfilDto } from './dto/event-profil.dto';
+//prout
 @Injectable()
 export class EventProfilService {
     constructor(
