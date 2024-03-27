@@ -14,13 +14,25 @@
 
           <ion-item>
             <ion-input
+            label="Nom d'utilisateur"
+            labelPlacement="stacked"
+            [clearInput]="true"
+            placeholder="ex: lebgdubat57"
+            [(ngModel)]="userData.id"
+          >
+          <ion-icon slot="start" name="at-outline" aria-hidden="true"></ion-icon>
+          </ion-input>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-input
             label="Nom"
             labelPlacement="stacked"
             [clearInput]="true"
             placeholder="ex: Marcel"
             [(ngModel)]="userData.name"
           >
-          <ion-icon slot="start" name="at-outline" aria-hidden="true"></ion-icon>
           </ion-input>
           </ion-item>
 
