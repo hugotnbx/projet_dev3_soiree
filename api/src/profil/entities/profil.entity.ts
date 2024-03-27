@@ -1,9 +1,9 @@
 import { EventProfil } from 'src/event-profil/entities/event-profil.entity';
-import {Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
+import {Entity, Column, PrimaryColumn, OneToMany} from 'typeorm';
 
 @Entity()
 export class Profil{
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     idProfil:string;
 
     @Column({ length: 50 })

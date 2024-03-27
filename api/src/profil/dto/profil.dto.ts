@@ -3,7 +3,7 @@ import { ApiProperty } from "@nestjs/swagger";
 export class ProfilDto {
     @ApiProperty({
         required:true,
-        type: "number",
+        type: "string",
     })
     readonly  idProfil: string;
 

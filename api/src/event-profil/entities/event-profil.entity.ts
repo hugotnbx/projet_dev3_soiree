@@ -1,13 +1,13 @@
-import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from 'typeorm';
+import {Entity, Column, PrimaryColumn, ManyToOne, JoinColumn} from 'typeorm';
 import { Profil } from 'src/profil/entities/profil.entity';
 import { Accueil } from 'src/accueil/entities/accueil.entity';
 
 @Entity()
 export class EventProfil {
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     idProfil:string;
 
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     idEvent:number;
 
     @ManyToOne(() => Profil, profil => profil.profilEvents)
