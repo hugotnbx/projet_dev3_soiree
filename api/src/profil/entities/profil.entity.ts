@@ -1,4 +1,5 @@
-import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import { EventProfil } from 'src/event-profil/entities/event-profil.entity';
+import {Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
 
 @Entity()
 export class Profil{
@@ -32,5 +33,6 @@ export class Profil{
     @Column({ length: 20 })
     bank: string;
     
-   
+    @OneToMany(() => EventProfil, EventProfil => EventProfil.profil)
+    profilEvents: EventProfil[];
 }
