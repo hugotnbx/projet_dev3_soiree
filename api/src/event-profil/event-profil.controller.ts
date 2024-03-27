@@ -24,7 +24,7 @@ export class EventProfilController {
     return this.eventProfilService.findAll();
   }
 
-  @Get('/?idEvent=:id')
+  @Get('/?idEvent=:idE&idProfil=:idP')
   @ApiResponse({
     status :201,
     description:"reception event",
@@ -33,8 +33,8 @@ export class EventProfilController {
     status :404,
     description:"no page. try again!",
   })
-  getById(@Param ('id')id : number):Promise<EventProfil>{
-    return this.eventProfilService.read(id);
+  getById(@Param ('idE')idE : number,@Param("idP")idP:string):Promise<EventProfil>{
+    return this.eventProfilService.read(idP,idE);
   }
 
   @Post()
@@ -59,11 +59,11 @@ export class EventProfilController {
     status :404,
     description:"no page. try again!",
   })
-  update(@Param('id') id : number , @Body()eventProfilDto:EventProfilDto): Promise<EventProfil>{
+  /*update(@Param('id') id : number , @Body()eventProfilDto:EventProfilDto): Promise<EventProfil>{
     return this.eventProfilService.update(id,eventProfilDto);
-  }
+  }*/
 
-  @Delete('/:id')
+  @Delete('/:idE&:idP')
   @ApiResponse({
     status :201,
     description:"suppression event",
@@ -72,7 +72,7 @@ export class EventProfilController {
     status :404,
     description:"no page. try again!",
   })
-  delete(@Param('id') id : number ): Promise<EventProfil>{
-    return this.eventProfilService.delete(id);
+  delete(@Param('idE') idE : number,@Param("idP")idP:string ): Promise<EventProfil>{
+    return this.eventProfilService.delete(idP,idE);
   }
 }

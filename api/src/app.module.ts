@@ -18,7 +18,8 @@ import { EventProfilModule } from './event-profil/event-profil.module';
       username: 'iziplan_user',
       password: 'iziplan_psw',
       database: 'iziplan_db',
-      entities: ['././dist/accueil/entities/accueil.entity.js','././dist/profil/entities/profil.entity.js'],
+      //entities: ['././dist/accueil/entities/accueil.entity.js','././dist/profil/entities/profil.entity.js'],
+      autoLoadEntities:true, 
       synchronize: true //attention à enlever lors de la production
     }),
     ProfilModule,

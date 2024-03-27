@@ -5,7 +5,7 @@ import { Accueil } from 'src/accueil/entities/accueil.entity';
 @Entity()
 export class EventProfil {
     @PrimaryGeneratedColumn()
-    idProfil:number;
+    idProfil:string;
 
     @PrimaryGeneratedColumn()
     idEvent:number;

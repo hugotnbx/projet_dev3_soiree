@@ -3,9 +3,9 @@ import { ApiProperty } from "@nestjs/swagger";
 export class EventProfilDto {
     @ApiProperty({
         required:true,
-        type:'number',
+        type:'string',
     })
-    readonly  idProfil: number;
+    readonly  idProfil: string;
 
     @ApiProperty({
         required:true,

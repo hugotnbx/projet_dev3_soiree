@@ -5,7 +5,7 @@ export class ProfilDto {
         required:true,
         type: "number",
     })
-    readonly  idProfil: number;
+    readonly  idProfil: string;
 
     @ApiProperty({
         required:true,

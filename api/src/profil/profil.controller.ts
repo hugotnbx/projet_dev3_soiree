@@ -25,7 +25,7 @@ export class ProfilController{
     }
 
     @Get('/:idProfil')
-    getById(@Param('idProfil') idProfil: number): Promise<Profil>{
+    getById(@Param('idProfil') idProfil: string): Promise<Profil>{
         return this.profilService.read(idProfil);
     }
 
@@ -35,12 +35,12 @@ export class ProfilController{
     }
     
     @Put('/:idProfil')
-    update(@Param('idProfil')idProfil: number, @Body()profilDto: ProfilDto): Promise<Profil>{
+    update(@Param('idProfil')idProfil: string, @Body()profilDto: ProfilDto): Promise<Profil>{
         return this.profilService.update(idProfil, profilDto);
     }
 
     @Delete('/:idProfil')
-    delete(@Param('idProfil') idProfil: number): Promise<Profil>{
+    delete(@Param('idProfil') idProfil: string): Promise<Profil>{
         return this.profilService.delete(idProfil);
     }
 }
