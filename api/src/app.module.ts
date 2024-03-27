@@ -7,6 +7,7 @@ import { DataSource } from 'typeorm';
 import { ProfilController } from './profil/profil.controller';
 import { ProfilService } from './profil/profil.service';
 import { ProfilModule } from './profil/profil.module';
+import { EventProfilModule } from './event-profil/event-profil.module';
 @Module({
   imports: [
     AccueilModule,
@@ -20,7 +21,8 @@ import { ProfilModule } from './profil/profil.module';
       entities: ['././dist/accueil/entities/accueil.entity.js','././dist/profil/entities/profil.entity.js'],
       synchronize: true //attention à enlever lors de la production
     }),
-    ProfilModule
+    ProfilModule,
+    EventProfilModule
   ],
   controllers: [AppController],
   providers: [AppService],

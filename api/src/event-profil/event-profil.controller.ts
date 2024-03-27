@@ -1,14 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete , Put } from '@nestjs/common';
-import { AccueilService } from './accueil.service';
-import { Accueil } from './entities/accueil.entity';
-import { AccueilDto } from './dto/accueil.dto';
+import { EventProfilService } from './event-profil.service';
+import { EventProfil } from './entities/event-profil.entity';
+import { EventProfilDto } from './dto/event-profil.dto';
 import { ApiResponse } from '@nestjs/swagger'
 import { ApiTags } from '@nestjs/swagger';
 
-@Controller('accueil')
-@ApiTags("Accueil")
-export class AccueilController {
-  constructor(private readonly accueilService: AccueilService) {}
+@Controller('event-profil')
+@ApiTags("EventProfil")
+export class EventProfilController {
+  constructor(private readonly eventProfilService: EventProfilService) {}
 
   @Get()
   @ApiResponse({
@@ -20,11 +20,11 @@ export class AccueilController {
     description:"no page",
     
   })
-  getAll():Promise<Accueil[]>{
-    return this.accueilService.findAll();
+  getAll():Promise<EventProfil[]>{
+    return this.eventProfilService.findAll();
   }
 
-  @Get('/:id')
+  @Get('/?idEvent=:id')
   @ApiResponse({
     status :201,
     description:"reception event",
@@ -33,8 +33,8 @@ export class AccueilController {
     status :404,
     description:"no page. try again!",
   })
-  getById(@Param ('id')id : number):Promise<Accueil>{
-    return this.accueilService.read(id);
+  getById(@Param ('id')id : number):Promise<EventProfil>{
+    return this.eventProfilService.read(id);
   }
 
   @Post()
@@ -46,8 +46,8 @@ export class AccueilController {
     status :404,
     description:"no page. try again!",
   })
-  create(@Body() accueilDto:AccueilDto):Promise<Accueil>{
-    return this.accueilService.create(accueilDto);
+  create(@Body() eventProfilDto:EventProfilDto):Promise<EventProfil>{
+    return this.eventProfilService.create(eventProfilDto);
   }
 
   @Put('/:id')
@@ -59,8 +59,8 @@ export class AccueilController {
     status :404,
     description:"no page. try again!",
   })
-  update(@Param('id') id : number , @Body()accueilDto:AccueilDto): Promise<Accueil>{
-    return this.accueilService.update(id,accueilDto);
+  update(@Param('id') id : number , @Body()eventProfilDto:EventProfilDto): Promise<EventProfil>{
+    return this.eventProfilService.update(id,eventProfilDto);
   }
 
   @Delete('/:id')
@@ -72,7 +72,7 @@ export class AccueilController {
     status :404,
     description:"no page. try again!",
   })
-  delete(@Param('id') id : number ): Promise<Accueil>{
-    return this.accueilService.delete(id);
+  delete(@Param('id') id : number ): Promise<EventProfil>{
+    return this.eventProfilService.delete(id);
   }
 }
