@@ -25,12 +25,13 @@ export class CreationProfilComponent implements OnInit {
     bank:""
   }
   constructor(public http:HttpClient) {
-
+    
   }
   newProfil:any;
+  
   creationProfil() {
-    this.newProfil=new profil(this.newProfil);
-    this.http.post<any>('http://localhost:64000/profil', this.userData)
+    this.newProfil=new profil(this.userData);
+    this.http.post<any>('http://localhost:64000/profil', this.newProfil)
       .subscribe(response => {
         console.log(response); // Gérez la réponse du backend ici
       });
