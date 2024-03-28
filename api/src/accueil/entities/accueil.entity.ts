@@ -1,4 +1,5 @@
-import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
+import { EventProfil } from 'src/event-profil/entities/event-profil.entity';
 
 @Entity()
 export class Accueil {
@@ -16,4 +17,15 @@ export class Accueil {
 
     @Column()
     lieu:string;
+
+    @Column()
+    nbrLit:number;
+
+    @Column()
+    nbrBob:number;
+
+    @OneToMany(() => EventProfil, EventProfil => EventProfil.idEvent)
+    profilEvents: EventProfil[];
+
+
 }

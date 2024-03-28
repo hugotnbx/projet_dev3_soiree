@@ -24,8 +24,11 @@ export class AccueilService {
         const accueilEntities = new Accueil();
         accueilEntities.id = accueilDto.id;
         accueilEntities.nom = accueilDto.nom;
+        accueilEntities.heure= accueilDto.heure;
         accueilEntities.date= accueilDto.date;
         accueilEntities.lieu = accueilDto.lieu;
+        accueilEntities.nbrLit = accueilDto.nbrLit;
+        accueilEntities.nbrBob = accueilDto.nbrBob;
         const accueil = this.accueilRepository.create(accueilEntities);
         await this.accueilRepository.save(accueil);
         return accueil;

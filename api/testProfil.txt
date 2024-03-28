@@ -1,0 +1,50 @@
+[
+  {
+    "idProfil": 1,
+    "name": "Dupont",
+    "firstName": "Jean",
+    "mail": "jean.dupont@example.com",
+    "numberPhone": "+33 123456789",
+    "address": "123 Rue de la Liberté",
+    "instagram": "@jean.dupont",
+    "facebook": "/jean.dupont",
+    "description": "Passionné ",
+    "bank": "BNP Paribas"
+  },
+  {
+    "idProfil": 2,
+    "name": "uhgeo",
+    "firstName": "neut",
+    "mail": "jbfuiz@stdeunst",
+    "numberPhone": "07335872",
+    "address": "",
+    "instagram": "ezbi",
+    "facebook": "jebzkj",
+    "description": "ejz",
+    "bank": "enzji"
+  },
+  {
+    "idProfil": 3,
+    "name": "Lambert",
+    "firstName": "Pierre",
+    "mail": "pierre.lambert@example.com",
+    "numberPhone": "+44 77778888",
+    "address": "789 High Street",
+    "instagram": "@pierre.lambert",
+    "facebook": "/pierre.lambert",
+    "description": "Amateur de voyages",
+    "bank": "HSBC"
+  },
+  {
+    "idProfil": 4,
+    "name": "uhgeo",
+    "firstName": "neut",
+    "mail": "jbfuiz@stdeunst",
+    "numberPhone": "07335872",
+    "address": "",
+    "instagram": "ezbi",
+    "facebook": "jebzkj",
+    "description": "ejz",
+    "bank": "enzji"
+  }
+]

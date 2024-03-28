@@ -16,7 +16,7 @@ export class ProfilService{
         return await this.profilRepository.find();
     }
 
-    async read(idProfil: number): Promise<Profil>{
+    async read(idProfil: string): Promise<Profil>{
       return await this.profilRepository.findOne({
         where: {
           idProfil,
@@ -42,13 +42,13 @@ export class ProfilService{
     
       }
 
-      async update(idProfil : number , data : Partial<Profil> ){
+      async update(idProfil : string , data : Partial<Profil> ){
         await this.profilRepository.update({idProfil},data);
         const profil= this.profilRepository.findOne({where:{idProfil}})
         return profil 
       }
 
-      async delete(idProfil : number){
+      async delete(idProfil : string){
         const profil =await this.profilRepository.findOne({ where: { idProfil } });
         await this.profilRepository.delete({idProfil});
         return profil ;
