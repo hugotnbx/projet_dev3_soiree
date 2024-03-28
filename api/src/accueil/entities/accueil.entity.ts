@@ -24,7 +24,7 @@ export class Accueil {
     @Column()
     nbrBob:number;
 
-    @OneToMany(() => EventProfil, EventProfil => EventProfil.profil)
+    @OneToMany(() => EventProfil, EventProfil => EventProfil.idEvent)
     profilEvents: EventProfil[];
 
 

@@ -33,6 +33,6 @@ export class Profil{
     @Column({ length: 20 })
     bank: string;
     
-    @OneToMany(() => EventProfil, EventProfil => EventProfil.profil)
+    @OneToMany(() => EventProfil, EventProfil => EventProfil.idProfil)
     profilEvents: EventProfil[];
 }
