@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class CreationProfilComponent implements OnInit {
 
 
-  userData={
+  userData:Profil={
     idProfil:"",
     name:"",
     firstName:"",
@@ -27,16 +27,15 @@ export class CreationProfilComponent implements OnInit {
   constructor(public http:HttpClient) {
 
   }
+  newProfil:any;
   creationProfil() {
+    this.newProfil=new profil(this.newProfil);
     this.http.post<any>('http://localhost:64000/profil', this.userData)
       .subscribe(response => {
         console.log(response); // Gérez la réponse du backend ici
       });
   }
-
-  
   /*newProfil:any;
-
 
   creationProfil(){
     this.newProfil= new profil(this.userData);

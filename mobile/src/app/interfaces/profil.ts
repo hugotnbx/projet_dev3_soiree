@@ -1,5 +1,5 @@
 export interface Profil {
-    id:string;
+    idProfil:string;
     name:string;
     firstName:string;
     mail:string;
@@ -8,4 +8,5 @@ export interface Profil {
     instagram:string;
     facebook:string;
     description:string;
+    bank:string;
 }

@@ -30,7 +30,7 @@ export class Tab1Page {
     return this.http.get(URL);
 
   }
- 
+
   
   /*events:any[]=[
     {nom:"event1",desc:"ganf",date:"11/02/2023"},
