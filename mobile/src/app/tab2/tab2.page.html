@@ -16,11 +16,11 @@
   <ion-list>
     <ion-item>
       <ion-input
-        label="Événement"
+        label="Nom de l'événement"
         labelPlacement="stacked"
         [clearInput]="true"
-        placeholder="ex: Bière entre pote"
-        [(ngModel)]="evenement"
+        placeholder="ex: Bière entre potes"
+        [(ngModel)]="eventData.nom"
       >
       <ion-icon slot="start" name="beer-outline" aria-hidden="true"></ion-icon>
       </ion-input>
@@ -28,11 +28,11 @@
 
   <ion-item>
     <ion-input
-        label="Lieu"
+        label="Heure"
         labelPlacement="stacked"
         [clearInput]="true"
-        placeholder="ex: Chez Mathilde"
-        [(ngModel)]="nomLieu"
+        placeholder="ex: 18h30"
+        [(ngModel)]="eventData.heure"
       >
       <ion-icon slot="start" name="location-outline" aria-hidden="true"></ion-icon>
     </ion-input>
@@ -40,11 +40,23 @@
 
   <ion-item>
     <ion-input
-        label="Date et heure"
+        label="Date"
         labelPlacement="stacked"
         [clearInput]="true"
-        placeholder="ex: Mardi 12/01/2024 à 19h"
-        [(ngModel)]="date"
+        placeholder="ex: Mardi 12/01/2024"
+        [(ngModel)]="eventData.date"
+      >
+      <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+        label="Lieu"
+        labelPlacement="stacked"
+        [clearInput]="true"
+        placeholder="ex: 11 Rue de l'avenir"
+        [(ngModel)]="eventData.lieu"
       >
       <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
     </ion-input>
@@ -56,7 +68,7 @@
         labelPlacement="stacked"
         [clearInput]="false"
         placeholder="ex: 6lits"
-        [(ngModel)]="lits"
+        [(ngModel)]="eventData.nbrLit"
       >
       <ion-icon slot="start" name="bed-outline" aria-hidden="true"></ion-icon>
     </ion-input>
@@ -66,7 +78,7 @@
         labelPlacement="stacked"
         [clearInput]="false"
         placeholder="ex: 5 bobs"
-        [(ngModel)]="bob"
+        [(ngModel)]="eventData.nbrBob"
       >
       <ion-icon slot="start" name="car-outline" aria-hidden="true"></ion-icon>
     </ion-input>
