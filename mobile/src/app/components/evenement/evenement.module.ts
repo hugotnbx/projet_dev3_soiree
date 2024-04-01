@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { EvenementComponent } from './evenement.component';
 import { Router } from 'express';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
-  declarations: [],
+  declarations: [EvenementComponent],
   imports: [
+    IonicModule,
     CommonModule,
     RouterModule.forChild([
       { path: '', component: EvenementComponent },
