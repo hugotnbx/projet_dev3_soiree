@@ -12,4 +12,16 @@ export class EventProfilDto {
         type:'number',
     })
     readonly  idEvent: number;
+
+    @ApiProperty({
+        required:false,
+        type:'string',
+    })
+    readonly  idStatus: string;
+
+    @ApiProperty({
+        required:false,
+        type:'string',
+    })
+    readonly  role: string;
 }

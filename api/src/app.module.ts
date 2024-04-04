@@ -8,6 +8,8 @@ import { ProfilController } from './profil/profil.controller';
 import { ProfilService } from './profil/profil.service';
 import { ProfilModule } from './profil/profil.module';
 import { EventProfilModule } from './event-profil/event-profil.module';
+import { StatusService } from './status/status.service';
+import { StatusModule } from './status/status.module';
 @Module({
   imports: [
     AccueilModule,
@@ -23,7 +25,8 @@ import { EventProfilModule } from './event-profil/event-profil.module';
       synchronize: true //attention à enlever lors de la production
     }),
     ProfilModule,
-    EventProfilModule
+    EventProfilModule,
+    StatusModule
   ],
   controllers: [AppController],
   providers: [AppService],
