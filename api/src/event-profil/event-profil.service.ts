@@ -15,7 +15,15 @@ export class EventProfilService {
         return await this.EventProfilRepository.find();
     }
 
-    async read(idProfil: string,idEvent:number): Promise<EventProfil>{
+    async readEvent(idEvent:number): Promise<EventProfil[]>{
+      return await this.EventProfilRepository.find({
+        where: {
+          idEvent,
+        }
+      });
+    }
+
+    async readEventProfil(idProfil: string,idEvent:number): Promise<EventProfil>{
       return await this.EventProfilRepository.findOne({
         where: {
           idProfil,

@@ -20,17 +20,16 @@ export class EvenementComponent  implements OnInit {
     .subscribe((data) =>{
       console.log(data);
       this.event= data;
+    });
 
+    this.readApi(`http://localhost:64000/event-profil/${paramValue}`)
+    .subscribe((data) => {
+      console.log(data);
+      this.eventprofil = data;
     });
   }
 
-  ngOnInit() {
-    this.readApi("http://localhost:64000/event-profil/")
-      .subscribe((data) => {
-        console.log(data);
-        this.eventprofil = data;
-      });
-  }
+  ngOnInit() {}
 
   readApi(URL: string) {
     return this.http.get(URL);

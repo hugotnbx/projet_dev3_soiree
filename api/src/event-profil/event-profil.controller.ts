@@ -24,6 +24,19 @@ export class EventProfilController {
     return this.eventProfilService.findAll();
   }
 
+  @Get('/:idE')
+  @ApiResponse({
+    status :201,
+    description:"reception event",
+  })
+  @ApiResponse({
+    status :404,
+    description:"no page. try again!",
+  })
+  getByIdEvent(@Param ('idE')idE : number):Promise<EventProfil[]>{
+    return this.eventProfilService.readEvent(idE);
+  }
+
   @Get('/?idEvent=:idE&idProfil=:idP')
   @ApiResponse({
     status :201,
@@ -33,8 +46,8 @@ export class EventProfilController {
     status :404,
     description:"no page. try again!",
   })
-  getById(@Param ('idE')idE : number,@Param("idP")idP:string):Promise<EventProfil>{
-    return this.eventProfilService.read(idP,idE);
+  getByIdEventProfil(@Param ('idE')idE : number,@Param("idP")idP:string):Promise<EventProfil>{
+    return this.eventProfilService.readEventProfil(idP,idE);
   }
 
   @Post()
