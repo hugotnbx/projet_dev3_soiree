@@ -10,36 +10,17 @@ export class Tab1Page {
   events:any;
 
   constructor(public http:HttpClient) {
-
-
-    
-    /*let data = fetch('http://localhost:3000/accueil')
-    .then((response)=> response.json())
-    .catch((error)=>{console.log("Erreur de chargement des données")});
-    console.log(data)*/
     
     this.readApi("http://localhost:64000/accueil/")
     .subscribe((data) =>{
-      //console.log(data);
+      console.log(data);
       this.events= data;
 
     });
   }
 
-  
-  
-
   readApi(URL:string){
     return this.http.get(URL);
-
   }
-
-  
-  /*events:any[]=[
-    {nom:"event1",desc:"ganf",date:"11/02/2023"},
-    {nom:"MathildeMahBabe",desc:"ganf",date:"11/02/2023"}
-  ]*/
-
-
 }
 
