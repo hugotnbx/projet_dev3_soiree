@@ -51,13 +51,13 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card *ngFor="let item of eventprofil; index as i" class="ion-text-center card-container">
+  <ion-card *ngFor="let profil of eventprofil; index as i" class="ion-text-center card-container" [routerLink]="['/profil-event',profil.idProfil]">
     <ion-card-header>
-        <ion-card-subtitle>{{ item.role }}</ion-card-subtitle>
-        <ion-card-title>{{ item.idProfil }}</ion-card-title>
+        <ion-card-subtitle>{{ profil.role }}</ion-card-subtitle>
+        <ion-card-title>{{ profil.idProfil }}</ion-card-title>
     </ion-card-header>
     <ion-thumbnail class="image-container">
-        <img [src]="getImageUrl(item.role)" alt="Photo" style="width: 100%; height: auto;">
+        <img [src]="getImageUrl(profil.role)" alt="Photo" style="width: 75%; height: auto;">
     </ion-thumbnail>
   </ion-card>
 </ion-content>

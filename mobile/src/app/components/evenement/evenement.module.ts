@@ -6,7 +6,7 @@ import { Router } from 'express';
 import { IonicModule } from '@ionic/angular';
 
 @NgModule({
-  declarations: [EvenementComponent],
+  declarations: [],
   imports: [
     IonicModule,
     CommonModule,

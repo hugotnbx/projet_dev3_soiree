@@ -29,6 +29,15 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-card>
+    <ion-thumbnail class="image-container">
+      <img [src]="getImageUrl(profil.role)" alt="Photo" style="width: 100%; height: auto;">
+    </ion-thumbnail>
+    <ion-card-content>
+      <ion-card-subtitle>Statut</ion-card-subtitle>
+    </ion-card-content>
+  </ion-card>
+
   <ion-card>  
     <ion-card-content>
       <ion-icon name="logo-instagram" size="large"></ion-icon>
@@ -46,7 +55,6 @@
       <ion-card-title>{{profil.address}}</ion-card-title>
       <ion-card-subtitle>Adresse</ion-card-subtitle>
     </ion-card-header>
-
   </ion-card>
 
   <ion-card>
@@ -54,9 +62,6 @@
       <ion-card-title>{{profil.numberPhone}}</ion-card-title>
       <ion-card-subtitle>Téléphone</ion-card-subtitle>
     </ion-card-header>
-
   </ion-card>
-        
-      
-  
+
 </ion-content>

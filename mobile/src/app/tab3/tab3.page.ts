@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class Tab3Page {
   profil:any;
   constructor(public http:HttpClient) {
-    this.readApi("http://localhost:64000/profil/1")
+    this.readApi("http://localhost:64000/profil/hugoneutre")
     .subscribe((data) =>{
       console.log(data);
       this.profil= data;
