@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { EvenementComponent } from './components/evenement/evenement.component';
 import { CreationProfilComponent } from './components/profil/creation-profil/creation-profil.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfilEventComponent } from './components/profil-event/profil-event.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path:"profil",
     component: LoginComponent
+  },
+
+  {
+    path:'profil-event/:id',
+    component: ProfilEventComponent
   }
 ];
 

@@ -1,5 +1,6 @@
 ion-card{
     background-color: #F9E6AC;
+    margin-bottom: -10px;
 }
 
 .flex-container {
@@ -12,11 +13,12 @@ ion-card{
 }
 
 #flex-item-1{
-    margin-right: 10px;
+    margin-right: 0;
 }
 
 ion-row {
-    margin-top: -20px;
+    margin-top: -10px;
+    margin-bottom: 30px;
     justify-content: space-between;
 }
 
@@ -24,12 +26,16 @@ ion-row {
     align-items: center;
     display: flex;
     justify-content: space-between;
+
+    ion-card-title, ion-card-subtitle {
+        text-align: left;
+    }
 }
 
 .image-container {
     flex-shrink: 0;
     margin-left: auto; /* Pour placer l'image à droite */
     margin-right: 35px;
-    margin-top: 0px;
+    margin-top: -50px;
     width: 25%; 
 }

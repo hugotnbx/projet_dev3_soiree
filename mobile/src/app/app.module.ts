@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,9 +10,11 @@ import { CreationProfilComponent } from './components/profil/creation-profil/cre
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
+import { EvenementComponent } from './components/evenement/evenement.component';
+import { ProfilEventComponent } from './components/profil-event/profil-event.component';
 
 @NgModule({
-  declarations: [AppComponent,MenuComponent,CreationProfilComponent,LoginComponent],
+  declarations: [AppComponent,MenuComponent,CreationProfilComponent,LoginComponent,EvenementComponent,ProfilEventComponent],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
