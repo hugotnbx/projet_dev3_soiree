@@ -20,6 +20,12 @@ export class AccueilService {
         return await this.accueilRepository.findOne({where:{id}})
     }
 
+    async readDate(date:Date): Promise<Accueil>{
+      return await this.accueilRepository.findOne({where:{date}})
+    }
+
+
+
     async  create(accueilDto : AccueilDto) {
         const accueilEntities = new Accueil();
         accueilEntities.id = accueilDto.id;

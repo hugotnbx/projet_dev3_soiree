@@ -39,15 +39,9 @@
   </ion-item>
 
   <ion-item>
-    <ion-input
-        label="Date"
-        labelPlacement="stacked"
-        [clearInput]="true"
-        placeholder="ex: Mardi 12/01/2024"
-        [(ngModel)]="eventData.date"
-      >
+      <ion-label position="stacked">Date</ion-label>
+      <ion-datetime presentation="date" displayFormat="DD/MM/YYYY" [(ngModel)]="eventData.date"></ion-datetime>
       <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
-    </ion-input>
   </ion-item>
 
   <ion-item>

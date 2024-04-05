@@ -28,7 +28,7 @@ export class Tab2Page implements OnInit {
     this.newEvent=new evenement(this.eventData);
     this.http.post<any>('http://localhost:64000/accueil', this.newEvent)
       .subscribe(response => {
-        console.log(response); // Gérez la réponse du backend ici
+        console.log(response);
       });
   }
 

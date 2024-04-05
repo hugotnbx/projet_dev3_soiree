@@ -37,6 +37,20 @@ export class AccueilController {
     return this.accueilService.read(id);
   }
 
+  @Get('date/:date')
+  @ApiResponse({
+    status :201,
+    description:"reception event",
+  })
+  @ApiResponse({
+    status :404,
+    description:"no page. try again!",
+  })
+  getByDate(@Param ('date')date : Date):Promise<Accueil>{
+    return this.accueilService.readDate(date);
+  }
+
+
   @Post()
   @ApiResponse({
     status :201,

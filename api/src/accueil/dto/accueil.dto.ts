@@ -27,9 +27,9 @@ export class AccueilDto {
 
     @ApiProperty({
         required:true,
-        type:'string',
+        type:'date',
     })
-    readonly  date : string;
+    readonly  date : Date;
 
     @ApiProperty({
         required:false,
