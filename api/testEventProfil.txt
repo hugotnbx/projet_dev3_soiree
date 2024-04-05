@@ -1,0 +1,19 @@
+[
+  {
+  "idProfil": "1",
+  "idEvent": 4,
+  "role": "Bob"
+  },
+  {
+  "idProfil": "1",
+  "idEvent": 6,
+  "role": "Bob"
+  }
+]
+
+Bob/
+Hote/
+Admin//
+covoiturage/
+nbrLit/
+place_voiture/

@@ -19,3 +19,17 @@ ion-row {
     margin-top: -20px;
     justify-content: space-between;
 }
+
+.card-container{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.image-container {
+    flex-shrink: 0;
+    margin-left: auto; /* Pour placer l'image à droite */
+    margin-right: 35px;
+    margin-top: 0px;
+    width: 25%; 
+}

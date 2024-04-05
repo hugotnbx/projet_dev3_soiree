@@ -1,0 +1,133 @@
+// Profils
+[
+  {
+    "idProfil": "@jean.dupont",
+    "name": "Dupont",
+    "firstName": "Jean",
+    "mail": "jean.dupont@example.com",
+    "numberPhone": "+33 123456789",
+    "address": "123 Rue de la Liberté",
+    "instagram": "@jean.dupont",
+    "facebook": "/jean.dupont",
+    "description": "Passionné ",
+    "bank": "BNP Paribas"
+  },
+  {
+    "idProfil": "@pierre.lambert",
+    "name": "Lambert",
+    "firstName": "Pierre",
+    "mail": "pierre.lambert@example.com",
+    "numberPhone": "+44 77778888",
+    "address": "789 High Street",
+    "instagram": "@pierre.lambert",
+    "facebook": "/pierre.lambert",
+    "description": "Amateur de voyages",
+    "bank": "HSBC"
+  },
+  // Ajoutez d'autres profils ici
+]
+
+// Événements
+[
+  {
+    "id": 1,
+    "nom": "Anniversaire",
+    "heure": "18:00",
+    "date": "2024-04-01",
+    "lieu": "Chez Marie",
+    "nbrLit": 2,
+    "nbrBob": 5
+  },
+  {
+    "id": 2,
+    "nom": "Soirée barbecue",
+    "heure": "19:00",
+    "date": "2024-04-15",
+    "lieu": "Jardin public",
+    "nbrLit": 0,
+    "nbrBob": 10
+  },
+  // Ajoutez d'autres événements ici
+]
+
+// Relations entre profils et événements
+[
+  {
+    "idProfil": "1",
+    "idEvent": 1,
+    "role": "Bob"
+  },
+  {
+    "idProfil": "2",
+    "idEvent": 1,
+    "role": "Hote"
+  },
+  // Ajoutez d'autres relations ici
+]
+
+// Profils
+[
+  {
+    "idProfil": "@marie.martin",
+    "name": "Martin",
+    "firstName": "Marie",
+    "mail": "marie.martin@example.com",
+    "numberPhone": "+33 987654321",
+    "address": "456 Avenue des Roses",
+    "instagram": "@marie.martin",
+    "facebook": "/marie.martin",
+    "description": "Fan de cuisine",
+    "bank": "Crédit Agricole"
+  },
+  {
+    "idProfil": "@sophie.dubois",
+    "name": "Dubois",
+    "firstName": "Sophie",
+    "mail": "sophie.dubois@example.com",
+    "numberPhone": "+44 12348765",
+    "address": "987 Boulevard du Soleil",
+    "instagram": "@sophie.dubois",
+    "facebook": "/sophie.dubois",
+    "description": "Passionnée de musique",
+    "bank": "Société Générale"
+  },
+  // Ajoutez d'autres profils ici
+]
+
+// Événements
+[
+  {
+    "id": 3,
+    "nom": "Soirée jeux de société",
+    "heure": "20:00",
+    "date": "2024-04-20",
+    "lieu": "Chez Paul",
+    "nbrLit": 0,
+    "nbrBob": 8
+  },
+  {
+    "id": 4,
+    "nom": "Excursion en montagne",
+    "heure": "08:00",
+    "date": "2024-05-05",
+    "lieu": "Massif du Mont-Blanc",
+    "nbrLit": 4,
+    "nbrBob": 0
+  },
+  // Ajoutez d'autres événements ici
+]
+
+// Relations entre profils et événements
+[
+  {
+    "idProfil": "3",
+    "idEvent": 3,
+    "role": "Admin"
+  },
+  {
+    "idProfil": "4",
+    "idEvent": 3,
+    "role": "covoiturage"
+  },
+  // Ajoutez d'autres relations ici
+]
