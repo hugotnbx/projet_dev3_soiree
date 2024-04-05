@@ -27,6 +27,8 @@
     "@nestjs/swagger": "^7.3.0",
     "@nestjs/typeorm": "^10.0.2",
     "call-bind": "^1.0.7",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
     "define-data-property": "^1.1.4",
     "fastify-swagger": "^5.2.0",
     "function-bind": "^1.1.2",

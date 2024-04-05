@@ -12,8 +12,8 @@ export class Accueil {
     @Column()
     heure:string;
 
-    @Column()
-    date:string;
+    @Column({ type : "date"})
+    date:Date;
 
     @Column()
     lieu:string;

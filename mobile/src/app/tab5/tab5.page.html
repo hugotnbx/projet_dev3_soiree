@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Mes anciens événements
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-text-center">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large" class="ion-text-center">Anciens événements</ion-title>
+    </ion-toolbar>
+
+
+    <ion-card *ngFor="let event of tablePastEvents;index as i" class="ion-text-center" [routerLink]="['/tabs/tab5/evenement']">
+
+      <ion-card-header>
+        <ion-card-title>{{ event.nom }}</ion-card-title>
+        <ion-card-subtitle>{{ event.date }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{ event.lieu }}      
+      </ion-card-content>
+    </ion-card>
+  </ion-header>
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>

@@ -20,11 +20,14 @@ export class Tab1Page {
     
     this.readApi("http://localhost:64000/accueil/")
     .subscribe((data) =>{
-      console.log(data);
+      //console.log(data);
       this.events= data;
 
     });
   }
+
+  
+  
 
   readApi(URL:string){
     return this.http.get(URL);
