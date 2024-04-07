@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { EvenementComponent } from './components/evenement/evenement.component';
 import { CreationProfilComponent } from './components/profil/creation-profil/creation-profil.component';
 import { LoginComponent } from './components/login/login.component';
+import { RejoindreEventComponent } from './components/rejoindre-event/rejoindre-event.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,13 @@ const routes: Routes = [
   {
     path:"profil",
     component: LoginComponent
+  },
+  {
+    path:"rejoindre",
+    component: RejoindreEventComponent
   }
+
+
 ];
 
 @NgModule({

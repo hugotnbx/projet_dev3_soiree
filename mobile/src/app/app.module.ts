@@ -11,9 +11,10 @@ import { CreationProfilComponent } from './components/profil/creation-profil/cre
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
+import { RejoindreEventComponent } from './components/rejoindre-event/rejoindre-event.component';
 
 @NgModule({
-  declarations: [AppComponent,MenuComponent,CreationProfilComponent,LoginComponent],
+  declarations: [AppComponent,MenuComponent,CreationProfilComponent,LoginComponent , RejoindreEventComponent],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

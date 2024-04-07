@@ -15,22 +15,22 @@ export class Profil{
     @Column({ length: 100 })
     mail: string;
 
-    @Column({ length: 20 })
+    @Column({ length: 20 , nullable:true })
     numberPhone: string;
 
-    @Column({ length: 100 })
+    @Column({ length: 100 , nullable:true})
     address: string;
 
-    @Column({ length: 20 })
+    @Column({ length: 20 , nullable:true})
     instagram: string;
 
-    @Column({ length: 20 })
+    @Column({ length: 20 , nullable:true})
     facebook: string;
 
-    @Column({ length: 20 })
+    @Column({ length: 20 , nullable:true})
     description: string;
 
-    @Column({ length: 20 })
+    @Column({ length: 20 , nullable:true})
     bank: string;
     
     @OneToMany(() => EventProfil, EventProfil => EventProfil.idProfil)

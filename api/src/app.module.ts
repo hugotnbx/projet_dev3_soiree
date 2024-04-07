@@ -4,12 +4,10 @@ import { AppService } from './app.service';
 import { AccueilModule } from './accueil/accueil.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { ProfilController } from './profil/profil.controller';
-import { ProfilService } from './profil/profil.service';
 import { ProfilModule } from './profil/profil.module';
 import { EventProfilModule } from './event-profil/event-profil.module';
-import { StatusService } from './status/status.service';
 import { StatusModule } from './status/status.module';
+import { ContributionModule } from './contribution/contribution.module';
 @Module({
   imports: [
     AccueilModule,
@@ -26,7 +24,8 @@ import { StatusModule } from './status/status.module';
     }),
     ProfilModule,
     EventProfilModule,
-    StatusModule
+    StatusModule,
+    ContributionModule
   ],
   controllers: [AppController],
   providers: [AppService],

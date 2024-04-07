@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Rejoindre un événement</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>Désirez-vous être Bob ?</h2>
+  <ion-row class="options">
+    <ion-col size="6">
+      <ion-card class="option-card" (click)="selectOption(2)" [class.selected]="selectedOption === 2">
+        <ion-card-header>
+          <ion-card-title>Oui</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+    <ion-col size="6">
+      <ion-card class="option-card" (click)="selectOption(1)" [class.selected]="selectedOption === 1">
+        <ion-card-header>
+          <ion-card-title>Non</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+
+  </ion-row>
+  <h2>Que souhaitez-vous apporter?</h2>
+  <ion-item>
+    <ion-label>Total à payer :</ion-label>
+    <ion-label slot="end">{{ getTotal() }}€</ion-label>
+  </ion-item>
+</ion-content>
+<ion-content >
+  
+  <ion-list>
+    <ion-card *ngFor="let aliment of aliments" [class.selected]="aliment.selected" (click)="toggleSelection(aliment)">
+      <ion-card-content class="item-label">{{ aliment.nom }} - {{ aliment.prix }}€</ion-card-content>
+    </ion-card>
+  </ion-list>
+  
+  
+</ion-content>
+<ion-footer>
+  <ion-button shape="round" size="small" class="centred-element" (click)="rejoindreEvent()" >
+    Créer
+    <ion-icon name="send-outline" ></ion-icon>  
+  </ion-button>
+</ion-footer>
+
