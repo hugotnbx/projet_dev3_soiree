@@ -12,9 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { EvenementComponent } from './components/evenement/evenement.component';
 import { ProfilEventComponent } from './components/profil-event/profil-event.component';
+import { RejoindreEventComponent } from './components/rejoindre-event/rejoindre-event.component';
+
 
 @NgModule({
-  declarations: [AppComponent,MenuComponent,CreationProfilComponent,LoginComponent,EvenementComponent,ProfilEventComponent],
+  declarations: [AppComponent,MenuComponent,CreationProfilComponent,LoginComponent,EvenementComponent,ProfilEventComponent,RejoindreEventComponent],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

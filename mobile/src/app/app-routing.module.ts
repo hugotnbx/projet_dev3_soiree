@@ -5,7 +5,7 @@ import { CreationProfilComponent } from './components/profil/creation-profil/cre
 import { LoginComponent } from './components/login/login.component';
 import { ProfilEventComponent } from './components/profil-event/profil-event.component';
 import { UpdateEventComponent } from './components/update-event/update-event.component';
-
+import { RejoindreEventComponent } from './components/rejoindre-event/rejoindre-event.component';
 
 const routes: Routes = [
   {
@@ -36,9 +36,12 @@ const routes: Routes = [
   {
     path:'update-event/:id',
     component: UpdateEventComponent
+  },
+
+  {
+    path:"rejoindre",
+    component: RejoindreEventComponent
   }
-
-
 ];
 
 @NgModule({

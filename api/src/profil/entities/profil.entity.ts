@@ -15,7 +15,7 @@ export class Profil{
     @Column({ length: 100 })
     mail: string;
 
-    @Column({ length: 20 , nullable:true})
+    @Column({ length: 20 , nullable:true })
     numberPhone: string;
 
     @Column({ length: 100 , nullable:true})
