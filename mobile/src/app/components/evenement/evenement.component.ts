@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-evenement',
   templateUrl: './evenement.component.html',
@@ -53,5 +54,8 @@ export class EvenementComponent  implements OnInit {
     } else {
       return './assets/role/pas_de_role.png'
     }
+  }
+  isAdmin(role: string): boolean {
+    return role === 'Admin';
   }
 }

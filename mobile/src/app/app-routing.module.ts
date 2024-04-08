@@ -4,6 +4,8 @@ import { EvenementComponent } from './components/evenement/evenement.component';
 import { CreationProfilComponent } from './components/profil/creation-profil/creation-profil.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfilEventComponent } from './components/profil-event/profil-event.component';
+import { UpdateEventComponent } from './components/update-event/update-event.component';
+
 
 const routes: Routes = [
   {
@@ -29,7 +31,14 @@ const routes: Routes = [
   {
     path:'profil-event/:id',
     component: ProfilEventComponent
+  }, 
+
+  {
+    path:'update-event/:id',
+    component: UpdateEventComponent
   }
+
+
 ];
 
 @NgModule({

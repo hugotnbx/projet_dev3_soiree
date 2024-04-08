@@ -12,7 +12,12 @@ const routes: Routes = [
         path:"evenement",
         loadChildren: () => import('../components/evenement/evenement.module').then(m => m.EvenementModule)
         
-      }
+      },
+      {
+        path:"update",
+        loadChildren: () => import('../components/update-event/update-event.module').then(m => m.UpdateModule)
+        
+      },
     ]
   },
 ];
