@@ -6,6 +6,7 @@ import { ApiResponse } from "@nestjs/swagger";
 import { ApiTags } from '@nestjs/swagger'
 
 @Controller('contribution')
+@ApiTags('Contribution')
 export class ContributionController {
 
     constructor(private readonly contributionService: ContributionService) {}
