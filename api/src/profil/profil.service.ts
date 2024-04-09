@@ -8,12 +8,12 @@ import { ProfilDto } from './dto/profil.dto';
 @Injectable()
 export class ProfilService{
     constructor(
-        @InjectRepository(Profil)
-        private readonly profilRepository: Repository<Profil>,
-      ) {}
+      @InjectRepository(Profil)
+      private readonly profilRepository: Repository<Profil>,
+    ) {}
 
     async findAll(): Promise<Profil[]> {
-        return await this.profilRepository.find();
+      return await this.profilRepository.find();
     }
 
     async read(idProfil: string): Promise<Profil>{
@@ -24,33 +24,33 @@ export class ProfilService{
       });
     }
 
-    async  create(profilDto : ProfilDto) {
-        const profilEntities = new Profil();
-        profilEntities.idProfil = profilDto.idProfil;
-        profilEntities.name = profilDto.name;
-        profilEntities.firstName= profilDto.firstName;
-        profilEntities.mail = profilDto.mail;
-        profilEntities.numberPhone = profilDto.numberPhone;
-        profilEntities.address = profilDto.address;
-        profilEntities.instagram = profilDto.instagram;
-        profilEntities.facebook = profilDto.facebook;
-        profilEntities.description = profilDto.description;
-        profilEntities.bank = profilDto.bank;
-        const profil = this.profilRepository.create(profilEntities);
-        await this.profilRepository.save(profil);
-        return profil;
-    
-      }
+    async create(profilDto : ProfilDto) {
+      const profilEntities = new Profil();
+      profilEntities.idProfil = profilDto.idProfil;
+      profilEntities.name = profilDto.name;
+      profilEntities.firstName= profilDto.firstName;
+      profilEntities.mail = profilDto.mail;
+      profilEntities.numberPhone = profilDto.numberPhone;
+      profilEntities.address = profilDto.address;
+      profilEntities.instagram = profilDto.instagram;
+      profilEntities.facebook = profilDto.facebook;
+      profilEntities.description = profilDto.description;
+      profilEntities.bank = profilDto.bank;
 
-      async update(idProfil : string , data : Partial<Profil> ){
-        await this.profilRepository.update({idProfil},data);
-        const profil= this.profilRepository.findOne({where:{idProfil}})
-        return profil 
-      }
+      const profil = this.profilRepository.create(profilEntities);
+      await this.profilRepository.save(profil);
+      return profil;
+    }
 
-      async delete(idProfil : string){
-        const profil =await this.profilRepository.findOne({ where: { idProfil } });
-        await this.profilRepository.delete({idProfil});
-        return profil ;
+    async update(idProfil : string , data : Partial<Profil> ){
+      await this.profilRepository.update({idProfil},data);
+      const profil= this.profilRepository.findOne({where:{idProfil}})
+      return profil 
+    }
+
+    async delete(idProfil : string){
+      const profil =await this.profilRepository.findOne({ where: { idProfil } });
+      await this.profilRepository.delete({idProfil});
+      return profil ;
     }
 }
