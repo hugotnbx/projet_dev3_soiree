@@ -1,91 +1,57 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete , Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { EventProfilService } from './event-profil.service';
 import { EventProfil } from './entities/event-profil.entity';
 import { EventProfilDto } from './dto/event-profil.dto';
-import { ApiResponse } from '@nestjs/swagger'
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery, ApiBody } from '@nestjs/swagger';
 
 @Controller('event-profil')
 @ApiTags("EventProfil")
 export class EventProfilController {
-  constructor(private readonly eventProfilService: EventProfilService) {}
+    constructor(private readonly eventProfilService: EventProfilService) {}
 
-  @Get()
-  @ApiResponse({
-    status :201,
-    description:"Liste des messages",
-  })
-  @ApiResponse({
-    status :404,
-    description:"no page",
-    
-  })
-  getAll():Promise<EventProfil[]>{
-    return this.eventProfilService.findAll();
-  }
+    @Get()
+    @ApiOperation({ summary: 'Liste des profils et des événements étant liés', description: 'Récupère la liste de tous les profils et événements qui sont liés.' })
+    @ApiResponse({ status: 200, description: 'Succès de la requête. Retourne la liste des profils et des événements qui sont liés.' })
+    @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
+    async getAll(): Promise<EventProfil[]> {
+        return this.eventProfilService.findAll();
+    }
 
-  @Get('/:idE')
-  @ApiResponse({
-    status :201,
-    description:"reception event",
-  })
-  @ApiResponse({
-    status :404,
-    description:"no page. try again!",
-  })
-  getByIdEvent(@Param ('idE')idE : number):Promise<EventProfil[]>{
-    return this.eventProfilService.readEvent(idE);
-  }
+    @Get('/:idEvent')
+    @ApiOperation({ summary: 'Liste des profils participant à l\'événemenent à partir de l\'id de l\'événement', description: 'Récupère la liste de tous les profils qui partcipent à l\'événeement à partir de l\'id de l\'événement.' })
+    @ApiParam({ name: 'idEvent', description: 'id de l\'événement pour lequel récupérer les profils qui y participent', type: 'number' })
+    @ApiResponse({ status: 200, description: 'Succès de la requête. Retourne les profils participants à l\'événement correspondant à l\'id spécifié.' })
+    @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
+    async getByIdEvent(@Param('idEvent') idEvent: number): Promise<EventProfil[]> {
+        return this.eventProfilService.readEvent(idEvent);
+    }
 
-  @Get('/?idEvent=:idE&idProfil=:idP')
-  @ApiResponse({
-    status :201,
-    description:"reception event",
-  })
-  @ApiResponse({
-    status :404,
-    description:"no page. try again!",
-  })
-  getByIdEventProfil(@Param ('idE')idE : number,@Param("idP")idP:string):Promise<EventProfil>{
-    return this.eventProfilService.readEventProfil(idP,idE);
-  }
+    @Get('/?idEvent=:idEvent&idProfil=:idProfil')
+    @ApiOperation({ summary: 'Récupérer un événement et un profil lié à partir de l\'id de l\'événement et l\id du profil', description: 'Récupére un événement et un profil lié à partir de l\'id de l\'événement et l\id du profil.' })
+    @ApiQuery({ name: 'idEvent', description: 'id de l\'événement', type: 'number' })
+    @ApiQuery({ name: 'idProfil', description: 'id du profil', type: 'string' })
+    @ApiResponse({ status: 200, description: 'Succès de la requête. Retourne l\'événement et le profil lié correspondant aux id spécifiés.' })
+    @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
+    async getByIdEventProfil(@Param('idEvent') idEvent: number, @Param('idProfil') idProfil: string): Promise<EventProfil> {
+        return this.eventProfilService.readEventProfil(idProfil, idEvent);
+    }
 
-  @Post()
-  @ApiResponse({
-    status :201,
-    description:"creation event",
-  })
-  @ApiResponse({
-    status :404,
-    description:"no page. try again!",
-  })
-  create(@Body() eventProfilDto:EventProfilDto):Promise<EventProfil>{
-    return this.eventProfilService.create(eventProfilDto);
-  }
+    @Post()
+    @ApiOperation({ summary: 'Créer un nouveau lien entre un événement et un profil', description: 'Crée un nouveau lien entre un événement et un profil.' })
+    @ApiBody({ type: EventProfilDto })
+    @ApiResponse({ status: 201, description: 'Lien entre l\'événement et le profil créé avec succès.' })
+    @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
+    async create(@Body() eventProfilDto: EventProfilDto): Promise<EventProfil> {
+        return this.eventProfilService.create(eventProfilDto);
+    }
 
-  @Put('/:id')
-  @ApiResponse({
-    status :201,
-    description:"modification event",
-  })
-  @ApiResponse({
-    status :404,
-    description:"no page. try again!",
-  })
-  /*update(@Param('id') id : number , @Body()eventProfilDto:EventProfilDto): Promise<EventProfil>{
-    return this.eventProfilService.update(id,eventProfilDto);
-  }*/
-
-  @Delete('/:idE&:idP')
-  @ApiResponse({
-    status :201,
-    description:"suppression event",
-  })
-  @ApiResponse({
-    status :404,
-    description:"no page. try again!",
-  })
-  delete(@Param('idE') idE : number,@Param("idP")idP:string ): Promise<EventProfil>{
-    return this.eventProfilService.delete(idP,idE);
-  }
+    @Delete('/?idEvent=:idEvent&idProfil=:idProfil')
+    @ApiOperation({ summary: 'Supprimer un lien entre un événement et un profil à partir de l\'id de l\'événement et l\id du profil', description: 'Supprime un lien entre un événement et un profil à partir de l\'id de l\'événement et l\id du profil.' })
+    @ApiQuery({ name: 'idEvent', description: 'id de l\'événement', type: 'number' })
+    @ApiQuery({ name: 'idProfil', description: 'id du profil', type: 'string' })
+    @ApiResponse({ status: 201, description: 'Lien entre l\'événement et le profil supprimé avec succès.' })
+    @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
+    async delete(@Param('idEvent') idEvent: number, @Param('idProfil') idProfil: string): Promise<EventProfil> {
+        return this.eventProfilService.delete(idProfil, idEvent);
+    }
 }

@@ -13,44 +13,40 @@ export class AccueilService {
     ) {}
 
     async findAll(): Promise<Accueil[]> {
-        return await this.accueilRepository.find();
+      return await this.accueilRepository.find();
     }
 
     async read(id:number): Promise<Accueil>{
-        return await this.accueilRepository.findOne({where:{id}})
+      return await this.accueilRepository.findOne({where:{id}})
     }
 
     async readDate(date:Date): Promise<Accueil>{
       return await this.accueilRepository.findOne({where:{date}})
     }
 
+    async create(accueilDto : AccueilDto) {
+      const accueilEntities = new Accueil();
+      accueilEntities.id = accueilDto.id;
+      accueilEntities.nom = accueilDto.nom;
+      accueilEntities.heure= accueilDto.heure;
+      accueilEntities.date= accueilDto.date;
+      accueilEntities.lieu = accueilDto.lieu;
+      accueilEntities.nbrLit = accueilDto.nbrLit;
+      accueilEntities.nbrBob = accueilDto.nbrBob;
+      const accueil = this.accueilRepository.create(accueilEntities);
+      await this.accueilRepository.save(accueil);
+      return accueil;
+    }
+      
+    async update(id : number , data : Partial<Accueil> ){
+      await this.accueilRepository.update({id},data);
+      const accueil= this.accueilRepository.findOne({where:{id}})
+      return accueil 
+    }
 
-
-    async  create(accueilDto : AccueilDto) {
-        const accueilEntities = new Accueil();
-        accueilEntities.id = accueilDto.id;
-        accueilEntities.nom = accueilDto.nom;
-        accueilEntities.heure= accueilDto.heure;
-        accueilEntities.date= accueilDto.date;
-        accueilEntities.lieu = accueilDto.lieu;
-        accueilEntities.nbrLit = accueilDto.nbrLit;
-        accueilEntities.nbrBob = accueilDto.nbrBob;
-        const accueil = this.accueilRepository.create(accueilEntities);
-        await this.accueilRepository.save(accueil);
-        return accueil;
-    
-      }
-      async update(id : number , data : Partial<Accueil> ){
-        await this.accueilRepository.update({id},data);
-        const accueil= this.accueilRepository.findOne({where:{id}})
-        return accueil 
-      }
-
-      async delete(id : number){
-          const accueil =await this.accueilRepository.findOne({ where: { id } });
-          await this.accueilRepository.delete({id});
-          return accueil ;
-      }
-
-
-  }
+    async delete(id : number){
+      const accueil =await this.accueilRepository.findOne({ where: { id } });
+      await this.accueilRepository.delete({id});
+      return accueil ;
+    }
+}
