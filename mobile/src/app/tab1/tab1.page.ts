@@ -8,15 +8,28 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Tab1Page {
   events:any;
+  tableEvents: any[] = [];
+
+  datePlusPetite(date1:Date, date2:Date) {
+    var date1Obj = new Date(date1);
+    var date2Obj = new Date(date2);
+  
+    return date1Obj.getTime() > date2Obj.getTime();
+  }
 
   constructor(public http:HttpClient) {
-    
+
     this.readApi("http://localhost:64000/accueil/")
     .subscribe((data) =>{
       console.log(data);
       this.events= data;
-
-    });
+      
+      for(let event of this.events){
+        if (this.datePlusPetite(event.date, new Date())) {
+          this.tableEvents.push(event);
+        }
+      }
+    }); 
   }
 
   readApi(URL:string){
