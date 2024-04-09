@@ -43,7 +43,7 @@
         <ion-card-content>Bobs</ion-card-content>
       </ion-card>
     </ion-row>
-    <ion-button [routerLink]="['/update-event' , event.id]">
+    <ion-button [routerLink]="['/update-event',event.id]">
       <ion-icon aria-hidden="true" name="pencil-outline" style="height: 35px; width:150px;"></ion-icon>
     </ion-button>
 
@@ -54,13 +54,13 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card *ngFor="let profil of eventprofil; index as i" class="ion-text-center card-container" [routerLink]="['/profil-event',profil.idProfil]">
-    <ion-card-header>
-        <ion-card-subtitle>{{ profil.role }}</ion-card-subtitle>
-        <ion-card-title>{{ profil.idProfil }}</ion-card-title>
+  <ion-card *ngFor="let profil of eventprofil; index as i" class="status" [routerLink]="['/profil-event',profil.idProfil]">
+    <ion-card-header class="card-header" style="float:left">
+      <ion-card-subtitle class="role">{{ profil.role }}</ion-card-subtitle>
+        <ion-card-title class="idProfil">{{ profil.idProfil }}</ion-card-title>
     </ion-card-header>
     <ion-thumbnail class="image-container">
-        <img [src]="getImageUrl(profil.role)" alt="Photo" style="width: 75%; height: auto;">
+        <img [src]="getImageUrl(profil.role)" alt="Photo">
     </ion-thumbnail>
   </ion-card>
 </ion-content>

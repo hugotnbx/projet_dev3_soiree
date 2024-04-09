@@ -1,41 +1,39 @@
 ion-card{
     background-color: #F9E6AC;
-    margin-bottom: -10px;
 }
 
 .flex-container {
     display: flex;
 }
-
 .flex-item {
     flex: 1;
     text-align: center; 
 }
-
 #flex-item-1{
     margin-right: 0;
 }
-
 ion-row {
     margin-top: -10px;
     margin-bottom: 30px;
     justify-content: space-between;
 }
 
-.card-container{
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-
-    ion-card-title, ion-card-subtitle {
-        text-align: left;
+.status {
+    ion-card-title,
+    ion-card-subtitle {
+      flex: 1;
+      text-align: left;
+      font-size: 20px;
     }
-}
-
-.image-container {
-    flex-shrink: 0;
-    margin-left: auto; /* Pour placer l'image à droite */
-    margin-right: 35px;
-    margin-top: -50px;
-    width: 25%; 
+  
+    ion-thumbnail {
+      width: auto;
+      height: auto;
+      margin-left: 250px;
+  
+    }
+  
+    img{
+      margin-top: 10px;
+    }
 }
