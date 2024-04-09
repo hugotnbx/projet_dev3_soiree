@@ -1,6 +1,6 @@
 import {Entity, Column, PrimaryColumn, ManyToOne, JoinColumn} from 'typeorm';
 import { Profil } from 'src/profil/entities/profil.entity';
-import { Accueil } from 'src/accueil/entities/accueil.entity';
+import { Events } from 'src/events/entities/events.entity';
 import { Status } from 'src/status/entities/status.entity';
 import { Contribution } from 'src/contribution/entities/contribution.entity';
 
@@ -21,9 +21,6 @@ export class EventProfil {
     @Column({ nullable: true })
     role: string;
 
-    
-    
-
     @ManyToOne(() => Status, status => status.profilEvents)
     @JoinColumn({ name: 'idStatus' }) // Nom de la colonne de clé étrangère vers Profil
     status: Status;
@@ -36,9 +33,7 @@ export class EventProfil {
     @JoinColumn({ name: 'idProfil' }) // Nom de la colonne de clé étrangère vers Profil
     profil: Profil;
 
-    @ManyToOne(() => Accueil, accueil => accueil.profilEvents)
+    @ManyToOne(() => Events, events => events.profilEvents)
     @JoinColumn({ name: 'idEvent' }) // Nom de la colonne de clé étrangère vers Event
-    event: Event;
-
-    
+    events: Events;
 }

@@ -20,7 +20,7 @@ export class Tab5Page {
 
   constructor(public http:HttpClient) {
 
-    this.readApi("http://localhost:64000/accueil/")
+    this.readApi("http://localhost:64000/events/")
     .subscribe((data) =>{
       console.log(data);
       this.events= data;

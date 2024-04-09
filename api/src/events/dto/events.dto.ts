@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class AccueilDto {
+export class EventsDto {
     @ApiProperty({
         required:true,
         type:'number',
@@ -42,5 +42,4 @@ export class AccueilDto {
         type:'number',
     })
     readonly  nbrBob: number ;
-
 }

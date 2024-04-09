@@ -16,7 +16,7 @@ export class UpdateEventComponent implements OnInit {
   constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router) {
     const paramValue = this.route.snapshot.paramMap.get('id');
     //console.log(paramValue);
-    this.readApi(`http://localhost:64000/accueil/${paramValue}`)
+    this.readApi(`http://localhost:64000/events/${paramValue}`)
     .subscribe((data) =>{
       console.log(data);
       this.event= data;
@@ -33,9 +33,10 @@ export class UpdateEventComponent implements OnInit {
   readApi(URL: string) {
     return this.http.get(URL);
   }
+
   updateEvent() {
     // Envoyer une requête PUT avec les données de l'événement
-    this.http.put<any>('http://localhost:64000/accueil/' + this.event.id, this.event)
+    this.http.put<any>('http://localhost:64000/events/' + this.event.id, this.event)
       .subscribe(response => {
         console.log(response); 
         window.location.reload();

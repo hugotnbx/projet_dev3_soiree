@@ -1,16 +1,15 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AccueilModule } from './accueil/accueil.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { ProfilModule } from './profil/profil.module';
 import { EventProfilModule } from './event-profil/event-profil.module';
 import { StatusModule } from './status/status.module';
 import { ContributionModule } from './contribution/contribution.module';
+import { EventsModule } from './events/events.module';
 @Module({
   imports: [
-    AccueilModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -25,10 +24,11 @@ import { ContributionModule } from './contribution/contribution.module';
     ProfilModule,
     EventProfilModule,
     StatusModule,
-    ContributionModule
+    ContributionModule,
+    EventsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController,],
+  providers: [AppService,],
 })
 export class AppModule {
   constructor(private dataSource:DataSource){}

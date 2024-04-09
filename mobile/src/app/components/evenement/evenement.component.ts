@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
-
-
 @Component({
   selector: 'app-evenement',
   templateUrl: './evenement.component.html',
@@ -17,7 +15,7 @@ export class EvenementComponent  implements OnInit {
   constructor(public http:HttpClient,private route: ActivatedRoute) {
     const paramValue = this.route.snapshot.paramMap.get('id');
     //console.log(paramValue);
-    this.readApi(`http://localhost:64000/accueil/${paramValue}`)
+    this.readApi(`http://localhost:64000/events/${paramValue}`)
     .subscribe((data) =>{
       console.log(data);
       this.event= data;

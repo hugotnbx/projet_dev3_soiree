@@ -2,7 +2,7 @@ import {Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
 import { EventProfil } from 'src/event-profil/entities/event-profil.entity';
 
 @Entity()
-export class Accueil {
+export class Events {
     @PrimaryGeneratedColumn()
     id:number;
 
@@ -26,6 +26,4 @@ export class Accueil {
 
     @OneToMany(() => EventProfil, EventProfil => EventProfil.idEvent)
     profilEvents: EventProfil[];
-
-
 }

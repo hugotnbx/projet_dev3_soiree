@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 //import { IonViewWillEnter } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-rejoindre-event',
   templateUrl: './rejoindre-event.component.html',
@@ -10,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RejoindreEventComponent  implements OnInit {
   
-  
   aliments:any;
+
   Rejoindre= {
     idEvent:125,
     idProfil:"neut",
@@ -20,31 +19,24 @@ export class RejoindreEventComponent  implements OnInit {
     role:""
   };
 
-  constructor(public http:HttpClient) {
- 
-  }
+  constructor(public http:HttpClient) {}
   
-
   readApi(URL:string){
     return this.http.get(URL);
-
   }
 
   ngOnInit() {
-   this.readApi("http://localhost:64000/contribution/")
-  .subscribe((data) =>{
+    this.readApi("http://localhost:64000/contribution/")
+    .subscribe((data) =>{
     
-    this.aliments= data;
+      this.aliments= data;
     
-    
-    for(let long = 0 ; long < this.aliments.length ; long++){
-    this.aliments[long].selected = false
-    
+      for(let long = 0 ; long < this.aliments.length ; long++){
+        this.aliments[long].selected = false;
+      }
+      console.log(this.aliments);
+    });
   }
-  console.log(this.aliments);
-  
-  });
-}
 
   selectedOption: number = 1;
 
@@ -53,11 +45,10 @@ export class RejoindreEventComponent  implements OnInit {
     console.log(this.selectedOption)
   }
 
- 
-
   toggleSelection(ali: { selected: boolean; }) {
     ali.selected = !ali.selected;
   }
+
   getTotal() {
     let total = 0;
     if (this.aliments && typeof this.aliments === 'object') {
@@ -70,8 +61,7 @@ export class RejoindreEventComponent  implements OnInit {
         console.error("Erreur : this.aliments n'est pas un objet valide");
     }
     return total.toFixed(2);
-}
-
+  }
 
   rejoindreEvent() {
     for(let long = 0 ; long < this.aliments.length ; long++){
@@ -82,12 +72,9 @@ export class RejoindreEventComponent  implements OnInit {
         console.log(this.Rejoindre)
         this.http.post<any>('http://localhost:64000/event-profil' , this.Rejoindre)
         .subscribe(response => {
-        console.log(response); 
+          console.log(response); 
         });
       }
-      
-      
     }
-    
   }
 }

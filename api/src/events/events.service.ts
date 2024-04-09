@@ -1,31 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Accueil } from './entities/accueil.entity';
-import { AccueilDto } from './dto/accueil.dto';
-
+import { Events } from './entities/events.entity';
+import { EventsDto } from './dto/events.dto';
 
 @Injectable()
-export class AccueilService {
+export class EventsService {
     constructor(
-      @InjectRepository(Accueil)
-      private readonly accueilRepository: Repository<Accueil>,
+      @InjectRepository(Events)
+      private readonly accueilRepository: Repository<Events>,
     ) {}
 
-    async findAll(): Promise<Accueil[]> {
+    async findAll(): Promise<Events[]> {
       return await this.accueilRepository.find();
     }
 
-    async read(id:number): Promise<Accueil>{
+    async read(id:number): Promise<Events>{
       return await this.accueilRepository.findOne({where:{id}})
     }
 
-    async readDate(date:Date): Promise<Accueil>{
+    async readDate(date:Date): Promise<Events>{
       return await this.accueilRepository.findOne({where:{date}})
     }
 
-    async create(accueilDto : AccueilDto) {
-      const accueilEntities = new Accueil();
+    async create(accueilDto : EventsDto) {
+      const accueilEntities = new Events();
       accueilEntities.id = accueilDto.id;
       accueilEntities.nom = accueilDto.nom;
       accueilEntities.heure= accueilDto.heure;
@@ -38,7 +37,7 @@ export class AccueilService {
       return accueil;
     }
       
-    async update(id : number , data : Partial<Accueil> ){
+    async update(id : number , data : Partial<Events> ){
       await this.accueilRepository.update({id},data);
       const accueil= this.accueilRepository.findOne({where:{id}})
       return accueil 
