@@ -40,7 +40,7 @@
 
   <ion-item>
       <ion-label position="stacked">Date</ion-label>
-      <ion-datetime presentation="date" displayFormat="DD/MM/YYYY" [(ngModel)]="eventData.date"></ion-datetime>
+      <ion-datetime presentation="date" displayFormat="DD/MM/YYYY" [max]="maxDate" [(ngModel)]="eventData.date"></ion-datetime>
       <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
   </ion-item>
 
