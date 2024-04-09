@@ -2,7 +2,7 @@ import {Entity, Column, PrimaryGeneratedColumn,PrimaryColumn, OneToMany} from 't
 import { EventProfil } from 'src/event-profil/entities/event-profil.entity';
 
 @Entity()
-export class Contribution {
+export class Contributions {
     @PrimaryColumn()
     idContribution:number;
 
@@ -14,5 +14,4 @@ export class Contribution {
 
     @OneToMany(() => EventProfil, EventProfil => EventProfil.idContribution)
     profilEvents: EventProfil[];
-
 }

@@ -12,7 +12,7 @@ async function bootstrap() {
   .addTag('Profil')
   .addTag('EventProfil')
   .addTag('Status')
-  .addTag('Contribution')
+  .addTag('Contributions')
   .build();
 const document = SwaggerModule.createDocument(app, config);
 SwaggerModule.setup('api', app , document);

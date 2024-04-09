@@ -6,8 +6,9 @@ import { DataSource } from 'typeorm';
 import { ProfilModule } from './profil/profil.module';
 import { EventProfilModule } from './event-profil/event-profil.module';
 import { StatusModule } from './status/status.module';
-import { ContributionModule } from './contribution/contribution.module';
 import { EventsModule } from './events/events.module';
+import { ContributionsModule } from './contributions/contributions.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -24,8 +25,8 @@ import { EventsModule } from './events/events.module';
     ProfilModule,
     EventProfilModule,
     StatusModule,
-    ContributionModule,
     EventsModule,
+    ContributionsModule,
   ],
   controllers: [AppController,],
   providers: [AppService,],

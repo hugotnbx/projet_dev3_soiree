@@ -7,14 +7,14 @@ import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/s
 @Controller('events')
 @ApiTags("Events")
 export class EventsController {
-  constructor(private readonly accueilService: EventsService) {}
+  constructor(private readonly eventsService: EventsService) {}
 
   @Get()
   @ApiOperation({ summary: 'Liste des événements', description: 'Récupère la liste de tous les événements.' })
   @ApiResponse({ status: 200, description: 'Succès de la requête. Retourne la liste des événements.' })
   @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
   async getAll(): Promise<Events[]> {
-    return this.accueilService.findAll();
+    return this.eventsService.findAll();
   }
 
   @Get('/:id')
@@ -23,7 +23,7 @@ export class EventsController {
   @ApiResponse({ status: 200, description: 'Succès de la requête. Retourne l\'événement d\' correspondant à l\'id spécifié.' })
   @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
   async getById(@Param('id') id: number): Promise<Events> {
-    return this.accueilService.read(id);
+    return this.eventsService.read(id);
   }
 
   @Post()
@@ -31,8 +31,8 @@ export class EventsController {
   @ApiBody({ type: EventsDto })
   @ApiResponse({ status: 201, description: 'Événement créé avec succès.' })
   @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
-  async create(@Body() accueilDto: EventsDto): Promise<Events> {
-    return this.accueilService.create(accueilDto);
+  async create(@Body() eventsDto: EventsDto): Promise<Events> {
+    return this.eventsService.create(eventsDto);
   }
 
   @Put('/:id')
@@ -41,8 +41,8 @@ export class EventsController {
   @ApiBody({ type: EventsDto })
   @ApiResponse({ status: 201, description: 'Événement mis à jour avec succès.' })
   @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
-  async update(@Param('id') id: number, @Body() accueilDto: EventsDto): Promise<Events> {
-    return this.accueilService.update(id, accueilDto);
+  async update(@Param('id') id: number, @Body() eventsDto: EventsDto): Promise<Events> {
+    return this.eventsService.update(id, eventsDto);
   }
 
   @Delete('/:id')
@@ -51,6 +51,6 @@ export class EventsController {
   @ApiResponse({ status: 201, description: 'Événement supprimé avec succès.' })
   @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
   async delete(@Param('id') id: number): Promise<Events> {
-    return this.accueilService.delete(id);
+    return this.eventsService.delete(id);
   }
 }

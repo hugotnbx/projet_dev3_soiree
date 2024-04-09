@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class ContributionDto {
+export class ContributionsDto {
     @ApiProperty({
         required:true,
         type:'number',
@@ -18,6 +18,4 @@ export class ContributionDto {
         type:'number',
     })
     readonly  prix: number ;
-
-    
 }
