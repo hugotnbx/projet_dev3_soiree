@@ -9,8 +9,5 @@ export class Status {
     @Column()
     status:string;
 
-    @OneToMany(() => EventProfil, EventProfil => EventProfil.idStatus)
-    profilEvents: EventProfil[];
-
 
 }

@@ -12,18 +12,6 @@ export class EventProfilDto {
         type:'number',
     })
     readonly  idEvent: number;
-    
-    @ApiProperty({
-        required:false,
-        type:'number',
-    })
-    readonly  idContribution: number;
-
-    @ApiProperty({
-        required:false,
-        type:'number',
-    })
-    readonly  idStatus: number;
 
     @ApiProperty({
         required:false,

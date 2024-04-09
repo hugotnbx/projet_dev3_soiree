@@ -12,7 +12,4 @@ export class Contribution {
     @Column('decimal', { precision: 6, scale: 2 })
     prix: number
 
-    @OneToMany(() => EventProfil, EventProfil => EventProfil.idContribution)
-    profilEvents: EventProfil[];
-
 }

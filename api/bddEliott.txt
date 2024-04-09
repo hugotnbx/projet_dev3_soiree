@@ -92,6 +92,18 @@
     "bank": "Société Générale"
   },
   // Ajoutez d'autres profils ici
+  {
+    "idProfil": "@emilie.martin",
+    "name": "Martin",
+    "firstName": "Émilie",
+    "mail": "emilie.martin@example.com",
+    "numberPhone": "+33 987654321",
+    "address": "789 Avenue des Fleurs",
+    "instagram": "@emilie.martin",
+    "facebook": "/emilie.martin",
+    "description": "Passionnée de danse",
+    "bank": "Banque Populaire"
+}
 ]
 
 // Événements

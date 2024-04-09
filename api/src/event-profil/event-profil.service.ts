@@ -36,9 +36,7 @@ export class EventProfilService {
         const eventProfilEntities = new EventProfil();
         eventProfilEntities.idProfil = eventProfilDto.idProfil;
         eventProfilEntities.idEvent = eventProfilDto.idEvent;
-        eventProfilEntities.idStatus = eventProfilDto.idStatus;
         eventProfilEntities.role = eventProfilDto.role;
-        eventProfilEntities.idContribution = eventProfilDto.idContribution;
     
         const eventProfil = this.EventProfilRepository.create(eventProfilEntities);
         await this.EventProfilRepository.save(eventProfil);
