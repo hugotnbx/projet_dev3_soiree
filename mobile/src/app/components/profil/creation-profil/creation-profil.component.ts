@@ -30,7 +30,7 @@ export class CreationProfilComponent implements OnInit {
   
   creationProfil() {
     this.newProfil=new profil(this.userData);
-    this.http.post<any>('http://localhost:64000/profil', this.newProfil)
+    this.http.post<any>('http://localhost:64000/users', this.newProfil)
       .subscribe(response => {
         console.log(response); 
       });

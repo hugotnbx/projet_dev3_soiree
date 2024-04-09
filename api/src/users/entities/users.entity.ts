@@ -1,8 +1,8 @@
-import { EventProfil } from 'src/event-profil/entities/event-profil.entity';
 import {Entity, Column, PrimaryColumn, OneToMany} from 'typeorm';
+import { UsersRelations } from 'src/users-relations/entities/users-relations.entity';
 
 @Entity()
-export class Profil{
+export class Users {
     @PrimaryColumn()
     idProfil:string;
 
@@ -32,7 +32,7 @@ export class Profil{
 
     @Column({ length: 20 , nullable:true})
     bank: string;
-    
-    @OneToMany(() => EventProfil, EventProfil => EventProfil.idProfil)
-    profilEvents: EventProfil[];
+
+    @OneToMany(() => UsersRelations, usersRelations => usersRelations.idProfil)
+    usersRelations: UsersRelations[];
 }

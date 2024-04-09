@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class ProfilDto {
+export class UsersDto {
     @ApiProperty({
         required:true,
         type: "string",
@@ -60,5 +60,4 @@ export class ProfilDto {
         type: "string",
     })
     readonly  bank : string;
-
 }

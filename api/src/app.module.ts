@@ -3,11 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { ProfilModule } from './profil/profil.module';
-import { EventProfilModule } from './event-profil/event-profil.module';
-import { StatusModule } from './status/status.module';
 import { EventsModule } from './events/events.module';
+import { UsersModule } from './users/users.module';
+import { StatusesModule } from './statuses/statuses.module';
 import { ContributionsModule } from './contributions/contributions.module';
+import { UsersRelationsModule } from './users-relations/users-relations.module';
 
 @Module({
   imports: [
@@ -22,11 +22,11 @@ import { ContributionsModule } from './contributions/contributions.module';
       autoLoadEntities:true, 
       synchronize: true //attention à enlever lors de la production
     }),
-    ProfilModule,
-    EventProfilModule,
-    StatusModule,
     EventsModule,
+    UsersModule,
+    StatusesModule,
     ContributionsModule,
+    UsersRelationsModule,
   ],
   controllers: [AppController,],
   providers: [AppService,],

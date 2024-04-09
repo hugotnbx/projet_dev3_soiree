@@ -32,20 +32,20 @@ export class EventsService {
       eventsEntities.lieu = accueilDto.lieu;
       eventsEntities.nbrLit = accueilDto.nbrLit;
       eventsEntities.nbrBob = accueilDto.nbrBob;
-      const accueil = this.eventsRepository.create(eventsEntities);
-      await this.eventsRepository.save(accueil);
-      return accueil;
+      const events = this.eventsRepository.create(eventsEntities);
+      await this.eventsRepository.save(events);
+      return events;
     }
       
     async update(id : number , data : Partial<Events> ){
       await this.eventsRepository.update({id},data);
-      const accueil= this.eventsRepository.findOne({where:{id}})
-      return accueil 
+      const events = this.eventsRepository.findOne({where:{id}})
+      return events 
     }
 
     async delete(id : number){
-      const accueil =await this.eventsRepository.findOne({where:{id}});
+      const events = await this.eventsRepository.findOne({where:{id}});
       await this.eventsRepository.delete({id});
-      return accueil;
+      return events;
     }
 }

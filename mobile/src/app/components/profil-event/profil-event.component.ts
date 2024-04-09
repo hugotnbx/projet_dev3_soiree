@@ -15,7 +15,7 @@ export class ProfilEventComponent  implements OnInit {
     const paramValue = this.route.snapshot.paramMap.get('id');
     console.log(paramValue);
 
-    this.readApi(`http://localhost:64000/profil/${paramValue}`)
+    this.readApi(`http://localhost:64000/users/${paramValue}`)
     .subscribe((data) => {
       console.log(data);
       this.profil = data;

@@ -1,5 +1,5 @@
 import {Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
-import { EventProfil } from 'src/event-profil/entities/event-profil.entity';
+import { UsersRelations } from 'src/users-relations/entities/users-relations.entity';
 
 @Entity()
 export class Events {
@@ -24,6 +24,6 @@ export class Events {
     @Column()
     nbrBob:number;
 
-    @OneToMany(() => EventProfil, EventProfil => EventProfil.idEvent)
-    profilEvents: EventProfil[];
+    @OneToMany(() => UsersRelations, usersRelations => usersRelations.idEvent)
+    usersRelations: UsersRelations[];
 }

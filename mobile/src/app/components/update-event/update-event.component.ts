@@ -21,7 +21,7 @@ export class UpdateEventComponent implements OnInit {
       console.log(data);
       this.event= data;
     });
-    // this.readApi(`http://localhost:64000/event-profil/${paramValue}`)
+    // this.readApi(`http://localhost:64000/users-relations/${paramValue}`)
     // .subscribe((data) => {
     //   console.log(data);
     //   this.eventprofil = data;

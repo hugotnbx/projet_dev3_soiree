@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class EventProfilDto {
+export class UsersRelationsDto {
     @ApiProperty({
         required:true,
         type:'string',
@@ -30,6 +30,4 @@ export class EventProfilDto {
         type:'string',
     })
     readonly  role: string;
-
-   
 }

@@ -26,7 +26,7 @@ export class RejoindreEventComponent  implements OnInit {
   }
 
   ngOnInit() {
-    this.readApi("http://localhost:64000/contribution/")
+    this.readApi("http://localhost:64000/contributions")
     .subscribe((data) =>{
     
       this.aliments= data;
@@ -42,7 +42,7 @@ export class RejoindreEventComponent  implements OnInit {
 
   selectOption(option: number) {
     this.selectedOption = option;
-    console.log(this.selectedOption)
+    console.log(this.selectedOption);
   }
 
   toggleSelection(ali: { selected: boolean; }) {
@@ -66,11 +66,11 @@ export class RejoindreEventComponent  implements OnInit {
   rejoindreEvent() {
     for(let long = 0 ; long < this.aliments.length ; long++){
       if (this.aliments[long].selected == true){
-        console.log(this.aliments[0].idContribution)
-        this.Rejoindre.idContribution=this.aliments[long].idContribution
-        this.Rejoindre.idStatus = this.selectedOption
-        console.log(this.Rejoindre)
-        this.http.post<any>('http://localhost:64000/event-profil' , this.Rejoindre)
+        console.log(this.aliments[0].idContribution);
+        this.Rejoindre.idContribution=this.aliments[long].idContribution;
+        this.Rejoindre.idStatus = this.selectedOption;
+        console.log(this.Rejoindre);
+        this.http.post<any>('http://localhost:64000/users-relations', this.Rejoindre)
         .subscribe(response => {
           console.log(response); 
         });

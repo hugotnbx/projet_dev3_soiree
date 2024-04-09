@@ -41,4 +41,3 @@ maxDate: string;
   ngOnInit() {}
 
 }
-

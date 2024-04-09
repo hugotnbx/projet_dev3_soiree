@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class StatusDto {
+export class StatusesDto {
     @ApiProperty({
         required:true,
         type:'number',
