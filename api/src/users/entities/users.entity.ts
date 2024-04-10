@@ -7,6 +7,9 @@ export class Users {
     idProfil:string;
 
     @Column({ length: 50 })
+    password: string;
+
+    @Column({ length: 50 })
     name: string;
 
     @Column({ length: 50 })

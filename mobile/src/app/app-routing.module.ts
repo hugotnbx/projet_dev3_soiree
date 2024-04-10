@@ -6,7 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfilEventComponent } from './components/profil-event/profil-event.component';
 import { UpdateEventComponent } from './components/update-event/update-event.component';
 import { RejoindreEventComponent } from './components/rejoindre-event/rejoindre-event.component';
-
+import { RegisterPage } from './pages/register/register.page';
 const routes: Routes = [
   {
     path: '',
@@ -41,6 +41,14 @@ const routes: Routes = [
   {
     path:"rejoindre",
     component: RejoindreEventComponent
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   }
 ];
 

@@ -13,12 +13,12 @@ import { LoginComponent } from './components/login/login.component';
 import { EvenementComponent } from './components/evenement/evenement.component';
 import { ProfilEventComponent } from './components/profil-event/profil-event.component';
 import { RejoindreEventComponent } from './components/rejoindre-event/rejoindre-event.component';
-
-
+import { AuthModule } from './modules/auth/auth.module';
+import { IonicStorageModule } from '@ionic/storage-angular';
 @NgModule({
   declarations: [AppComponent,MenuComponent,CreationProfilComponent,LoginComponent,EvenementComponent,ProfilEventComponent,RejoindreEventComponent],
-  imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,FormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,FormsModule,AuthModule,IonicStorageModule.forRoot()],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
