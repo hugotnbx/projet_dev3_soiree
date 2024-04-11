@@ -33,7 +33,7 @@ export class AuthService {
 
   login(user: Profil): Observable<AuthResponse> {
     this.newProfil = new profil(user);
-    return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/login`, this.newProfil).pipe(
+    return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/auth/login`, this.newProfil).pipe(
       tap(async (res: AuthResponse) => {
 
         if (res.user) {
