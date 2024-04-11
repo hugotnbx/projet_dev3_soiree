@@ -14,7 +14,7 @@ export class EvenementComponent  implements OnInit {
 
   constructor(public http:HttpClient,private route: ActivatedRoute) {
     const paramValue = this.route.snapshot.paramMap.get('id');
-    //console.log(paramValue);
+
     this.readApi(`http://localhost:64000/events/${paramValue}`)
     .subscribe((data) =>{
       console.log(data);
