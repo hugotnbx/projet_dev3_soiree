@@ -21,7 +21,7 @@ export class AuthService {
     console.log(this.newProfil);
     return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/users`, this.newProfil).pipe(
       tap(async (res:  AuthResponse ) => {
-
+        
         if (res.user) {
           await this.storage.set("ACCESS_TOKEN", res.user.access_token);
           await this.storage.set("EXPIRES_IN", res.user.expires_in);
@@ -35,10 +35,13 @@ export class AuthService {
     this.newProfil = new profil(user);
     return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/auth/login`, this.newProfil).pipe(
       tap(async (res: AuthResponse) => {
+        console.log(res);
+        //console.log(res.user);
+        if (res) {
+          //await this.storage.set("ACCESS_TOKEN", res.user.access_token);
+          //await this.storage.set("EXPIRES_IN", res.user.expires_in);
+          await this.storage.set("ACCESS_TOKEN", res);
 
-        if (res.user) {
-          await this.storage.set("ACCESS_TOKEN", res.user.access_token);
-          await this.storage.set("EXPIRES_IN", res.user.expires_in);
           this.authSubject.next(true);
         }
       })
