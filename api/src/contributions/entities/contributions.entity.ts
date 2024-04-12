@@ -12,6 +12,6 @@ export class Contributions {
     @Column('decimal', { precision: 6, scale: 2 })
     prix: number
 
-    @OneToMany(() => UsersRelations, usersRelations => usersRelations.idContribution)
+    @OneToMany(() => UsersRelations, usersRelations => usersRelations.contribution)
     usersRelations: UsersRelations[];
 }

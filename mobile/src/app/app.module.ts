@@ -17,9 +17,7 @@ import { RejoindreEventComponent } from './components/rejoindre-event/rejoindre-
 
 @NgModule({
   declarations: [AppComponent,MenuComponent,CreationProfilComponent,LoginComponent,EvenementComponent,ProfilEventComponent,RejoindreEventComponent],
-  imports: [BrowserModule, IonicModule.forRoot({
-    mode: 'ios'
-  }),HttpClientModule, AppRoutingModule,FormsModule],
+  imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]

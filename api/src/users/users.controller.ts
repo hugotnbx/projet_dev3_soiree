@@ -17,6 +17,11 @@ export class UsersController {
         return this.usersService.findAll();
     }
 
+    @Get('get-users-relations')
+    async getUsersRelations() {
+        return this.usersService.getUsersRelations();
+    }
+
     @Get('/:id')
     @ApiOperation({ summary: 'Récupérer un utilisateur à partir de son id', description: 'Récupère un utilisateur à partir de son id.' })
     @ApiParam({ name: 'id', description: 'id de l\'utilisateur à récupérer', type: 'string' })

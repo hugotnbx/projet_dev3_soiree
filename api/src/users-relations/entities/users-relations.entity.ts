@@ -21,19 +21,19 @@ export class UsersRelations {
     @Column({ nullable: true })
     role: string;
 
-    @ManyToOne(() => Events, events => events.usersRelations)
-    @JoinColumn({ name: 'idEvent' }) 
-    events: Events;
+    @ManyToOne(() => Events, event => event.usersRelations)
+    @JoinColumn({ name: 'idEvent' })
+    event: Events;
 
-    @ManyToOne(() => Users, users => users.usersRelations)
+    @ManyToOne(() => Users, user => user.usersRelations)
     @JoinColumn({ name: 'idProfil' }) 
-    users: Users;
+    user: Users;
 
-    @ManyToOne(() => Statuses, statuses => statuses.usersRelations)
+    @ManyToOne(() => Statuses, status => status.usersRelations)
     @JoinColumn({ name: 'idStatus' })
     status: Statuses;
 
-    @ManyToOne(() => Contributions, contributions => contributions.usersRelations)
+    @ManyToOne(() => Contributions, contribution => contribution.usersRelations)
     @JoinColumn({ name: 'idContribution' }) 
-    contributions: Contributions;
+    contribution: Contributions;
 }

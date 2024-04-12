@@ -52,4 +52,10 @@ export class UsersService{
       await this.usersRepository.delete({idProfil});
       return users;
     }
+
+    async getUsersRelations() {
+      return this.usersRepository.createQueryBuilder('users')
+        .leftJoinAndSelect('users.usersRelations', 'usersRelations')
+        .getMany();
+    }
 }

@@ -9,6 +9,6 @@ export class Statuses {
     @Column()
     status:string;
 
-    @OneToMany(() => UsersRelations, usersRelations => usersRelations.idStatus)
+    @OneToMany(() => UsersRelations, usersRelations => usersRelations.status)
     usersRelations: UsersRelations[];
 }

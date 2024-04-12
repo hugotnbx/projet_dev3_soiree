@@ -33,6 +33,6 @@ export class Users {
     @Column({ length: 20 , nullable:true})
     bank: string;
 
-    @OneToMany(() => UsersRelations, usersRelations => usersRelations.idProfil)
-    usersRelations: UsersRelations[];
+    @OneToMany(() => UsersRelations, usersRelations => usersRelations.user)
+    usersRelations: UsersRelations[];   
 }
