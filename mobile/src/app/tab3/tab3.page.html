@@ -1,17 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Profil
-    </ion-title>
+    <div class="toolbar-image-container">
+      <img src="../../assets/icon/IZIPLAN.png" alt="Logo" class="toolbar-image">
+    </div>    
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Profil</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h1>Mon profil</h1>
 
   <ion-card *ngIf="profil">
     <ion-card-header id="photoProfil">
@@ -23,7 +19,7 @@
     </ion-card-header>
   
     <ion-card-content>
-      <h1>Description</h1>
+      <h2>Description</h2>
       <p>{{profil?.description}}</p>
 
     </ion-card-content>

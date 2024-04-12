@@ -5,13 +5,16 @@ ion-card{
 .flex-container {
     display: flex;
 }
+
 .flex-item {
     flex: 1;
     text-align: center; 
 }
+
 #flex-item-1{
     margin-right: 0;
 }
+
 ion-row {
     margin-top: -10px;
     margin-bottom: 30px;
@@ -36,4 +39,33 @@ ion-row {
     img{
       margin-top: 10px;
     }
+}
+
+ion-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+
+  ion-title {
+    font-size: 20px;
+  }
+}
+
+h1 {
+  text-align: left;
+  font-weight: bold;
+  margin-left: 5%;
+}
+
+.ios {
+  h1 {
+      font-size: 35px;
+  }
+}
+
+.md {
+  h1 {
+      font-size: 30px;
+  }
 }

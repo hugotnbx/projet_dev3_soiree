@@ -1,9 +1,30 @@
-ion-fab-button {
-    --background: #F9E6AC;
+#new-event {
+    --background: transparent;
     --background-activated: #fbf3db;
-    --background-hover: #fef8e5;
     --border-radius: 15px;
     --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
     --color: black;
-  }
+    width: 45px;
+    height: 35px;
+}
 
+#new-event:hover {
+  --background: #F9E6AC;
+}
+
+#accueil {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+#accueil:not(:hover) {
+  filter: grayscale(100%) contrast(0);
+}
+
+#profil {
+  color: black;
+}
+
+#profil:hover {
+  color: #F9E6AC;
+}

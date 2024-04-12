@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UpdateEventComponent implements OnInit {
 
-  event:any;
+  event:any = {};
   // eventprofil:any;
 
   constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router) {

@@ -1,17 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Profil
-    </ion-title>
+    <ion-title>{{profil?.firstName}} {{profil?.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Profil</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h1>Profil</h1>
 
   <ion-card *ngIf="profil">
     <ion-card-header id="photoProfil">

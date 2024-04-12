@@ -6,10 +6,7 @@
     background-color: white;
     
 }
-/*
-ion-card{
-    text-align: center;
-}*/
+
 ion-card{
     background-color: #F9E6AC;
 }
@@ -19,4 +16,33 @@ ion-card{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+ion-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+  
+    ion-title {
+      font-size: 20px;
+    }
+}
+
+h1 {
+    text-align: left;
+    font-weight: bold;
+    margin-left: 5%;
+}
+
+.ios {
+    h1 {
+        font-size: 35px;
+    }
+}
+
+.md {
+    h1 {
+        font-size: 30px;
+    }
 }
