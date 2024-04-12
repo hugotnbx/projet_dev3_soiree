@@ -28,6 +28,31 @@ maxDate: string;
     this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10); //variable maxDate pour mettre 10 années de plus que l'année actuelle dans la date du formulaire pour créer un évènement
   }
 
+  eventDateTime!: string;
+
+  onDateTimeChange(event: CustomEvent) {
+    this.eventDateTime = event.detail.value;
+    const dateTime = new Date(this.eventDateTime);
+    
+    // Extraction de la date
+    const date = dateTime.toLocaleDateString('fr-CA') // Récupération de la date
+
+    // Extraction de l'heure locale
+    const hours = dateTime.getHours(); // Récupération de l'heure
+    const minutes = dateTime.getMinutes(); // Récupération des minutes
+
+    // Création de la chaîne de caractères pour l'heure locale
+    const time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    //const time = dateTime.toISOString().split('T')[1].split('.')[0]; // Récupération de l'heure
+
+    // Mise à jour de eventData.date et eventData.heure
+    this.eventData.date = date;
+    this.eventData.heure = time;
+
+    console.log("Date :", this.eventData.date);
+    console.log("Heure :", this.eventData.heure);
+  }
+
   newEvent:any;
 
   creationEvent() {

@@ -14,7 +14,7 @@ export class Tab1Page {
     var date1Obj = new Date(date1);
     var date2Obj = new Date(date2);
   
-    return date1Obj.getDate() >= date2Obj.getDate();
+    return date1Obj.getTime() >= date2Obj.getTime();
   }
 
   constructor(public http:HttpClient) {
