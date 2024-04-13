@@ -3,12 +3,13 @@ import { EventsService } from './events.service';
 import { Events } from './entities/events.entity';
 import { EventsDto } from './dto/events.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
-
+import { Public } from 'src/auth/auth/publicDecorator';
 @Controller('events')
 @ApiTags("Events")
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
+  @Public()
   @Get()
   @ApiOperation({ summary: 'Liste des événements', description: 'Récupère la liste de tous les événements.' })
   @ApiResponse({ status: 200, description: 'Succès de la requête. Retourne la liste des événements.' })
@@ -26,6 +27,7 @@ export class EventsController {
     return this.eventsService.read(id);
   }
 
+  @Public()
   @Post()
   @ApiOperation({ summary: 'Créer un nouvel événement', description: 'Crée un nouvel événement avec ses informations générales associées.' })
   @ApiBody({ type: EventsDto })

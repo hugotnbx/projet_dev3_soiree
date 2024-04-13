@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+//import { Storage } from '@ionic/storage-angular';
+import { StorageService } from '../services/storage.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -17,11 +18,13 @@ export class Tab1Page {
     return date1Obj.getDate() >= date2Obj.getDate();
   }
 
-  constructor(public http:HttpClient) {
+  constructor(public http:HttpClient,private storage:StorageService) {
 
     this.readApi("http://localhost:64000/events")
     .subscribe((data) =>{
       console.log(data);
+      console.log(this.storage.get("ACCESS_TOKEN"));
+      console.log(`données :${data},token:${this.storage.get("ACCESS_TOKEN")}`);
       this.events= data;
       
       for(let event of this.events){
@@ -33,6 +36,10 @@ export class Tab1Page {
   }
 
   readApi(URL:string){
-    return this.http.get(URL);
+    const headers = new HttpHeaders({
+      //'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.storage.get("ACCESS_TOKEN")}`
+    });
+    return this.http.get(URL,{headers: headers});
   }
 }

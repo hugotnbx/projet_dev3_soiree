@@ -3,12 +3,14 @@ import { UsersService } from './users.service';
 import { Users } from './entities/users.entity';
 import { UsersDto } from './dto/users.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
+import { Public } from 'src/auth/auth/publicDecorator';
 
 @Controller('users')
 @ApiTags("Users")
 export class UsersController {
     constructor(private readonly usersService: UsersService) {}
-
+    
+    @Public()
     @Get()
     @ApiOperation({ summary: 'Liste des utilisateurs', description: 'Récupère la liste de tous les utilisateurs.' })
     @ApiResponse({ status: 200, description: 'Succès de la requête. Retourne la liste des utilisateurs.' })
@@ -25,7 +27,7 @@ export class UsersController {
     async getById(@Param('id') id: string): Promise<Users> {
         return this.usersService.read(id);
     }
-
+    @Public()
     @Post()
     @ApiOperation({ summary: 'Créer un nouvel utilisateur', description: 'Crée un nouvel utilisateur avec ses informations générales associées.' })
     @ApiBody({ type: UsersDto })
