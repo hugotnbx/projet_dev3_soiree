@@ -21,7 +21,8 @@ export class Tab2Page implements OnInit {
     nbrBob:0
   }
 
-maxDate: string;
+  maxDate: string;
+  
   constructor(public http:HttpClient) {
     const now = new Date();
     const maxYear = now.getFullYear() + 10; //10 ans de plus que l'année actuelle
