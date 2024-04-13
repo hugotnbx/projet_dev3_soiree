@@ -11,7 +11,7 @@
     <ion-toolbar>
       <ion-title size="large" class="ion-text-center">Anciens événements</ion-title>
     </ion-toolbar>
-
+    
 
     <ion-card *ngFor="let event of tablePastEvents;index as i" class="ion-text-center" [routerLink]="['/evenement',event.id]">
 
