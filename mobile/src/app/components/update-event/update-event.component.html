@@ -19,28 +19,13 @@
   </ion-item>
 
   <ion-item>
-    <ion-input
-        label="Heure"
-        labelPlacement="stacked"
-        [clearInput]="true"
-        placeholder={{event?.heure}}
-        [(ngModel)]="event.heure"
-      >
-      <ion-icon slot="start" name="location-outline" aria-hidden="true"></ion-icon>
-    </ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-input
-        label="Date"
-        labelPlacement="stacked"
-        [clearInput]="true"
-        placeholder={{event?.date}}
-        [(ngModel)]="event.date"
-
-      >
-      <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
-    </ion-input>
+    <ion-label position="stacked">Date et Heure</ion-label>
+    <ion-datetime 
+      displayFormat="YYYY-MM-DD HH:mm" 
+      pickerFormat="YYYY-MM-DDTHH:mmZ" 
+      [(ngModel)]="eventDateTime"
+      (ionChange)="onDateTimeChange($event)"
+    ></ion-datetime>
   </ion-item>
 
   <ion-item>

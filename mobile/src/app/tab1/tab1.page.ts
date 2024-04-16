@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Tab2Page } from '../tab2/tab2.page';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
+
   events:any;
   tableEvents: any[] = [];
 
@@ -14,7 +16,7 @@ export class Tab1Page {
     var date1Obj = new Date(date1);
     var date2Obj = new Date(date2);
   
-    return date1Obj.getDate() >= date2Obj.getDate();
+    return (date1Obj.getTime() + 86400000) >= date2Obj.getTime();
   }
 
   constructor(public http:HttpClient) {
@@ -34,5 +36,14 @@ export class Tab1Page {
 
   readApi(URL:string){
     return this.http.get(URL);
+  }
+
+  ngOnInit() {
+    // ...
+  }
+
+  ngOnDestroy() {
+    //
+    
   }
 }
