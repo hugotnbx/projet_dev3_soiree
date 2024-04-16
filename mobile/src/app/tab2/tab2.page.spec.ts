@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Tab2Page } from './tab2.page';
 import { By } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 
 
 describe('Tab2Page', () => {
@@ -87,7 +88,8 @@ describe('Tab2Page', () => {
     component.creationEvent();
   
     expect(component.http.post).toHaveBeenCalledWith(
-      'http://localhost:64000/events',
+      //'http://localhost:64000/events',
+      `${environment.api}/events`,
       component.newEvent  
     );
   });
