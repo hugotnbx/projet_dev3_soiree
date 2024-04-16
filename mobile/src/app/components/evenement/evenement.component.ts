@@ -33,25 +33,10 @@ export class EvenementComponent  implements OnInit {
   }
 
   getImageUrl(role: string): string {
-    // Logique pour déterminer l'URL de l'image en fonction du rôle
-    // Par exemple :
-    if (role === 'admin') {
-      return './assets/role/admin.png'; // Chemin de l'image pour le rôle Admin
-    } else if (role === 'Bob') {
-      return './assets/role/bob.png'; // Chemin de l'image pour le rôle User
-    } else if (role === 'place_voiture') {
-      return './assets/role/place_voiture.png'; // Chemin de l'image pour le rôle User
-    } else if (role === 'hote') {
-      return './assets/role/hote.png'; // Chemin de l'image pour le rôle User
-    } else if (role === 'lit_dispo') {
-      return './assets/role/lit.png'; // Chemin de l'image pour le rôle User
-    } else if (role === 'covoiturage'){
-      return './assets/role/covoiturage.png'; // Image par défaut si aucun rôle ne correspond
-    } else {
-      return './assets/role/pas_de_role.png'
-    }
+    return `./assets/role/${role}.png`;
   }
-  isAdmin(role: string): boolean {
+
+  /* isAdmin(role: string): boolean {
     return role === 'Admin';
-  }
+  } */
 }

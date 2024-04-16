@@ -80,7 +80,7 @@ describe('EvenementComponent', () => {
   }); 
 
   it('should get the data of the event based on its id from API', () => {
-    const eventData = {
+    const eventData = [{
       id: 1,
       nom: 'Bières entre potes',
       date: '2024-04-15',
@@ -88,7 +88,7 @@ describe('EvenementComponent', () => {
       lieu: 'Rue du test unitaire',
       nbrLit: 10,
       nbrBob: 5
-    };
+    }];
 
     const httpClientSpy = spyOn(component.http, 'get').and.returnValue(of(eventData));
 
@@ -99,7 +99,7 @@ describe('EvenementComponent', () => {
   });
 
   it('should NOT get the data of the event based on its id from API', () => {
-    const eventData = {
+    const eventData = [{
       id: 1,
       nom: 'Bières entre potes',
       date: '2024-04-15',
@@ -107,7 +107,7 @@ describe('EvenementComponent', () => {
       lieu: 'Rue du test unitaire',
       nbrLit: 10,
       nbrBob: 5
-    };
+    }];
 
     const httpClientSpy = spyOn(component.http, 'get').and.returnValue(of(eventData));
 
@@ -115,5 +115,35 @@ describe('EvenementComponent', () => {
 
     expect(httpClientSpy).not.toHaveBeenCalledWith('http://localhost:64000/events/2');
     expect(component.event).toEqual(eventData);
+  });
+
+  it('should return the correct image URL for a given role', () => {
+    const role = 'bob';
+    const imageUrl = component.getImageUrl(role);
+    expect(imageUrl).toEqual(`./assets/role/${role}.png`);
+  });
+
+  it('should return the correct image URL for a given role', () => {
+    const role = 'lit_dispo';
+    const imageUrl = component.getImageUrl(role);
+    expect(imageUrl).toEqual(`./assets/role/${role}.png`);
+  });
+
+  it('should return the correct image URL for a given role', () => {
+    const role = 'hote';
+    const imageUrl = component.getImageUrl(role);
+    expect(imageUrl).toEqual(`./assets/role/${role}.png`);
+  });
+
+  it('should return the correct image URL for a given role', () => {
+    const role = 'place_voiture';
+    const imageUrl = component.getImageUrl(role);
+    expect(imageUrl).toEqual(`./assets/role/${role}.png`);
+  });
+
+  it('should return the correct image URL for a given role', () => {
+    const role = 'covoiturage';
+    const imageUrl = component.getImageUrl(role);
+    expect(imageUrl).toEqual(`./assets/role/${role}.png`);
   });
 });
