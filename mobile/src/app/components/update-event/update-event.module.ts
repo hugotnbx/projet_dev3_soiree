@@ -6,7 +6,6 @@ import { Router } from 'express';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module'
-import { Evenement } from "src/app/interfaces/evenement";
 
 
 @NgModule({
