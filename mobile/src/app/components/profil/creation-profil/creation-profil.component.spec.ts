@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
+import { HttpClientModule } from '@angular/common/http';
 import { CreationProfilComponent } from './creation-profil.component';
 
 describe('CreationProfilComponent', () => {
@@ -10,7 +10,7 @@ describe('CreationProfilComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CreationProfilComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(),HttpClientModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CreationProfilComponent);

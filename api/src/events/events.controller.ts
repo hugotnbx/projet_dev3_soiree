@@ -16,6 +16,7 @@ export class EventsController {
   @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
   async getAll(): Promise<Events[]> {
     return this.eventsService.findAll();
+
   }
 
   @Get('/:id')

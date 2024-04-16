@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { EvenementComponent } from './evenement.component';
-
+import { HttpClientModule } from '@angular/common/http';
 describe('EvenementComponent', () => {
   let component: EvenementComponent;
   let fixture: ComponentFixture<EvenementComponent>;
@@ -9,7 +9,7 @@ describe('EvenementComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [EvenementComponent],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(),HttpClientModule]
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(EvenementComponent);
       component = fixture.componentInstance;

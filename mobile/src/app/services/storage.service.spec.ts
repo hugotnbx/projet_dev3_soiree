@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { StorageService } from './storage.service';
 
 describe('StorageService', () => {
@@ -14,3 +14,4 @@ describe('StorageService', () => {
     expect(service).toBeTruthy();
   });
 });
+
