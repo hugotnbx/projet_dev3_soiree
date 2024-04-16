@@ -1,5 +1,5 @@
 <ion-toolbar>
-  <ion-title>{{ event?.nom }}</ion-title>
+  <ion-title id="event-name">{{ event?.nom }}</ion-title>
 </ion-toolbar>
 
 <ion-content [fullscreen]="true" class="ion-text-center">
@@ -8,7 +8,7 @@
     <ion-card class="ion-text-center">
 
       <ion-card-header>
-        <ion-card-title>{{ event?.date }} à {{ event?.heure }}</ion-card-title>
+        <ion-card-title id="date-time">{{ event?.date }} à {{ event?.heure }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>Date et heure</ion-card-content>
     </ion-card>
@@ -16,7 +16,7 @@
     <ion-card class="ion-text-center">
 
       <ion-card-header>
-        <ion-card-title>{{ event?.lieu }}</ion-card-title>
+        <ion-card-title id="location">{{ event?.lieu }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>Adresse</ion-card-content>
     </ion-card>
@@ -24,14 +24,14 @@
     <ion-row class="flex-container">
       <ion-card id="flex-item-1" class="ion-text-center flex-item">
         <ion-card-header>
-          <ion-card-title>{{ event?.nbrLit }}</ion-card-title>
+          <ion-card-title id="nbrLit">{{ event?.nbrLit }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>Lits libres</ion-card-content>
       </ion-card>
 
       <ion-card class="ion-text-center flex-item">
         <ion-card-header>
-          <ion-card-title>{{ event?.nbrBob }}</ion-card-title>
+          <ion-card-title id="nbrBob">{{ event?.nbrBob }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>Bobs</ion-card-content>
       </ion-card>

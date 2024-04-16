@@ -12,23 +12,21 @@ export class EvenementComponent  implements OnInit {
   event:any;
   eventprofil:any;
 
-  constructor(public http:HttpClient,private route: ActivatedRoute) {
+  constructor(public http: HttpClient, private route: ActivatedRoute) {}
+
+  ngOnInit() {
     const paramValue = this.route.snapshot.paramMap.get('id');
 
-    this.readApi(`http://localhost:64000/events/${paramValue}`)
-    .subscribe((data) =>{
+    this.readApi(`http://localhost:64000/events/${paramValue}`).subscribe((data) => {
       console.log(data);
-      this.event= data;
+      this.event = data;
     });
 
-    this.readApi(`http://localhost:64000/users-relations/${paramValue}`)
-    .subscribe((data) => {
+    this.readApi(`http://localhost:64000/users-relations/${paramValue}`).subscribe((data) => {
       console.log(data);
       this.eventprofil = data;
     });
   }
-
-  ngOnInit() {}
 
   readApi(URL: string) {
     return this.http.get(URL);
