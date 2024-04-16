@@ -31,7 +31,7 @@
 </ion-content>
 <ion-content >
   
-  <ion-list>
+  <ion-list class="aliment">
     <ion-card *ngFor="let aliment of aliments" [class.selected]="aliment.selected" (click)="toggleSelection(aliment)">
       <ion-card-content class="item-label">{{ aliment.nom }} - {{ aliment.prix }}€</ion-card-content>
     </ion-card>
