@@ -1,37 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Profil
-    </ion-title>
+    <ion-title>{{profil?.firstName}} {{profil?.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Profil</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h1>Profil</h1>
 
   <ion-card *ngIf="profil">
     <ion-card-header id="photoProfil">
       <div class="img-box">
-        <img src="../../assets/profil/">
+        <!-- <img src="../../assets/profil/"> -->
       </div> 
-      <ion-card-title>{{profil.firstName}} {{profil.name}}</ion-card-title>
-      <ion-card-subtitle>&#64;{{profil.idProfil}}</ion-card-subtitle>
+      <ion-card-title>{{profil?.firstName}} {{profil?.name}}</ion-card-title>
+      <ion-card-subtitle>&#64;{{profil?.idProfil}}</ion-card-subtitle>
     </ion-card-header>
   
     <ion-card-content>
       <h1>Description</h1>
-      <p>{{profil.description}}</p>
+      <p>{{profil?.description}}</p>
 
     </ion-card-content>
   </ion-card>
 
   <ion-card>
     <ion-thumbnail class="image-container">
-      <img [src]="getImageUrl(profil.role)" alt="Photo" style="width: 100%; height: auto;">
+      <img [src]="getImageUrl(profil?.role)" alt="Photo" style="width: 100%; height: auto;">
     </ion-thumbnail>
     <ion-card-content>
       <ion-card-subtitle>Statut</ion-card-subtitle>
@@ -41,25 +35,25 @@
   <ion-card>  
     <ion-card-content>
       <ion-icon name="logo-instagram" size="large"></ion-icon>
-      <label>{{profil.instagram}}</label>
+      <label>{{profil?.instagram}}</label>
         
       <br>
 
       <ion-icon name="logo-facebook" size="large"></ion-icon>
-      <label>{{profil.facebook}}</label>
+      <label>{{profil?.facebook}}</label>
     </ion-card-content>
   </ion-card>
     
   <ion-card>
     <ion-card-header>
-      <ion-card-title>{{profil.address}}</ion-card-title>
+      <ion-card-title>{{profil?.address}}</ion-card-title>
       <ion-card-subtitle>Adresse</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>{{profil.numberPhone}}</ion-card-title>
+      <ion-card-title>{{profil?.numberPhone}}</ion-card-title>
       <ion-card-subtitle>Téléphone</ion-card-subtitle>
     </ion-card-header>
   </ion-card>

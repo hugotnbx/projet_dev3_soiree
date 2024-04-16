@@ -12,26 +12,24 @@ export class EventsService {
     ) {}
 
     async findAll(): Promise<Events[]> {
-      return await this.eventsRepository.find();
+      return await this.eventsRepository.find({
+        select: ['id', 'nom', 'heure', 'lieu', 'date'],
+      });
     }
 
     async read(id:number): Promise<Events>{
       return await this.eventsRepository.findOne({where:{id}})
     }
 
-    async readDate(date:Date): Promise<Events>{
-      return await this.eventsRepository.findOne({where:{date}})
-    }
-
-    async create(accueilDto : EventsDto) {
+    async create(eventsDto : EventsDto) {
       const eventsEntities = new Events();
-      eventsEntities.id = accueilDto.id;
-      eventsEntities.nom = accueilDto.nom;
-      eventsEntities.heure= accueilDto.heure;
-      eventsEntities.date= accueilDto.date;
-      eventsEntities.lieu = accueilDto.lieu;
-      eventsEntities.nbrLit = accueilDto.nbrLit;
-      eventsEntities.nbrBob = accueilDto.nbrBob;
+      eventsEntities.id = eventsDto.id;
+      eventsEntities.nom = eventsDto.nom;
+      eventsEntities.heure= eventsDto.heure;
+      eventsEntities.date= eventsDto.date;
+      eventsEntities.lieu = eventsDto.lieu;
+      eventsEntities.nbrLit = eventsDto.nbrLit;
+      eventsEntities.nbrBob = eventsDto.nbrBob;
       const events = this.eventsRepository.create(eventsEntities);
       await this.eventsRepository.save(events);
       return events;

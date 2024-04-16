@@ -1,11 +1,34 @@
 <ion-menu contentId="main-content">
-  <ion-header>
+  <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title>Iziplan</ion-title>
+      <div class="toolbar-image-container">
+        <img src="../../../../assets/icon/IZIPLAN.png" alt="Logo" class="toolbar-image">
+      </div>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">This is the menu content.</ion-content>
-  <ion-card [routerLink]="['/tabs/tab5']">Anciens Évènements</ion-card>
+
+  <ion-content class="ion-padding">
+    <ion-list>
+      
+      <ion-item [routerLink]="['/tabs/tab5']">
+        <ion-button menuToggle expand="full" color="primary">
+          <ion-label color="dark">Anciens Évènements</ion-label>
+        </ion-button>
+      </ion-item>
+
+      <!-- Autres éléments de menu -->
+
+      <ion-item>
+        <ion-button expand="full" color="primary">
+          <ion-label color="dark">Réglages</ion-label>
+        </ion-button>
+      </ion-item>
+
+      <!-- Bouton personnalisé -->
+
+    </ion-list>
+  </ion-content>
+
 </ion-menu>
 <ion-buttons slot="start">
   <ion-menu-button></ion-menu-button>

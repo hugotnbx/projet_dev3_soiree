@@ -52,16 +52,18 @@ export class RejoindreEventComponent  implements OnInit {
   getTotal() {
     let total = 0;
     if (this.aliments && typeof this.aliments === 'object') {
-        for (let key in this.aliments) {
-            if (this.aliments.hasOwnProperty(key) && this.aliments[key].selected) {
-                total += parseFloat(this.aliments[key].prix);
-            }
+      for (let key in this.aliments) {
+        if (this.aliments.hasOwnProperty(key) && this.aliments[key].selected) {
+          total += parseFloat(this.aliments[key].prix);
         }
+      }
     } else {
-        console.error("Erreur : this.aliments n'est pas un objet valide");
+      console.error("Erreur : this.aliments n'est pas un objet valide");
+      return "0.00";
     }
     return total.toFixed(2);
   }
+  
 
   rejoindreEvent() {
     for(let long = 0 ; long < this.aliments.length ; long++){

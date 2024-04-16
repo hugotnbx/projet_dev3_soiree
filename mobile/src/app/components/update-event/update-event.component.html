@@ -1,8 +1,8 @@
-
+<ion-header>
   <ion-toolbar>
     <ion-title>Modifier l'événement</ion-title>
   </ion-toolbar>
-
+</ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list>
@@ -11,7 +11,7 @@
         label="Nom de l'événement"
         labelPlacement="stacked"
         [clearInput]="true"
-        placeholder={{event.nom}}
+        placeholder={{event?.nom}}
         [(ngModel)]="event.nom"
       >
       <ion-icon slot="start" name="beer-outline" aria-hidden="true"></ion-icon>
@@ -19,28 +19,13 @@
   </ion-item>
 
   <ion-item>
-    <ion-input
-        label="Heure"
-        labelPlacement="stacked"
-        [clearInput]="true"
-        placeholder={{event.heure}}
-        [(ngModel)]="event.heure"
-      >
-      <ion-icon slot="start" name="location-outline" aria-hidden="true"></ion-icon>
-    </ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-input
-        label="Date"
-        labelPlacement="stacked"
-        [clearInput]="true"
-        placeholder={{event.date}}
-        [(ngModel)]="event.date"
-
-      >
-      <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
-    </ion-input>
+    <ion-label position="stacked">Date et Heure</ion-label>
+    <ion-datetime 
+      displayFormat="YYYY-MM-DD HH:mm" 
+      pickerFormat="YYYY-MM-DDTHH:mmZ" 
+      [(ngModel)]="eventDateTime"
+      (ionChange)="onDateTimeChange($event)"
+    ></ion-datetime>
   </ion-item>
 
   <ion-item>
@@ -48,7 +33,7 @@
         label="Lieu"
         labelPlacement="stacked"
         [clearInput]="true"
-        placeholder={{event.lieu}}
+        placeholder={{event?.lieu}}
         [(ngModel)]="event.lieu"
       >
       <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
@@ -60,7 +45,7 @@
         label="Lit(s) disponible(s)"
         labelPlacement="stacked"
         [clearInput]="false"
-        placeholder={{event.nbrLit}}
+        placeholder={{event?.nbrLit}}
         [(ngModel)]="event.nbrLit"
       >
       <ion-icon slot="start" name="bed-outline" aria-hidden="true"></ion-icon>
@@ -70,7 +55,7 @@
         label="Bob(s)"
         labelPlacement="stacked"
         [clearInput]="false"
-        placeholder={{event.nbrBob}}
+        placeholder={{event?.nbrBob}}
         [(ngModel)]="event.nbrBob"
       >
       <ion-icon slot="start" name="car-outline" aria-hidden="true"></ion-icon>
@@ -81,6 +66,5 @@
     Modifier l'événement
     <ion-icon name="send-outline"></ion-icon>
   </ion-button>
-  
-
 </ion-content>
+

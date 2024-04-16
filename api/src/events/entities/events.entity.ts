@@ -24,6 +24,6 @@ export class Events {
     @Column()
     nbrBob:number;
 
-    @OneToMany(() => UsersRelations, usersRelations => usersRelations.idEvent)
+    @OneToMany(() => UsersRelations, usersRelations => usersRelations.event)
     usersRelations: UsersRelations[];
 }
