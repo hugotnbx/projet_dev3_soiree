@@ -11,6 +11,12 @@ export class UsersDto {
         required:true,
         type: "string",
     })
+    readonly  password: string;
+
+    @ApiProperty({
+        required:true,
+        type: "string",
+    })
     readonly  name: string ;
 
     @ApiProperty({
