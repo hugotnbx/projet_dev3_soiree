@@ -2,61 +2,42 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { EvenementComponent } from './evenement.component';
 import { HttpClientModule } from '@angular/common/http';
-import { Router, RouterModule, ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('EvenementComponent', () => {
   let component: EvenementComponent;
   let fixture: ComponentFixture<EvenementComponent>;
-  let router: Router;
+  let activatedRoute: ActivatedRoute;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [EvenementComponent],
-      imports: [IonicModule.forRoot(), HttpClientModule, RouterModule.forRoot([]), RouterTestingModule],
+      imports: [IonicModule.forRoot(), HttpClientModule],
       providers: [
         {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
               paramMap: {
-                get: () => 'test_id'
+                get: () => 1
               }
             }
           }
         }
       ]
     }).compileComponents();
-
-    fixture = TestBed.createComponent(EvenementComponent);
-    component = fixture.componentInstance;
-    router = TestBed.inject(Router);
-    fixture.detectChanges();
   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(EvenementComponent);
+    component = fixture.componentInstance;
+    activatedRoute = TestBed.inject(ActivatedRoute);
   });
 
-  /* it('should navigate to update page with event ID when button is clicked', () => {
-    component.event = {
-      id: 1, 
-      nom: 'Test',
-      date: '2024-04-15',
-      heure: '22:00',
-      lieu: 'Rue du test unitaire',
-      nbrLit: 10,
-      nbrBob: 5
-    }
-
-    const navigateSpy = spyOn(router, 'navigateByUrl');
-
-    const button = fixture.debugElement.query(By.css('ion-button')).nativeElement;
-    button.click();
-
-    expect(navigateSpy).toHaveBeenCalledWith(`/update-event/${component.event.id}`);
-  }); */
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+  });
   
   it('should inject event data into HTML elements', () => {
     component.event = {
@@ -97,4 +78,42 @@ describe('EvenementComponent', () => {
     expect(compiled.querySelector('#nbrLit').textContent).not.toContain(18);
     expect(compiled.querySelector('#nbrBob').textContent).not.toContain(2);
   }); 
+
+  it('should get the data of the event based on its id from API', () => {
+    const eventData = {
+      id: 1,
+      nom: 'Bières entre potes',
+      date: '2024-04-15',
+      heure: '22:00',
+      lieu: 'Rue du test unitaire',
+      nbrLit: 10,
+      nbrBob: 5
+    };
+
+    const httpClientSpy = spyOn(component.http, 'get').and.returnValue(of(eventData));
+
+    fixture.detectChanges();
+
+    expect(httpClientSpy).toHaveBeenCalledWith('http://localhost:64000/events/1');
+    expect(component.event).toEqual(eventData);
+  });
+
+  it('should NOT get the data of the event based on its id from API', () => {
+    const eventData = {
+      id: 1,
+      nom: 'Bières entre potes',
+      date: '2024-04-15',
+      heure: '22:00',
+      lieu: 'Rue du test unitaire',
+      nbrLit: 10,
+      nbrBob: 5
+    };
+
+    const httpClientSpy = spyOn(component.http, 'get').and.returnValue(of(eventData));
+
+    fixture.detectChanges();
+
+    expect(httpClientSpy).not.toHaveBeenCalledWith('http://localhost:64000/events/2');
+    expect(component.event).toEqual(eventData);
+  });
 });
