@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Tab2Page } from '../tab2/tab2.page';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-tab1',
@@ -21,7 +22,7 @@ export class Tab1Page implements OnInit {
 
   constructor(public http:HttpClient) {
 
-    this.readApi("http://localhost:64000/events")
+    this.readApi(`${environment.api}/events`)
     .subscribe((data) =>{
       console.log(data);
       this.events= data;

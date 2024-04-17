@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-evenement',
@@ -17,12 +18,12 @@ export class EvenementComponent  implements OnInit {
   ngOnInit() {
     const paramValue = this.route.snapshot.paramMap.get('id');
 
-    this.readApi(`http://localhost:64000/events/${paramValue}`).subscribe((data) => {
+    this.readApi(`${environment.api}/events/${paramValue}`).subscribe((data) => {
       console.log(data);
       this.event = data;
     });
 
-    this.readApi(`http://localhost:64000/users-relations/${paramValue}`).subscribe((data) => {
+    this.readApi(`${environment.api}/users-relations/${paramValue}`).subscribe((data) => {
       console.log(data);
       this.eventprofil = data;
     });

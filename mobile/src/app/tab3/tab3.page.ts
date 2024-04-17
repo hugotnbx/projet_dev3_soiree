@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-tab3',
@@ -10,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class Tab3Page {
   profil:any;
   constructor(public http:HttpClient) {
-    this.readApi("http://localhost:64000/users/hugoneutre")
+    this.readApi(`${environment.api}/users/hugoneutre`)
     .subscribe((data) =>{
       console.log(data);
       this.profil= data;

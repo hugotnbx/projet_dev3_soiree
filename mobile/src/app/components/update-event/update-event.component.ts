@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-update-event',
@@ -19,7 +20,7 @@ export class UpdateEventComponent implements OnInit {
   constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router) {
     const paramValue = this.route.snapshot.paramMap.get('id');
     //console.log(paramValue);
-    this.readApi(`http://localhost:64000/events/${paramValue}`)
+    this.readApi(`${environment.api}/events/${paramValue}`)
     .subscribe((data) =>{
       //console.log(data);
       this.event= data;
@@ -69,7 +70,7 @@ export class UpdateEventComponent implements OnInit {
 
   updateEvent() {
     // Envoyer une requête PUT avec les données de l'événement
-    this.http.put<any>('http://localhost:64000/events/' + this.event.id, this.event)
+    this.http.put<any>(`${environment.api}/events/` + this.event.id, this.event)
       .subscribe(response => {
         //console.log(response); 
         this.router.navigateByUrl(`/evenement/${this.event.id}`);

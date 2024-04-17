@@ -3,6 +3,7 @@ import { evenement } from './tab2';
 import { Evenement } from 'src/app/interfaces/evenement';
 import { json } from 'express';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-tab2',
@@ -58,7 +59,7 @@ export class Tab2Page implements OnInit {
 
   creationEvent() {
     this.newEvent=new evenement(this.eventData);
-    this.http.post<any>('http://localhost:64000/events', this.newEvent)
+    this.http.post<any>(`${environment.api}/events`, this.newEvent)
       .subscribe(response => {
         console.log(response);
       });

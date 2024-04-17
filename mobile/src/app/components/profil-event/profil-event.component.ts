@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profil-event',
@@ -15,7 +16,7 @@ export class ProfilEventComponent  implements OnInit {
     const paramValue = this.route.snapshot.paramMap.get('id');
     console.log(paramValue);
 
-    this.readApi(`http://localhost:64000/users/${paramValue}`)
+    this.readApi(`${environment.api}/users/${paramValue}`)
     .subscribe((data) => {
       console.log(data);
       this.profil = data;
