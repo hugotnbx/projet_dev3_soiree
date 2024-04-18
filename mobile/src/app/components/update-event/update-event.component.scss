@@ -1,0 +1,58 @@
+ion-toolbar {
+    --ion-color-base: #F9E6AC; // Couleur de fond de la barre d'outils
+  }
+  
+  ion-content {
+    --background: #f4f4f4; // Couleur de fond du contenu
+  }
+  
+  ion-list {
+    margin: 20px; // Marge autour de la liste
+  }
+  
+  ion-item {
+    --border-color: #ddd; // Couleur de la bordure des éléments
+  }
+  
+  ion-input {
+    --placeholder-color: #999; // Couleur du texte d'espacement
+    --border-radius: 10px; // Rayon des coins
+    --padding-start: 15px; // Rembourrage à gauche
+    --padding-end: 15px; // Rembourrage à droite
+  }
+  
+  ion-icon {
+    color: #666; // Couleur de l'icône
+  }
+  
+  ion-button {
+    margin: 20px; // Marge autour du bouton
+    --background: #F9E6AC; // Couleur de fond du bouton
+    --color: #000000; // Couleur du texte du bouton
+    --border-radius: 50px; // Utilisation d'un rayon de coin élevé pour créer un bouton rond
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Ombre du bouton
+    font-weight: bold; // Police en gras
+    text-transform: uppercase; // Conversion en majuscules
+    transition: background-color 0.3s ease; // Transition de couleur de fond
+    border: none; // Pas de bordure
+    min-width: 100px; // Largeur minimale du bouton
+    display: flex; // Utilisation de flexbox pour aligner le contenu du bouton
+    align-items: center; // Alignement vertical du contenu du bouton
+    justify-content: center; // Alignement horizontal du contenu du bouton
+    padding: 10px; // Rembourrage autour du contenu du bouton
+  }
+  
+  ion-button:hover {
+    --background: #F9E6AC; // Couleur de fond du bouton lorsqu'il est survolé
+  }
+  
+  ion-button:active {
+    --background: #F9E6AC; // Couleur de fond du bouton lorsqu'il est cliqué
+  }
+  
+  ion-icon {
+    margin-left: 5px; // Marge à gauche de l'icône pour séparer le texte
+  }
+  
+  
+  

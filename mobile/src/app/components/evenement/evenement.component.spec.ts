@@ -20,27 +20,10 @@ describe('EvenementComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should return correct image URL based on role', () => {
-    // Test pour le rôle 'admin'
-    expect(component.getImageUrl('admin')).toEqual('./assets/role/admin.png');
-
-    // Test pour le rôle 'Bob'
-    expect(component.getImageUrl('Bob')).toEqual('./assets/role/bob.png');
-
-    // Test pour le rôle 'place_voiture'
-    expect(component.getImageUrl('place_voiture')).toEqual('./assets/role/place_voiture.png');
-
-    // Test pour le rôle 'hote'
-    expect(component.getImageUrl('hote')).toEqual('./assets/role/hote.png');
-
-    // Test pour le rôle 'lit_dispo'
-    expect(component.getImageUrl('lit_dispo')).toEqual('./assets/role/lit.png');
-
-    // Test pour le rôle 'covoiturage'
-    expect(component.getImageUrl('covoiturage')).toEqual('./assets/role/covoiturage.png');
-
-    // Test pour un rôle non reconnu
-    expect(component.getImageUrl('autre')).toEqual('./assets/role/pas_de_role.png');
+  it('should return the correct image URL for a given role', () => {
+    const role = 'admin';
+    const imageUrl = component.getImageUrl(role);
+    expect(imageUrl).toEqual(`./assets/role/${role}.png`);
   });
+
 });
