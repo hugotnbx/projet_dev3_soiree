@@ -7,6 +7,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-text-center">
+  <ion-refresher slot="fixed" (ionRefresh)="refreshEvents($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
     <h1>Mes événements</h1>
 
     <ion-card *ngFor="let event of tableEvents;index as i" class="ion-text-center" [routerLink]="['/evenement',event?.id]">
