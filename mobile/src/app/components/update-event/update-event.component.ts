@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-update-event',
@@ -19,7 +20,7 @@ export class UpdateEventComponent implements OnInit {
   constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router) {
     const paramValue = this.route.snapshot.paramMap.get('id');
     //console.log(paramValue);
-    this.readApi(`http://localhost:64000/events/${paramValue}`)
+    this.readApi(`${environment.api}/events/${paramValue}`)
     .subscribe((data) =>{
       //console.log(data);
       this.event= data;
@@ -69,12 +70,53 @@ export class UpdateEventComponent implements OnInit {
 
   updateEvent() {
     // Envoyer une requête PUT avec les données de l'événement
-    this.http.put<any>('http://localhost:64000/events/' + this.event.id, this.event)
+    this.http.put<any>(`${environment.api}/events/` + this.event.id, this.event)
       .subscribe(response => {
         //console.log(response); 
-        this.router.navigateByUrl(`/evenement/${this.event.id}`);
-      });
+        this.router.navigateByUrl(`/evenement/${this.event.id}`)});
+
+    if (!this.event.nom) {
+      console.log("Le nom est vide");
+      return; 
+    }
+
+    const timeRegex = /^\d{2}:\d{2}$/;
+    if (!timeRegex.test(this.event.heure)) {
+      console.log("Format d'heure invalide");
+      return; 
+    }
+    const timeRegex2 = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/; 
+  if (!timeRegex2.test(this.event.heure)) {
+    console.log("Format d'heure invalide");
+    return; 
   }
+  
+   
+    if (this.event.nbrLit < 0 || this.event.nbrLit > 99) {
+      console.log("Nombre de lits invalide");
+      return; 
+    }
+  
+   
+    if (this.event.nbrBob < 0 || this.event.nbrBob > 99) {
+      console.log("Nombre de bobs invalide");
+      return;
+    }
+  
+   
+    const specialCharsRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    if (!this.event.lieu || specialCharsRegex.test(this.event.lieu) || this.event.lieu.length > 50) {
+      console.log("Lieu invalide");
+      return; 
+    }
+  
+    if (this.event.nom.length > 40) {
+      console.log("Le nom est trop long");
+      return; 
+    }
+  }
+  
+  
   // isAdmin(role: string): boolean {
   //   return role === 'Admin';
   // }

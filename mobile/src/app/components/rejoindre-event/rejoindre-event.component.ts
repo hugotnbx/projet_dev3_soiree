@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 //import { IonViewWillEnter } from '@ionic/angular';
 
 @Component({
@@ -26,7 +27,7 @@ export class RejoindreEventComponent  implements OnInit {
   }
 
   ngOnInit() {
-    this.readApi("http://localhost:64000/contributions")
+    this.readApi(`${environment.api}/contributions`)
     .subscribe((data) =>{
     
       this.aliments= data;
@@ -72,7 +73,7 @@ export class RejoindreEventComponent  implements OnInit {
         this.Rejoindre.idContribution=this.aliments[long].idContribution;
         this.Rejoindre.idStatus = this.selectedOption;
         console.log(this.Rejoindre);
-        this.http.post<any>('http://localhost:64000/users-relations', this.Rejoindre)
+        this.http.post<any>(`${environment.api}/users-relations`, this.Rejoindre)
         .subscribe(response => {
           console.log(response); 
         });

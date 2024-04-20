@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-tab5',
@@ -20,7 +21,7 @@ export class Tab5Page {
 
   constructor(public http:HttpClient) {
 
-    this.readApi("http://localhost:64000/events")
+    this.readApi(`${environment.api}/events`)
     .subscribe((data) =>{
       console.log(data);
       this.events= data;

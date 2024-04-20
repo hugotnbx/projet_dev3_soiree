@@ -26,6 +26,7 @@ export class UsersService{
     async create(usersDto : UsersDto) {
       const usersEntities = new Users();
       usersEntities.idProfil = usersDto.idProfil;
+      usersEntities.password = usersDto.password;
       usersEntities.name = usersDto.name;
       usersEntities.firstName= usersDto.firstName;
       usersEntities.mail = usersDto.mail;

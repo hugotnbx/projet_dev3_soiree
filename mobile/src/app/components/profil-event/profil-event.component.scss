@@ -29,20 +29,20 @@ ion-toolbar {
     }
 }
 
-h1 {
+#title {
     text-align: left;
     font-weight: bold;
     margin-left: 5%;
 }
 
 .ios {
-    h1 {
+    #title {
         font-size: 35px;
     }
 }
 
 .md {
-    h1 {
+    #title {
         font-size: 30px;
     }
 }

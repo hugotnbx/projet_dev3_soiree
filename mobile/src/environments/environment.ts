@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // api:"http://localhost:64000"
+  api:"https://iziplan.l2-1.ephec-ti.be:64000"
 };
 
 /*

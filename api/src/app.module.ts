@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { StatusesModule } from './statuses/statuses.module';
 import { ContributionsModule } from './contributions/contributions.module';
 import { UsersRelationsModule } from './users-relations/users-relations.module';
+import { AuthModule } from './auth/auth/auth.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { UsersRelationsModule } from './users-relations/users-relations.module';
     StatusesModule,
     ContributionsModule,
     UsersRelationsModule,
+    AuthModule,
   ],
   controllers: [AppController,],
   providers: [AppService,],

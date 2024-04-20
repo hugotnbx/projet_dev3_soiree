@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Tab2Page } from '../tab2/tab2.page';
-
+import { environment } from 'src/environments/environment';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from '../services/local-storage.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -9,8 +10,35 @@ import { Tab2Page } from '../tab2/tab2.page';
 })
 export class Tab1Page implements OnInit {
 
-  events:any;
+  events: any;
   tableEvents: any[] = [];
+
+  constructor(public http:HttpClient, private localStorage:LocalStorageService, private router: Router) {
+    this.loadEvents();
+  }
+
+  loadEvents() {
+    this.readApi(`${environment.api}/events`).subscribe((data) => {
+      console.log(data);
+      this.events = data;
+
+      this.tableEvents = []; 
+
+      for (let event of this.events) {
+        if (this.datePlusGrand(event.date, new Date())) {
+          this.tableEvents.push(event);
+        }
+      }
+    });
+  }
+
+  refreshEvents(events:any) {
+    this.loadEvents();
+
+    setTimeout(() => {
+      events.target.complete();
+    }, 2000);
+  }
 
   datePlusGrand(date1:Date, date2:Date) {
     var date1Obj = new Date(date1);
@@ -19,31 +47,13 @@ export class Tab1Page implements OnInit {
     return (date1Obj.getTime() + 86400000) >= date2Obj.getTime();
   }
 
-  constructor(public http:HttpClient) {
-
-    this.readApi("http://localhost:64000/events")
-    .subscribe((data) =>{
-      console.log(data);
-      this.events= data;
-      
-      for(let event of this.events){
-        if (this.datePlusGrand(event.date, new Date())) {
-          this.tableEvents.push(event);
-        }
-      }
-    }); 
-  }
-
   readApi(URL:string){
     return this.http.get(URL);
   }
 
   ngOnInit() {
-    // ...
-  }
-
-  ngOnDestroy() {
-    //
-    
+    if(!this.localStorage.getItem('ACCESS_TOKEN')){
+      this.router.navigateByUrl('login');
+    }
   }
 }

@@ -3,10 +3,11 @@ export interface Profil {
     name:string;
     firstName:string;
     mail:string;
+    password:string;
     numberPhone:string;
     address:string;
-    instagram:string;
     facebook:string;
+    instagram:string;
     description:string;
     bank:string;
 }
