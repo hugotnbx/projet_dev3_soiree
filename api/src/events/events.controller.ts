@@ -9,7 +9,7 @@ import { Public } from 'src/auth/auth/publicDecorator';
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
-  @Public()
+  //@Public()
   @Get()
   @ApiOperation({ summary: 'Liste des événements', description: 'Récupère la liste de tous les événements.' })
   @ApiResponse({ status: 200, description: 'Succès de la requête. Retourne la liste des événements.' })

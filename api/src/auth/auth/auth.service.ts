@@ -7,9 +7,9 @@ export class AuthService {
     constructor(private usersService: UsersService,private jwtService: JwtService
     ) {}
 
-    async signIn(idProfil: string, pass: string): Promise<any> {
+    async signIn(idProfil: string, pass: string,): Promise<any> {
       const user = await this.usersService.read(idProfil);
-      if (user?.password !== pass) {
+      if (user?.password !== pass || user.idProfil != idProfil){
         throw new UnauthorizedException();
       }
       const payload = {username: user.idProfil };

@@ -17,7 +17,10 @@ export class LoginPage implements OnInit {
 
   login(form:NgForm){
     this.authService.login(form.value).subscribe((res)=>{
-      this.router.navigateByUrl('');
+      if(this.authService.isLoggedIn()){
+        this.router.navigateByUrl('');
+      }
+      //this.router.navigateByUrl('');
     });
   }
 

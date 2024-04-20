@@ -3,7 +3,7 @@ import { Tab2Page } from '../tab2/tab2.page';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 //import { Storage } from '@ionic/storage-angular';
 import { StorageService } from '../services/storage.service';
-
+import { LocalStorageService } from '../services/local-storage.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -21,13 +21,13 @@ export class Tab1Page implements OnInit {
     return (date1Obj.getTime() + 86400000) >= date2Obj.getTime();
   }
 
-  constructor(public http:HttpClient,private storage:StorageService) {
+  constructor(public http:HttpClient,private storage:StorageService,private localStorage:LocalStorageService) {
 
     this.readApi("http://localhost:64000/events")
     .subscribe((data) =>{
       console.log(data);
-      console.log(this.storage.get("ACCESS_TOKEN"));
-      console.log(`données :${data},token:${this.storage.get("ACCESS_TOKEN")}`);
+      //console.log(this.localStorage.getItem("ACCESS_TOKEN"));
+      //console.log(`données :${data},token:${this.localStorage.getItem("ACCESS_TOKEN")}`);
       this.events= data;
       
       for(let event of this.events){
@@ -39,11 +39,12 @@ export class Tab1Page implements OnInit {
   }
 
   readApi(URL:string){
-    const headers = new HttpHeaders({
+    /*const headers = new HttpHeaders({
       //'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.storage.get("ACCESS_TOKEN")}`
+      'Authorization': `Bearer ${this.localStorage.getItem("ACCESS_TOKEN")}`
     });
-    return this.http.get(URL,{headers: headers});
+    return this.http.get(URL,{headers: headers});*/
+    return this.http.get(URL);
   }
 
   ngOnInit() {}
