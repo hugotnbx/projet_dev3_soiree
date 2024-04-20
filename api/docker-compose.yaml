@@ -24,7 +24,10 @@ services:
       DB_DATABASE: iziplan_db
     depends_on:
       - mysql
+    volumes:
+      - ~/www/certificate:/etc/letsencrypt/
     networks:
       - iziplan_networks
+    
 networks:
    iziplan_networks:

@@ -1,9 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder} from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import * as fs from 'fs';
+import * as https from 'https';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const httpsOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/archive/l2-1.ephec-ti.be/privkey1.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/archive/l2-1.ephec-ti.be/fullchain1.pem'),
+  };
+  const app = await NestFactory.create(AppModule,{httpsOptions,});
   
   const config = new DocumentBuilder()
   .setTitle('Documentation API - Projet Iziplan')
