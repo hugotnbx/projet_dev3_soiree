@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // api:"http://localhost:64000"
-  api:"http://iziplan.l2-1.ephec-ti.be:64000"
+  api:"https://iziplan.l2-1.ephec-ti.be:64000"
 };
 
 /*
