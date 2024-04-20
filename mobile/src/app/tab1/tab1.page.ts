@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Tab2Page } from '../tab2/tab2.page';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 //import { Storage } from '@ionic/storage-angular';
-import { StorageService } from '../services/storage.service';
 import { LocalStorageService } from '../services/local-storage.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -21,7 +21,7 @@ export class Tab1Page implements OnInit {
     return (date1Obj.getTime() + 86400000) >= date2Obj.getTime();
   }
 
-  constructor(public http:HttpClient,private storage:StorageService,private localStorage:LocalStorageService) {
+  constructor(public http:HttpClient,private localStorage:LocalStorageService, private router: Router) {
 
     this.readApi("http://localhost:64000/events")
     .subscribe((data) =>{
@@ -47,5 +47,9 @@ export class Tab1Page implements OnInit {
     return this.http.get(URL);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(!this.localStorage.getItem('ACCESS_TOKEN')){
+      this.router.navigateByUrl('login');
+    }
+  }
 }

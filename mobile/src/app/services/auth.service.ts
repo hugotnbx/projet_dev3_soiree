@@ -3,10 +3,9 @@ import { HttpClient } from  '@angular/common/http';
 import { tap } from  'rxjs/operators';
 import { Observable, BehaviorSubject } from  'rxjs';
 import { profil } from '../components/profil/creation-profil/profil';
-import { Storage } from '@ionic/storage-angular';
+// import { Storage } from '@ionic/storage-angular';
 import { Profil } from '../interfaces/profil';
 import { AuthResponse } from '../interfaces/auth-response';
-import { StorageService } from './storage.service';
 import { LocalStorageService } from './local-storage.service';
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class AuthService {
   authSubject  =  new  BehaviorSubject(false)
   newProfil:any;
   
-  constructor(private  httpClient:  HttpClient, private  storage:  StorageService,private localStorage:LocalStorageService) { }
+  constructor(private  httpClient:  HttpClient,/* private  storage:  StorageService, */private localStorage:LocalStorageService) { }
 
   register(user: Profil): Observable<AuthResponse> {
     this.newProfil = new profil(user);

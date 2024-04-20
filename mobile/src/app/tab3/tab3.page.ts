@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -9,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class Tab3Page {
   profil:any;
   userId :any;
-  constructor(public http:HttpClient) {
+  constructor(public http:HttpClient, private authService: AuthService, private router: Router) {
     const token = localStorage.getItem("ACCESS_TOKEN");
     this.userId = token?.split(".")
     //console.log(atob(this.userId[1]))
@@ -24,5 +27,10 @@ export class Tab3Page {
 
   readApi(URL:string){
     return this.http.get(URL);
+  }
+
+  logout(){
+    this.router.navigateByUrl('login');
+    return this.authService.logout();
   }
 }

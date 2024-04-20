@@ -14,17 +14,16 @@ import { EvenementComponent } from './components/evenement/evenement.component';
 import { ProfilEventComponent } from './components/profil-event/profil-event.component';
 import { RejoindreEventComponent } from './components/rejoindre-event/rejoindre-event.component';
 import { AuthModule } from './modules/auth/auth.module';
-import { IonicStorageModule } from '@ionic/storage-angular';
-import { Drivers } from '@ionic/storage';
-import { StorageService } from './services/storage.service';
+//import { IonicStorageModule } from '@ionic/storage-angular';
+//import { Drivers } from '@ionic/storage';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LocalStorageService } from './services/local-storage.service';
 @NgModule({
   declarations: [AppComponent,MenuComponent,CreationProfilComponent,LoginComponent,EvenementComponent,ProfilEventComponent,RejoindreEventComponent],
-  imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,FormsModule,AuthModule,IonicStorageModule.forRoot(
+  imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,FormsModule,AuthModule, /* IonicStorageModule.forRoot(
     {driverOrder: [Drivers.SecureStorage, Drivers.IndexedDB, Drivers.LocalStorage]}
-  )],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },StorageService,LocalStorageService,
+  ) */],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },LocalStorageService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
