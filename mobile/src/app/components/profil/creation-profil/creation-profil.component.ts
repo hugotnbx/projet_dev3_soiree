@@ -14,6 +14,7 @@ export class CreationProfilComponent implements OnInit {
 
   userData:Profil={
     idProfil:"",
+    password:"",
     name:"",
     firstName:"",
     mail:"",
