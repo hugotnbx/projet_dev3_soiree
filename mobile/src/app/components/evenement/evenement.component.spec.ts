@@ -146,4 +146,10 @@ describe('EvenementComponent', () => {
     const imageUrl = component.getImageUrl(role);
     expect(imageUrl).toEqual(`./assets/role/${role}.png`);
   });
+
+  it('should return the correct image URL for a given role', () => {
+    const role = 'admin';
+    const imageUrl = component.getImageUrl(role);
+    expect(imageUrl).toEqual(`./assets/role/${role}.png`);
+  });
 });
