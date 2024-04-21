@@ -28,7 +28,7 @@ export class Tab2Page implements OnInit {
 
   relationData:Relation={
     idProfil:"",
-    idEvent:this.eventData.id,
+    idEvent:0,
     idContribution:1,
     idStatus:3,
     role:"admin"
@@ -77,17 +77,19 @@ export class Tab2Page implements OnInit {
   newRelation:any;
 
   creationEvent() {
-    this.newEvent=new evenement(this.eventData);
-    this.newRelation=new relation(this.relationData);
-
+    this.newEvent = new evenement(this.eventData);
+  
     this.http.post<any>(`${environment.api}/events`, this.newEvent)
-      .subscribe(response => {
-        console.log(response);
-      });
-
-    this.http.post<any>(`${environment.api}/users-relations`, this.newRelation)
-      .subscribe(response => {
-        console.log(response);
+      .subscribe(eventResponse => {
+        console.log(eventResponse); 
+        this.relationData.idEvent=eventResponse.id; 
+  
+        this.newRelation = new relation(this.relationData);
+  
+        this.http.post<any>(`${environment.api}/users-relations`, this.newRelation)
+          .subscribe(relationResponse => {
+            console.log(relationResponse);
+          });
       });
   }
 
