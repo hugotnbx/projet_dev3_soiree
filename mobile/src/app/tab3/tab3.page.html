@@ -28,9 +28,11 @@
   </ion-card>
 
   <ion-card>
-    <ion-card-content class="horizontal-align" id="flex-item-1">
-      <ion-icon name="logo-instagram" size="large"></ion-icon>
-      <label>{{profil?.instagram}}</label>
+    <ion-card-content id="flex-item-1">
+      <a href="https://www.instagram.com/{{profil?.instagram}}" target="_blank" class="horizontal-align">
+          <ion-icon name="logo-instagram" size="large"></ion-icon>
+          <label>{{profil?.instagram}}</label>
+      </a>
     </ion-card-content>
   
     <ion-card-content class="horizontal-align">
