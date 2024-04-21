@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { evenement } from './tab2';
+import { evenement, relation } from './tab2';
 import { Evenement } from 'src/app/interfaces/evenement';
 import { json } from 'express';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Relation } from '../interfaces/relation';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-tab2',
@@ -11,6 +13,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page implements OnInit {
+
+  userId:any;
 
   eventData:Evenement={
     id:0,
@@ -22,12 +26,26 @@ export class Tab2Page implements OnInit {
     nbrBob:0
   }
 
+  relationData:Relation={
+    idProfil:"",
+    idEvent:this.eventData.id,
+    idContribution:1,
+    idStatus:3,
+    role:"admin"
+  }
+
   maxDate: string;
   
-  constructor(public http:HttpClient) {
+  constructor(public http:HttpClient, private localStorage:LocalStorageService) {
     const now = new Date();
     const maxYear = now.getFullYear() + 10; //10 ans de plus que l'année actuelle
     this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10); //variable maxDate pour mettre 10 années de plus que l'année actuelle dans la date du formulaire pour créer un évènement
+
+    const token = localStorage.getItem("ACCESS_TOKEN");
+    this.userId = token?.split(".")
+    this.userId=JSON.parse(atob(this.userId[1]))
+    this.relationData.idProfil=this.userId.username;
+    console.log(this.userId.username);
   }
 
   eventDateTime!: string;
@@ -56,10 +74,18 @@ export class Tab2Page implements OnInit {
   }
 
   newEvent:any;
+  newRelation:any;
 
   creationEvent() {
     this.newEvent=new evenement(this.eventData);
+    this.newRelation=new relation(this.relationData);
+
     this.http.post<any>(`${environment.api}/events`, this.newEvent)
+      .subscribe(response => {
+        console.log(response);
+      });
+
+    this.http.post<any>(`${environment.api}/users-relations`, this.newRelation)
       .subscribe(response => {
         console.log(response);
       });
