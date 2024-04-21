@@ -13,7 +13,7 @@ export class AuthService {
         
         throw new UnauthorizedException();
       }
-      const payload = {username: user.idProfil };
+      const payload = {username: user.idProfil, expiresIn: '3M' };
       return {
         access_token: await this.jwtService.signAsync(payload),
     };
