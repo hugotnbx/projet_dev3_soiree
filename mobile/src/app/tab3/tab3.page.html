@@ -7,6 +7,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refreshProfil($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <h1>Mon profil</h1>
 
   <ion-card *ngIf="profil">
@@ -19,19 +22,18 @@
     </ion-card-header>
   
     <ion-card-content>
-      <h2>Description</h2>
+      <ion-card-subtitle>Description</ion-card-subtitle>
       <p>{{profil?.description}}</p>
-
     </ion-card-content>
   </ion-card>
 
-  <ion-card>  
-    <ion-card-content>
+  <ion-card>
+    <ion-card-content class="horizontal-align" id="flex-item-1">
       <ion-icon name="logo-instagram" size="large"></ion-icon>
       <label>{{profil?.instagram}}</label>
-        
-      <br>
-
+    </ion-card-content>
+  
+    <ion-card-content class="horizontal-align">
       <ion-icon name="logo-facebook" size="large"></ion-icon>
       <label>{{profil?.facebook}}</label>
     </ion-card-content>
@@ -51,7 +53,4 @@
       <ion-card-subtitle>Téléphone</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
-  <ion-button shape="round" size="small" (click)="logout()">
-    Se déconnecter
-  </ion-button> 
 </ion-content>

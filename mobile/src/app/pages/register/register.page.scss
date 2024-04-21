@@ -1,0 +1,40 @@
+.toolbar-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+  
+.toolbar-image {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+h1 {
+    text-align: left;
+    font-weight: bold;
+    margin-left: 5%;
+}
+
+.ios {
+    h1 {
+        font-size: 35px;
+    }
+}
+
+.md {
+    h1 {
+        font-size: 30px;
+    }
+}
+
+#registerButton {
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+}
+
+#login {
+    margin: 0 5%;
+}

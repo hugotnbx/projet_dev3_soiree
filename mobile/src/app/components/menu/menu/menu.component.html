@@ -10,21 +10,23 @@
   <ion-content class="ion-padding">
     <ion-list>
       
-      <ion-item [routerLink]="['/tabs/tab5']">
-        <ion-button menuToggle expand="full" color="primary">
-          <ion-label color="dark">Anciens Évènements</ion-label>
-        </ion-button>
-      </ion-item>
-
-      <!-- Autres éléments de menu -->
-
       <ion-item>
         <ion-button expand="full" color="primary">
           <ion-label color="dark">Réglages</ion-label>
         </ion-button>
       </ion-item>
 
-      <!-- Bouton personnalisé -->
+      <ion-item [routerLink]="['/tabs/tab5']">
+        <ion-button menuToggle expand="full" color="primary">
+          <ion-label color="dark">Anciens Évènements</ion-label>
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-button expand="full" color="primary" (click)="logout()">
+          <ion-label color="dark">Se déconnecter</ion-label>
+        </ion-button>
+      </ion-item>
 
     </ion-list>
   </ion-content>

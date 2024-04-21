@@ -17,9 +17,8 @@
     </ion-card-header>
   
     <ion-card-content>
-      <h1>Description</h1>
+      <ion-card-subtitle>Description</ion-card-subtitle>
       <p>{{profil?.description}}</p>
-
     </ion-card-content>
   </ion-card>
 
@@ -32,13 +31,13 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>  
-    <ion-card-content>
+  <ion-card>
+    <ion-card-content class="horizontal-align" id="flex-item-1">
       <ion-icon name="logo-instagram" size="large"></ion-icon>
       <label>{{profil?.instagram}}</label>
-        
-      <br>
-
+    </ion-card-content>
+  
+    <ion-card-content class="horizontal-align">
       <ion-icon name="logo-facebook" size="large"></ion-icon>
       <label>{{profil?.facebook}}</label>
     </ion-card-content>

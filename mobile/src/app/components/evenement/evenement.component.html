@@ -6,9 +6,12 @@
 </ion-toolbar>
 
 <ion-content [fullscreen]="true" class="ion-text-center">
+  <ion-refresher slot="fixed" (ionRefresh)="refreshEventInfos($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
     <h1>Informations générales</h1>
 
-    <ion-card class="ion-text-center">
+    <ion-card class="ion-text-center" class="eventInfos">
 
       <ion-card-header>
         <ion-card-title id="date-time">{{ event?.date }} à {{ event?.heure }}</ion-card-title>
@@ -16,7 +19,7 @@
       <ion-card-content>Date et heure</ion-card-content>
     </ion-card>
 
-    <ion-card class="ion-text-center">
+    <ion-card class="ion-text-center" class="eventInfos">
 
       <ion-card-header>
         <ion-card-title id="location">{{ event?.lieu }}</ion-card-title>

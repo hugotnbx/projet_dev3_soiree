@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
 })
-export class MenuComponent  implements OnInit {
+export class MenuComponent {
 
-  constructor() { }
+  constructor( private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {}
-
+  logout(){
+    this.router.navigateByUrl('login');
+    return this.authService.logout();
+  }
 }
