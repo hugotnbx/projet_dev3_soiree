@@ -3,9 +3,15 @@ import { ApiProperty } from "@nestjs/swagger";
 export class UsersDto {
     @ApiProperty({
         required:true,
+        type: "number",
+    })
+    readonly  idProfil: number;
+
+    @ApiProperty({
+        required:true,
         type: "string",
     })
-    readonly  idProfil: string;
+    readonly  username: string;
 
     @ApiProperty({
         required:true,
@@ -60,10 +66,4 @@ export class UsersDto {
         type: "string",
     })
     readonly  description : string;
-
-    @ApiProperty({
-        required:false,
-        type: "string",
-    })
-    readonly  bank : string;
 }
