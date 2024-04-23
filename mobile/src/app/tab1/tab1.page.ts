@@ -20,10 +20,8 @@ export class Tab1Page implements OnInit {
   }
 
   constructor(public http:HttpClient) {
-
     this.readApi("http://localhost:64000/events")
     .subscribe((data) =>{
-      console.log(data);
       this.events= data;
       
       for(let event of this.events){
@@ -31,7 +29,13 @@ export class Tab1Page implements OnInit {
           this.tableEvents.push(event);
         }
       }
-    }); 
+      this.tableEvents.sort((a, b) => {
+        const dateA = new Date(a.date + ' ' + a.heure);
+        const dateB = new Date(b.date + ' ' + b.heure);
+        return dateA.getTime() - dateB.getTime();
+      });
+    console.log(this.tableEvents);
+    });
   }
 
   readApi(URL:string){

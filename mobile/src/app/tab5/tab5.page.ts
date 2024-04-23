@@ -30,6 +30,12 @@ export class Tab5Page {
           this.tablePastEvents.push(event);
         }
       }
+      this.tablePastEvents.sort((a, b) => {
+        const dateA = new Date(a.date + ' ' + a.heure);
+        const dateB = new Date(b.date + ' ' + b.heure);
+        return dateA.getTime() - dateB.getTime();
+      });
+      console.log(this.tablePastEvents);
     }); 
   }
 

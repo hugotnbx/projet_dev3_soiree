@@ -3,50 +3,51 @@ import { evenement } from './tab2';
 import { Evenement } from 'src/app/interfaces/evenement';
 import { json } from 'express';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page implements OnInit {
+export class Tab2Page{
+  
 
+  maxDate: string;
+  minDate: string;
+  eventDateTime!: string;
+  newEvent:any;
   eventData:Evenement={
     id:0,
     nom:"",
     heure:"",
-    date:new Date().toISOString().slice(0, 10), // Initialiser avec la date actuelle au format "YYYY-MM-DD"
+    date:new Date().toISOString().slice(0, 10),
     lieu:"",
     nbrLit:0,
     nbrBob:0
   }
-
-  maxDate: string;
   
-  constructor(public http:HttpClient) {
+  constructor(public http:HttpClient,public router: Router) {
     const now = new Date();
-    const maxYear = now.getFullYear() + 10; //10 ans de plus que l'année actuelle
-    this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10); //variable maxDate pour mettre 10 années de plus que l'année actuelle dans la date du formulaire pour créer un évènement
-  }
+    const maxYear = now.getFullYear() + 10;
+    this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10);
+    this.minDate = new Date().toISOString().slice(0, 10);
 
-  eventDateTime!: string;
+    const currentTime = new Date();
+    const hours = currentTime.getHours().toString().padStart(2, '0');
+    const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+    this.eventData.heure = `${hours}:${minutes}`;
+  }
 
   onDateTimeChange(event: CustomEvent) {
     this.eventDateTime = event.detail.value;
     const dateTime = new Date(this.eventDateTime);
-    
-    // Extraction de la date
-    const date = dateTime.toLocaleDateString('fr-CA') // Récupération de la date
+    const date = dateTime.toLocaleDateString('fr-CA')
+    const hours = dateTime.getHours();
+    const minutes = dateTime.getMinutes();
 
-    // Extraction de l'heure locale
-    const hours = dateTime.getHours(); // Récupération de l'heure
-    const minutes = dateTime.getMinutes(); // Récupération des minutes
-
-    // Création de la chaîne de caractères pour l'heure locale
     const time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-    //const time = dateTime.toISOString().split('T')[1].split('.')[0]; // Récupération de l'heure
-
-    // Mise à jour de eventData.date et eventData.heure
+  
     this.eventData.date = date;
     this.eventData.heure = time;
 
@@ -54,16 +55,24 @@ export class Tab2Page implements OnInit {
     console.log("Heure :", this.eventData.heure);
   }
 
-  newEvent:any;
-
   creationEvent() {
     this.newEvent=new evenement(this.eventData);
     this.http.post<any>('http://localhost:64000/events', this.newEvent)
       .subscribe(response => {
         console.log(response);
+        this.router.navigateByUrl(`/tabs/tab1`);
+        this.reloadTab1()
+        
       });
   }
 
-  ngOnInit() {}
+  reloadTab1() {
+    this.router.navigateByUrl('/tabs/tab1', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/tabs/tab1']);
+    });
+
+
+
+}
 
 }
