@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { Share } from '@capacitor/share';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 @Component({
   selector: 'app-evenement',
   templateUrl: './evenement.component.html',
@@ -13,7 +13,7 @@ export class EvenementComponent  implements OnInit {
   event:any;
   eventprofil:any;
 
-  constructor(public http: HttpClient, private route: ActivatedRoute ) {}
+  constructor(public http: HttpClient, private route: ActivatedRoute , public socialSharing : SocialSharing ) {}
 
   ngOnInit() {
     const paramValue = this.route.snapshot.paramMap.get('id');
@@ -40,11 +40,22 @@ export class EvenementComponent  implements OnInit {
   /* isAdmin(role: string): boolean {
     return role === 'Admin';
   } */
-  async sShare(){
+  /*async sShare(){
     await Share.share({
       title: "Participer à l'événement",
       text: `Je suis intéressé par votre événement "${this.event.name}"`,
       url: `iziplan//rejoindre`
     })
+  }*/
+
+  sShare() {
+    const title = 'Partage de lien';
+    const message = 'Jetez un œil à ce lien intéressant :';
+    const url = 'http://expand-consulting.be/';
+    const image = './assets/icon/iziplan_logo.png'
+
+    this.socialSharing.share(message, title, image, url)
+      .then(() => console.log('Partage réussi !'))
+      .catch((error: any) => console.error('Erreur lors du partage :', error));
   }
 }

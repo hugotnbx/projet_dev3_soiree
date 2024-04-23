@@ -17,15 +17,18 @@ import { AuthModule } from './modules/auth/auth.module';
 //import { Drivers } from '@ionic/storage';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LocalStorageService } from './services/local-storage.service';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+import { Deeplinks } from '@awesome-cordova-plugins/deeplinks';
 @NgModule({
   declarations: [AppComponent,CreationProfilComponent,LoginComponent,EvenementComponent,ProfilEventComponent,RejoindreEventComponent],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,FormsModule,RouterModule,AuthModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },LocalStorageService,
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },LocalStorageService,SocialSharing,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
   },
+  Deeplinks
 ],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
