@@ -51,7 +51,7 @@
   <ion-card *ngFor="let profil of eventprofil; index as i" class="status" [routerLink]="['/profil-event',profil?.idProfil]">
     <ion-card-header class="card-header" style="float:left">
       <ion-card-subtitle class="role">{{ profil?.role }}</ion-card-subtitle>
-        <ion-card-title class="idProfil">{{ profil?.username }}</ion-card-title>
+        <ion-card-title class="idProfil">{{ profil?.idProfil }}</ion-card-title>
     </ion-card-header>
     <ion-thumbnail class="image-container">
         <img [src]="getImageUrl(profil.role)" alt="Photo">

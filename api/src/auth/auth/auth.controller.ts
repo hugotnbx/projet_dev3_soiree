@@ -13,7 +13,7 @@ export class AuthController {
     @Public()
     @Post('login')
     signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.idProfil, signInDto.password);
+    return this.authService.signIn(signInDto.idProfil, signInDto.username, signInDto.password);
     }
 
     @UseGuards(AuthGuard)
