@@ -57,10 +57,11 @@ export class Tab1Page implements OnInit {
   }
 
   ngOnInit() {
-    /* const token = localStorage.getItem("ACCESS_TOKEN");
+    /*const token = localStorage.getItem("ACCESS_TOKEN");
     this.userId = token?.split(".")
     const currentTime = Math.floor(Date.now() / 1000)
-    this.userId=JSON.parse(atob(this.userId[1])) */
+    this.userId=JSON.parse(atob(this.userId))
+    //console.log(`user exp : ${this.userId.exp} and current time : ${currentTime}`)*/
     if(!this.localStorage.getItem('ACCESS_TOKEN') /*|| this.userId.exp < currentTime*/){
       this.router.navigateByUrl('login');
     }

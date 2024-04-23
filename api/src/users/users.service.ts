@@ -23,6 +23,14 @@ export class UsersService{
       });
     }
 
+    async readOnUsername(username: string): Promise<Users>{
+      return await this.usersRepository.findOne({
+        where: {
+          username,
+        }
+      });
+    }
+
     async create(usersDto : UsersDto) {
       const usersEntities = new Users();
       usersEntities.idProfil = usersDto.idProfil;
