@@ -23,12 +23,18 @@ export class Tab5Page {
 
       this.tablePastEvents = []; 
 
-      for (let event of this.events) {
+      for(let event of this.events){
         if (this.datePlusPetite(event.date, new Date())) {
           this.tablePastEvents.push(event);
         }
       }
-    });
+      this.tablePastEvents.sort((a, b) => {
+        const dateA = new Date(a.date + ' ' + a.heure);
+        const dateB = new Date(b.date + ' ' + b.heure);
+        return dateA.getTime() - dateB.getTime();
+      });
+      console.log(this.tablePastEvents);
+    }); 
   }
 
   refreshEvents(events:any) {

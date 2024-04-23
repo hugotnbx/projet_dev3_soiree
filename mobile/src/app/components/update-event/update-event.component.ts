@@ -12,48 +12,36 @@ import { environment } from 'src/environments/environment';
 export class UpdateEventComponent implements OnInit {
 
   event:any = {};
-  // eventprofil:any;
-
   eventDateTime!: string;
-
+  maxDate: string;
+  minDate: string;
 
   constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router) {
     const paramValue = this.route.snapshot.paramMap.get('id');
     //console.log(paramValue);
     this.readApi(`${environment.api}/events/${paramValue}`)
     .subscribe((data) =>{
-      //console.log(data);
       this.event= data;
       this.dateEvent();
     });
-    // this.readApi(`http://localhost:64000/users-relations/${paramValue}`)
-    // .subscribe((data) => {
-    //   console.log(data);
-    //   this.eventprofil = data;
-    // });
+    const now = new Date();
+    const maxYear = now.getFullYear() + 10;
+    this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10);
+    this.minDate = new Date().toISOString().slice(0, 10);
   }
 
-  //Pour afficher la date de l'évènement par défaut au moment de modifier les infos de l'évènement
   dateEvent(){
-    this.eventDateTime = this.event.date + 'T' + this.event.heure; // Format YYYY-MM-DDTHH:mm
+    this.eventDateTime = this.event.date + 'T' + this.event.heure;
   }
 
   onDateTimeChange(event: CustomEvent) {
     this.eventDateTime = event.detail.value;
     const dateTime = new Date(this.eventDateTime);
-    
-    // Extraction de la date
-    const date = dateTime.toLocaleDateString('fr-CA') // Récupération de la date
-
-    // Extraction de l'heure locale
-    const hours = dateTime.getHours(); // Récupération de l'heure
-    const minutes = dateTime.getMinutes(); // Récupération des minutes
-
-    // Création de la chaîne de caractères pour l'heure locale
+    const date = dateTime.toLocaleDateString('fr-CA');
+    const hours = dateTime.getHours();
+    const minutes = dateTime.getMinutes();
     const time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-    //const time = dateTime.toISOString().split('T')[1].split('.')[0]; // Récupération de l'heure
 
-    // Mise à jour de eventData.date et eventData.heure
     this.event.date = date;
     this.event.heure = time;
 

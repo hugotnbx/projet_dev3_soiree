@@ -23,11 +23,17 @@ export class Tab1Page implements OnInit {
 
       this.tableEvents = []; 
 
-      for (let event of this.events) {
+      for(let event of this.events){
         if (this.datePlusGrand(event.date, new Date())) {
           this.tableEvents.push(event);
         }
       }
+      this.tableEvents.sort((a, b) => {
+        const dateA = new Date(a.date + ' ' + a.heure);
+        const dateB = new Date(b.date + ' ' + b.heure);
+        return dateA.getTime() - dateB.getTime();
+      });
+    console.log(this.tableEvents);
     });
   }
 

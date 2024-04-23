@@ -20,7 +20,7 @@ export class Tab2Page implements OnInit {
     id:0,
     nom:"",
     heure:"",
-    date:new Date().toISOString().slice(0, 10), // Initialiser avec la date actuelle au format "YYYY-MM-DD"
+    date:new Date().toISOString().slice(0, 10), 
     lieu:"",
     nbrLit:0,
     nbrBob:0
@@ -35,11 +35,14 @@ export class Tab2Page implements OnInit {
   }
 
   maxDate: string;
+  minDate: string;
   
   constructor(public http:HttpClient, private localStorage:LocalStorageService) {
     const now = new Date();
-    const maxYear = now.getFullYear() + 10; //10 ans de plus que l'année actuelle
-    this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10); //variable maxDate pour mettre 10 années de plus que l'année actuelle dans la date du formulaire pour créer un évènement
+    const maxYear = now.getFullYear() + 10; 
+    this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10);
+    this.minDate = new Date().toISOString().slice(0, 10);
+
 
     const token = localStorage.getItem("ACCESS_TOKEN");
     this.userId = token?.split(".")
@@ -54,18 +57,13 @@ export class Tab2Page implements OnInit {
     this.eventDateTime = event.detail.value;
     const dateTime = new Date(this.eventDateTime);
     
-    // Extraction de la date
-    const date = dateTime.toLocaleDateString('fr-CA') // Récupération de la date
+    const date = dateTime.toLocaleDateString('fr-CA')
 
-    // Extraction de l'heure locale
-    const hours = dateTime.getHours(); // Récupération de l'heure
-    const minutes = dateTime.getMinutes(); // Récupération des minutes
+    const hours = dateTime.getHours(); 
+    const minutes = dateTime.getMinutes(); 
 
-    // Création de la chaîne de caractères pour l'heure locale
     const time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-    //const time = dateTime.toISOString().split('T')[1].split('.')[0]; // Récupération de l'heure
-
-    // Mise à jour de eventData.date et eventData.heure
+  
     this.eventData.date = date;
     this.eventData.heure = time;
 
