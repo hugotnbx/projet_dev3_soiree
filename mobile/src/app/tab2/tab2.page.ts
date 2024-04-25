@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Relation } from '../interfaces/relation';
 import { LocalStorageService } from '../services/local-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -31,13 +32,12 @@ export class Tab2Page implements OnInit {
     idEvent:0,
     idContribution:1,
     idStatus:3,
-    role:"admin"
   }
 
   maxDate: string;
   minDate: string;
   
-  constructor(public http:HttpClient, private localStorage:LocalStorageService) {
+  constructor(public http:HttpClient, private router: Router, private localStorage:LocalStorageService) {
     const now = new Date();
     const maxYear = now.getFullYear() + 10; 
     this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10);
@@ -89,6 +89,7 @@ export class Tab2Page implements OnInit {
             console.log(relationResponse);
           });
       });
+      this.router.navigateByUrl('tabs/tab1');
   }
 
   ngOnInit() {}

@@ -26,13 +26,11 @@ export class relation implements Relation{
     idEvent:number;
     idContribution:number;
     idStatus:number;
-    role:string;
 
     constructor(relationData:Relation){
         this.idProfil=relationData.idProfil;
         this.idEvent=relationData.idEvent;
         this.idContribution=relationData.idContribution;
         this.idStatus=relationData.idStatus;
-        this.role=relationData.role;
     }
 }

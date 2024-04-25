@@ -15,6 +15,13 @@ export class UsersRelationsService {
       return await this.UsersRelationsRepository.find();
     }
 
+    async getStatus(idEvent:number): Promise<UsersRelations[]> {
+      return this.UsersRelationsRepository.createQueryBuilder('usersrelations')
+        .leftJoinAndSelect('usersrelations.status', 'status')
+        .where('usersrelations.idEvent = :idEvent', { idEvent })
+        .getMany();
+    }
+
     async readEvent(idEvent:number): Promise<UsersRelations[]>{
       return await this.UsersRelationsRepository.find({
         where: {
@@ -23,7 +30,7 @@ export class UsersRelationsService {
       });
     }
 
-    async readEventProfil(idProfil:string,idEvent:number): Promise<UsersRelations>{
+    async readEventProfil(idProfil:number,idEvent:number): Promise<UsersRelations>{
       return await this.UsersRelationsRepository.findOne({
         where: {
           idProfil,
@@ -37,7 +44,6 @@ export class UsersRelationsService {
       usersRelationsEntities.idProfil = usersRelationsDto.idProfil;
       usersRelationsEntities.idEvent = usersRelationsDto.idEvent;
       usersRelationsEntities.idStatus = usersRelationsDto.idStatus;
-      usersRelationsEntities.role = usersRelationsDto.role;
       usersRelationsEntities.idContribution = usersRelationsDto.idContribution;
     
       const usersRelations = this.UsersRelationsRepository.create(usersRelationsEntities);
@@ -45,7 +51,7 @@ export class UsersRelationsService {
       return usersRelations;
     }
 
-    async delete(idProfil:string,idEvent:number){
+    async delete(idProfil:number,idEvent:number){
       const usersRelations = await this.UsersRelationsRepository.findOne({where:{ idProfil,idEvent}});
       await this.UsersRelationsRepository.delete({idProfil,idEvent});
       return usersRelations;

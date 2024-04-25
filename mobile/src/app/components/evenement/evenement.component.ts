@@ -27,7 +27,7 @@ export class EvenementComponent  implements OnInit {
       this.event = data;
     });
 
-    this.readApi(`${environment.api}/users-relations/${paramValue}`).subscribe((data) => {
+    this.readApi(`${environment.api}/users-relations/getstatus/${paramValue}`).subscribe((data) => {
       console.log(data);
       this.eventprofil = data;
     });
@@ -45,8 +45,8 @@ export class EvenementComponent  implements OnInit {
     return this.http.get(URL);
   }
 
-  getImageUrl(role: string): string {
-    return `./assets/role/${role}.png`;
+  getImageUrl(status: string): string {
+    return `./assets/role/${status}.png`;
   }
 
   /* isAdmin(role: string): boolean {

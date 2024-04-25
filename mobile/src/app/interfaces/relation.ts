@@ -3,5 +3,4 @@ export interface Relation {
     idEvent:number;
     idContribution:number;
     idStatus:number;
-    role:string;
 }

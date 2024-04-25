@@ -5,29 +5,31 @@ services:
     image: mysql:latest
     container_name: iziplan_mysql
     command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3333:3306"
     environment:
       MYSQL_ROOT_PASSWORD: iziplan_root
       MYSQL_DATABASE: iziplan_db
       MYSQL_USER: iziplan_user
       MYSQL_PASSWORD: iziplan_psw
-    networks:
-      - iziplan_networks
-  app:
-    build: .
-    container_name: iziplan_app
-    ports:
-      - "64000:64000"
-    environment:
-      DB_HOST: mysql
-      DB_USERNAME: iziplan_user
-      DB_PASSWORD: iziplan_psw
-      DB_DATABASE: iziplan_db
-    depends_on:
-      - mysql
-    volumes:
-      - ~/www/certificate:/etc/letsencrypt/
-    networks:
-      - iziplan_networks
+#     networks:
+#       - iziplan_networks
+#   app:
+#     build: .
+#     container_name: iziplan_app
+#     ports:
+#       - "64000:64000"
+#     environment:
+#       DB_HOST: mysql
+#       DB_USERNAME: iziplan_user
+#       DB_PASSWORD: iziplan_psw
+#       DB_DATABASE: iziplan_db
+#     depends_on:
+#       - mysql
+#     volumes:
+#       - ~/www/certificate:/etc/letsencrypt/
+#     networks:
+#       - iziplan_networks
     
-networks:
-   iziplan_networks:
+# networks:
+#    iziplan_networks:
