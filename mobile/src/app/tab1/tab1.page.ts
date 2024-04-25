@@ -17,7 +17,13 @@ export class Tab1Page implements OnInit {
   }
 
   loadEvents() {
-    this.readApi(`${environment.api}/events`).subscribe((data) => {
+    const token = localStorage.getItem("ACCESS_TOKEN");
+    this.userId = token?.split(".")
+    //console.log(atob(this.userId[1]))
+    this.userId=JSON.parse(atob(this.userId[1]))
+    console.log(this.userId.username);
+
+    this.readApi(`${environment.api}/events/get-event-relations/${this.userId.username}`).subscribe((data) => {
       console.log(data);
       this.events = data;
 

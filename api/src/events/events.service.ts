@@ -14,9 +14,15 @@ export class EventsService {
     ) {}
 
     async findAll(): Promise<Events[]> {
-      return await this.eventsRepository.find({
-        select: ['id', 'nom', 'heure', 'lieu', 'date'],
-      });
+      return await this.eventsRepository.find();
+    }
+
+    async getEventRelations(idProfil:number): Promise<Events[]> {
+      return this.eventsRepository.createQueryBuilder('events')
+        .select(['events.id', 'events.nom', 'events.heure', 'events.lieu', 'events.date'])
+        .leftJoinAndSelect('events.usersRelations', 'usersRelations')
+        .where('usersRelations.idProfil = :idProfil', { idProfil })
+        .getMany();
     }
 
     async read(id:number): Promise<Events>{
