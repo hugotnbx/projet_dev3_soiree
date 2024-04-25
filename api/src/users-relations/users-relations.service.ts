@@ -15,7 +15,7 @@ export class UsersRelationsService {
       return await this.UsersRelationsRepository.find();
     }
 
-    async getStatus(idEvent:number): Promise<UsersRelations[]> {
+    async getUserRelations(idEvent:number): Promise<UsersRelations[]> {
       return this.UsersRelationsRepository.createQueryBuilder('usersrelations')
         .leftJoinAndSelect('usersrelations.status', 'status')
         .leftJoinAndSelect('usersrelations.user', 'user')

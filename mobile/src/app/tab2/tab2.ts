@@ -22,7 +22,7 @@ export class evenement implements Evenement{
 }
 
 export class relation implements Relation{
-    idProfil:string;
+    idProfil:number;
     idEvent:number;
     idContribution:number;
     idStatus:number;

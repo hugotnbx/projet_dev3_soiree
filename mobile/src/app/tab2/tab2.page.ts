@@ -28,7 +28,7 @@ export class Tab2Page implements OnInit {
   }
 
   relationData:Relation={
-    idProfil:"",
+    idProfil:0,
     idEvent:0,
     idContribution:1,
     idStatus:3,

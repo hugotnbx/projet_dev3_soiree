@@ -21,7 +21,7 @@ export class UsersRelationsController {
 
     @Get('get-user-relations/:idEvent')
     async getStatus(@Param('idEvent') idEvent: number): Promise<UsersRelations[]> {
-        return this.usersRelationsService.getStatus(idEvent);
+        return this.usersRelationsService.getUserRelations(idEvent);
     }
 
     @Get('/:idEvent')

@@ -1,5 +1,5 @@
 export interface Relation {
-    idProfil:string;
+    idProfil:number;
     idEvent:number;
     idContribution:number;
     idStatus:number;
