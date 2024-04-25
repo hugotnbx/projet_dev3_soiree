@@ -13,7 +13,8 @@ import { environment } from 'src/environments/environment';
 export class CreationProfilComponent implements OnInit {
 
   userData:Profil={
-    idProfil:"",
+    idProfil:0,
+    username:"",
     password:"",
     name:"",
     firstName:"",
@@ -22,8 +23,7 @@ export class CreationProfilComponent implements OnInit {
     address:"",
     instagram:"",
     facebook:"",
-    description:"",
-    bank:""
+    description:""
   }
   
   constructor(public http:HttpClient) {}

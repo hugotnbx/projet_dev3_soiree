@@ -29,7 +29,7 @@ export class UsersController {
     @ApiParam({ name: 'id', description: 'id de l\'utilisateur à récupérer', type: 'string' })
     @ApiResponse({ status: 200, description: 'Succès de la requête. Retourne l\'utilisateurs correspondant à l\'id spécifié.' })
     @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
-    async getById(@Param('id') id: string): Promise<Users> {
+    async getById(@Param('id') id: number): Promise<Users> {
         return this.usersService.read(id);
     }
     @Public()
@@ -48,7 +48,7 @@ export class UsersController {
     @ApiBody({ type: UsersDto })
     @ApiResponse({ status: 201, description: 'Utilisateur mis à jour avec succès.' })
     @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
-    async update(@Param('id') id: string, @Body() usersDto: UsersDto): Promise<Users> {
+    async update(@Param('id') id: number, @Body() usersDto: UsersDto): Promise<Users> {
         return this.usersService.update(id, usersDto);
     }
 
@@ -57,7 +57,7 @@ export class UsersController {
     @ApiParam({ name: 'id', description: 'id de l\'utilisateur à supprimer', type: 'string' })
     @ApiResponse({ status: 201, description: 'Utilisateur supprimé avec succès.' })
     @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
-    async delete(@Param('id') id: string): Promise<Users> {
+    async delete(@Param('id') id: number): Promise<Users> {
         return this.usersService.delete(id);
     }
 }

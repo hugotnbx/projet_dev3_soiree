@@ -1,7 +1,8 @@
 import { Profil } from "src/app/interfaces/profil";
 
 export class profil implements Profil{
-    idProfil:string;
+    idProfil:number;
+    username:string;
     password:string;
     name:string;
     firstName:string;
@@ -11,10 +12,10 @@ export class profil implements Profil{
     numberPhone:string;
     description:string;
     address:string;
-    bank:string;
 
     constructor(userData:Profil){
         this.idProfil=userData.idProfil;
+        this.username=userData.username;
         this.password=userData.password;
         this.name=userData.name;
         this.firstName=userData.firstName;
@@ -24,7 +25,6 @@ export class profil implements Profil{
         this.instagram=userData.instagram;
         this.facebook=userData.facebook;
         this.description=userData.description;
-        this.bank=userData.bank;
     }
 }
 

@@ -11,15 +11,15 @@
     <ion-card-header id="photoProfil">
       <div class="img-box">
         <!-- <img src="../../assets/profil/"> -->
+        <img src="../../../assets/icon/user.png">
       </div> 
       <ion-card-title>{{profil?.firstName}} {{profil?.name}}</ion-card-title>
-      <ion-card-subtitle>&#64;{{profil?.idProfil}}</ion-card-subtitle>
+      <ion-card-subtitle>&#64;{{profil?.username}}</ion-card-subtitle>
     </ion-card-header>
   
     <ion-card-content>
-      <h1>Description</h1>
+      <ion-card-subtitle>Description</ion-card-subtitle>
       <p>{{profil?.description}}</p>
-
     </ion-card-content>
   </ion-card>
 
@@ -32,13 +32,15 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>  
-    <ion-card-content>
-      <ion-icon name="logo-instagram" size="large"></ion-icon>
-      <label>{{profil?.instagram}}</label>
-        
-      <br>
-
+  <ion-card>
+    <ion-card-content id="flex-item-1">
+      <a href="https://www.instagram.com/{{profil?.instagram}}" target="_blank" class="horizontal-align">
+          <ion-icon name="logo-instagram" size="large"></ion-icon>
+          <label>{{profil?.instagram}}</label>
+      </a>
+    </ion-card-content>
+  
+    <ion-card-content class="horizontal-align">
       <ion-icon name="logo-facebook" size="large"></ion-icon>
       <label>{{profil?.facebook}}</label>
     </ion-card-content>

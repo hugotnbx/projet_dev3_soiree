@@ -3,12 +3,14 @@ import { UsersRelationsService } from './users-relations.service';
 import { UsersRelations } from './entities/users-relations.entity';
 import { UsersRelationsDto } from './dto/users-relations.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery, ApiBody } from '@nestjs/swagger';
+import { Public } from 'src/auth/auth/publicDecorator';
 
 @Controller('users-relations')
 @ApiTags("UsersRelations")
 export class UsersRelationsController {
     constructor(private readonly usersRelationsService: UsersRelationsService) {}
 
+    @Public()
     @Get()
     @ApiOperation({ summary: 'Liste des profils et des événements étant liés', description: 'Récupère la liste de tous les profils et événements qui sont liés.' })
     @ApiResponse({ status: 200, description: 'Succès de la requête. Retourne la liste des profils et des événements qui sont liés.' })
@@ -36,6 +38,7 @@ export class UsersRelationsController {
         return this.usersRelationsService.readEventProfil(idProfil, idEvent);
     }
 
+    @Public()
     @Post()
     @ApiOperation({ summary: 'Créer un nouveau lien entre un événement et un profil', description: 'Crée un nouveau lien entre un événement et un profil.' })
     @ApiBody({ type: UsersRelationsDto })

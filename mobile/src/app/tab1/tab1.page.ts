@@ -12,9 +12,8 @@ export class Tab1Page implements OnInit {
 
   events: any;
   tableEvents: any[] = [];
-
+  userId:any;
   constructor(public http:HttpClient, private localStorage:LocalStorageService, private router: Router) {
-    this.loadEvents();
   }
 
   loadEvents() {
@@ -24,11 +23,17 @@ export class Tab1Page implements OnInit {
 
       this.tableEvents = []; 
 
-      for (let event of this.events) {
+      for(let event of this.events){
         if (this.datePlusGrand(event.date, new Date())) {
           this.tableEvents.push(event);
         }
       }
+      this.tableEvents.sort((a, b) => {
+        const dateA = new Date(a.date + ' ' + a.heure);
+        const dateB = new Date(b.date + ' ' + b.heure);
+        return dateA.getTime() - dateB.getTime();
+      });
+    console.log(this.tableEvents);
     });
   }
 
@@ -52,8 +57,14 @@ export class Tab1Page implements OnInit {
   }
 
   ngOnInit() {
-    if(!this.localStorage.getItem('ACCESS_TOKEN')){
+    /*const token = localStorage.getItem("ACCESS_TOKEN");
+    this.userId = token?.split(".")
+    const currentTime = Math.floor(Date.now() / 1000)
+    this.userId=JSON.parse(atob(this.userId))
+    //console.log(`user exp : ${this.userId.exp} and current time : ${currentTime}`)*/
+    if(!this.localStorage.getItem('ACCESS_TOKEN') /*|| this.userId.exp < currentTime*/){
       this.router.navigateByUrl('login');
     }
+    this.loadEvents();
   }
 }

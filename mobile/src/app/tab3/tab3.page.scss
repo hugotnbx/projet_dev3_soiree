@@ -4,7 +4,7 @@
     height: 130px;
     width: 130px;
     background-color: white;
-    
+    margin-top: 5%;
 }
 
 ion-card{
@@ -49,6 +49,20 @@ h1 {
     }
 }
 
-p, label {
+p, label, a {
     color: black;
+}
+
+label {
+    margin-left: 5%;
+}
+
+.horizontal-align {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+#flex-item-1 {
+    margin-bottom: -7%;
 }

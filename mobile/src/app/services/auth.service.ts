@@ -16,7 +16,7 @@ export class AuthService {
   authSubject  =  new  BehaviorSubject(false)
   newProfil:any;
   
-  constructor(private  httpClient:  HttpClient,/* private  storage:  StorageService, */private localStorage:LocalStorageService) { }
+  constructor(private  httpClient:  HttpClient,private localStorage:LocalStorageService) { }
 
   register(user: Profil): Observable<AuthResponse> {
     this.newProfil = new profil(user);
@@ -26,10 +26,6 @@ export class AuthService {
       tap(async (res:  AuthResponse ) => {
         
         if (res) {
-          //await this.storage.create();
-          //await this.storage.clear();
-          //await this.storage.set("ACCESS_TOKEN", res.access_token).then(() => console.log("stocké"));
-          //await this.storage.set("EXPIRES_IN", res.expires_in);
           this.localStorage.setItem("ACCESS_TOKEN", res.access_token);;
           this.authSubject.next(true);
         }
@@ -45,13 +41,6 @@ export class AuthService {
         console.log(res);
         //console.log(res.user);
         if (res) {
-          /*
-          //await this.storage.set("ACCESS_TOKEN", res.user.access_token);
-          //await this.storage.set("EXPIRES_IN", res.user.expires_in);
-          await this.storage.create();
-          await this.storage.clear();
-          await this.storage.set("ACCESS_TOKEN", res.access_token).then(() => console.log("stocké"));
-          */
           this.localStorage.setItem("ACCESS_TOKEN", res.access_token);;
           this.authSubject.next(true);
         }

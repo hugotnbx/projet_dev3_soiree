@@ -16,6 +16,10 @@ export class EvenementComponent  implements OnInit {
   constructor(public http: HttpClient, private route: ActivatedRoute , public socialSharing : SocialSharing ) {}
 
   ngOnInit() {
+    this.loadEventInfos();
+  }
+
+  loadEventInfos(){
     const paramValue = this.route.snapshot.paramMap.get('id');
 
     this.readApi(`${environment.api}/events/${paramValue}`).subscribe((data) => {
@@ -27,6 +31,14 @@ export class EvenementComponent  implements OnInit {
       console.log(data);
       this.eventprofil = data;
     });
+  }
+
+  refreshEventInfos(eventInfos:any) {
+    this.loadEventInfos();
+
+    setTimeout(() => {
+      eventInfos.target.complete();
+    }, 2000);
   }
 
   readApi(URL: string) {

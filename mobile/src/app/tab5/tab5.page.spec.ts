@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Tab5Page } from './tab5.page';
 
-describe('Tab5Page', () => {
+describe('TabPastEventsPage', () => {
   let component: Tab5Page;
   let fixture: ComponentFixture<Tab5Page>;
   let httpMock : HttpTestingController;
@@ -26,5 +26,21 @@ describe('Tab5Page', () => {
     expect(component).toBeTruthy();
   });
 
-  it('')
+  it('Fonction DatePlusPetit True', () => {
+    const date1 = new Date(2024, 3, 15, 0, 0);
+    const date2 = new Date(2024, 5, 20, 0, 0);
+    const resultTrue = component.datePlusPetite(date1, date2);
+    expect(resultTrue).toBeTruthy();
+  });
+
+  it('Fonction DatePlusPetit False', () => {
+    const date3 = new Date(2024, 3, 15, 0, 0);
+    const date4 = new Date(2024, 5, 20, 0, 0);
+    const resultFalse = component.datePlusPetite(date4, date3);
+    expect(resultFalse).toBeFalsy();
+  });
+
+  it ('date des events type date', () => {
+    
+  });
 });

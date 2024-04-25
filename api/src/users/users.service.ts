@@ -15,7 +15,7 @@ export class UsersService{
       return await this.usersRepository.find();
     }
 
-    async read(idProfil: string): Promise<Users>{
+    async read(idProfil: number): Promise<Users>{
       return await this.usersRepository.findOne({
         where: {
           idProfil,
@@ -23,9 +23,18 @@ export class UsersService{
       });
     }
 
+    async readOnUsername(username: string): Promise<Users>{
+      return await this.usersRepository.findOne({
+        where: {
+          username,
+        }
+      });
+    }
+
     async create(usersDto : UsersDto) {
       const usersEntities = new Users();
       usersEntities.idProfil = usersDto.idProfil;
+      usersEntities.username = usersDto.username;
       usersEntities.password = usersDto.password;
       usersEntities.name = usersDto.name;
       usersEntities.firstName= usersDto.firstName;
@@ -35,20 +44,19 @@ export class UsersService{
       usersEntities.instagram = usersDto.instagram;
       usersEntities.facebook = usersDto.facebook;
       usersEntities.description = usersDto.description;
-      usersEntities.bank = usersDto.bank;
 
       const users = this.usersRepository.create(usersEntities);
       await this.usersRepository.save(users);
       return users;
     }
 
-    async update(idProfil : string , data : Partial<Users> ){
+    async update(idProfil : number , data : Partial<Users> ){
       await this.usersRepository.update({idProfil},data);
       const users = this.usersRepository.findOne({where:{idProfil}})
       return users;
     }
 
-    async delete(idProfil : string){
+    async delete(idProfil : number){
       const users = await this.usersRepository.findOne({where:{idProfil}});
       await this.usersRepository.delete({idProfil});
       return users;
