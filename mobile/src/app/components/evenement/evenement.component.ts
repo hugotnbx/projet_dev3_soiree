@@ -27,7 +27,7 @@ export class EvenementComponent  implements OnInit {
       this.event = data;
     });
 
-    this.readApi(`${environment.api}/users-relations/getstatus/${paramValue}`).subscribe((data) => {
+    this.readApi(`${environment.api}/users-relations/get-user-relations/${paramValue}`).subscribe((data) => {
       console.log(data);
       this.eventprofil = data;
     });

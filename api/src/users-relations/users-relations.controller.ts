@@ -19,7 +19,7 @@ export class UsersRelationsController {
         return this.usersRelationsService.findAll();
     }
 
-    @Get('getstatus/:idEvent')
+    @Get('get-user-relations/:idEvent')
     async getStatus(@Param('idEvent') idEvent: number): Promise<UsersRelations[]> {
         return this.usersRelationsService.getStatus(idEvent);
     }
