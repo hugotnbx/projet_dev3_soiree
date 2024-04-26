@@ -14,7 +14,7 @@
 h1 {
     text-align: left;
     font-weight: bold;
-    margin-left: 3%;
+    margin-left: 5%;
 }
 
 .ios {
@@ -27,4 +27,22 @@ h1 {
     h1 {
         font-size: 30px;
     }
+}
+
+#eventButton {
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+}
+
+ion-content {
+    --background: #f4f4f4; 
+}
+  
+ion-list {
+    margin: 20px; 
+}
+  
+ion-item {
+    --border-color: #ddd; 
 }

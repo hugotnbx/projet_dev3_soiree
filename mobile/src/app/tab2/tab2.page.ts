@@ -80,7 +80,7 @@ export class Tab2Page implements OnInit {
     this.http.post<any>(`${environment.api}/events`, this.newEvent)
       .subscribe(eventResponse => {
         console.log(eventResponse); 
-        this.relationData.idEvent=eventResponse.id; 
+        this.relationData.idEvent=eventResponse.id;
   
         this.newRelation = new relation(this.relationData);
   
@@ -88,8 +88,9 @@ export class Tab2Page implements OnInit {
           .subscribe(relationResponse => {
             console.log(relationResponse);
           });
+        
+          this.router.navigateByUrl(`/evenement/${eventResponse.id}`);
       });
-      this.router.navigateByUrl('tabs/tab1');
   }
 
   ngOnInit() {}

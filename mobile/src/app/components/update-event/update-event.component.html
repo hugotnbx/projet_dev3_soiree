@@ -9,17 +9,17 @@
     <ion-item *ngIf="event">
       <ion-input
         label="Nom de l'événement"
-        labelPlacement="stacked"
+        labelPlacement="floating"
         [clearInput]="true"
         placeholder={{event?.nom}}
         [(ngModel)]="event.nom"
       >
-      <ion-icon slot="start" name="beer-outline" aria-hidden="true"></ion-icon>
       </ion-input>
     </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Date et Heure</ion-label>
+    <br>
     <ion-datetime 
       displayFormat="YYYY-MM-DD HH:mm" 
       pickerFormat="YYYY-MM-DDTHH:mmZ"
@@ -33,40 +33,25 @@
     <ion-item *ngIf="event">
       <ion-input
         label="Lieu"
-        labelPlacement="stacked"
+        labelPlacement="floating"
         [clearInput]="true"
         placeholder={{event?.lieu}}
         [(ngModel)]="event.lieu"
       >
-      <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
       </ion-input>
     </ion-item>
 
     <ion-item *ngIf="event">
       <ion-input
         label="Lit(s) disponible(s)"
-        labelPlacement="stacked"
+        labelPlacement="floating"
         [clearInput]="false"
         placeholder={{event?.nbrLit}}
         [(ngModel)]="event.nbrLit"
       >
-      <ion-icon slot="start" name="bed-outline" aria-hidden="true"></ion-icon>
-      </ion-input>
-
-      <ion-input
-        label="Bob(s)"
-        labelPlacement="stacked"
-        [clearInput]="false"
-        placeholder={{event?.nbrBob}}
-        [(ngModel)]="event.nbrBob"
-      >
-      <ion-icon slot="start" name="car-outline" aria-hidden="true"></ion-icon>
       </ion-input>
     </ion-item>
   </ion-list>
-  <ion-button shape="round" size="small" (click)="updateEvent()">
-    Modifier l'événement
-    <ion-icon name="send-outline"></ion-icon>
-  </ion-button>
+  <ion-button id="eventButton" (click)="updateEvent()">Modifier mon événement</ion-button>
 </ion-content>
 

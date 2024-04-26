@@ -12,8 +12,8 @@ export class RegisterPage implements OnInit {
 
   constructor(private  authService:  AuthService, private  router:  Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+  
   register(form:NgForm){
     if (form.value.confirm == form.value.password){
       this.authService.register(form.value).subscribe((res) => {
