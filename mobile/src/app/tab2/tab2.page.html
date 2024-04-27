@@ -57,6 +57,9 @@
     </ion-input>
   </ion-item>
 
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <br>
+
   </ion-list>
   <ion-button id="eventButton" (click)="creationEvent()">Créer mon événement</ion-button>
 </ion-content>

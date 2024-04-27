@@ -118,13 +118,13 @@ describe('EvenementComponent', () => {
   });
 
   it('should return the correct image URL for a given role', () => {
-    const role = 'bob';
+    const role = 'Bob';
     const imageUrl = component.getImageUrl(role);
     expect(imageUrl).toEqual(`./assets/role/${role}.png`);
   });
 
   it('should return the correct image URL for a given role', () => {
-    const role = 'lit_dispo';
+    const role = 'Lit';
     const imageUrl = component.getImageUrl(role);
     expect(imageUrl).toEqual(`./assets/role/${role}.png`);
   });
@@ -148,8 +148,23 @@ describe('EvenementComponent', () => {
   });
 
   it('should return the correct image URL for a given role', () => {
-    const role = 'admin';
+    const role = 'Admin';
     const imageUrl = component.getImageUrl(role);
     expect(imageUrl).toEqual(`./assets/role/${role}.png`);
+  });
+
+  it('should throw an error for a role with special characters', () => {
+    const role = '@#$%';
+    expect(() => component.getImageUrl(role)).toThrowError('Le statut est invalide.');
+  });
+
+  it('should throw an error for a role with uppercase letters', () => {
+    const role = 'ADMIN';
+    expect(() => component.getImageUrl(role)).toThrowError('Le statut est invalide.');
+  });
+
+  it('should throw an error for a role with numbers', () => {
+    const role = 'role123';
+    expect(() => component.getImageUrl(role)).toThrowError('Le statut est invalide.');
   });
 });

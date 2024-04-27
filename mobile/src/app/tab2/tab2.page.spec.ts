@@ -175,6 +175,15 @@ describe('Tab2Page', () => {
       component.newEvent  
     );
   });
+
+  it("should clear errorMessage when valid number is entered after error", () => {
+    component.eventData.nbrLit = 15;
+    component.creationEvent(); 
+    expect(component.errorMessage).toBe("Le nombre de lits ne peut pas dépasser 10");
+    component.eventData.nbrLit = 5;
+    component.creationEvent(); 
+    expect(component.errorMessage).toBe('');
+});
   
   /*it('should initialize and update the event name input field', () => {
     const inputElement = fixture.debugElement.query(By.css('ion-input[label="Nom de l\'événement"] input'));

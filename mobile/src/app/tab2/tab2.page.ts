@@ -73,8 +73,15 @@ export class Tab2Page implements OnInit {
 
   newEvent:any;
   newRelation:any;
+  errorMessage: string = '';
 
   creationEvent() {
+
+    if (this.eventData.nbrLit > 10) {
+      this.errorMessage = "Vous ne pouvez pas proposer plus de 10 lits";      
+      return; 
+    }
+
     this.newEvent = new evenement(this.eventData);
   
     this.http.post<any>(`${environment.api}/events`, this.newEvent)
@@ -91,6 +98,8 @@ export class Tab2Page implements OnInit {
         
           this.router.navigateByUrl(`/evenement/${eventResponse.id}`);
       });
+
+    this.errorMessage = '';
   }
 
   ngOnInit() {}

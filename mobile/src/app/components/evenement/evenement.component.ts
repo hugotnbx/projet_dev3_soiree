@@ -46,6 +46,10 @@ export class EvenementComponent  implements OnInit {
   }
 
   getImageUrl(status: string): string {
+    /* if (!status || typeof status !== 'string' || !/^[a-z]+$/.test(status)) {
+        throw new Error('Le statut est invalide.');
+    } */
+
     return `./assets/role/${status}.png`;
   }
 

@@ -15,6 +15,7 @@ export class UpdateEventComponent implements OnInit {
   eventDateTime!: string;
   maxDate: string;
   minDate: string;
+  errorMessage: string = '';
 
   constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router) {
     const paramValue = this.route.snapshot.paramMap.get('id');
@@ -56,12 +57,19 @@ export class UpdateEventComponent implements OnInit {
     return this.http.get(URL);
   }
 
-  updateEvent() {
-    // Envoyer une requête PUT avec les données de l'événement
+  updateEvent(){
+
+    if (this.event.nbrLit > 10) {
+      this.errorMessage = "Vous ne pouvez pas proposer plus de 10 lits";      
+      return; 
+    }
+
     this.http.put<any>(`${environment.api}/events/` + this.event.id, this.event)
       .subscribe(response => {
         //console.log(response); 
         this.router.navigateByUrl(`/evenement/${this.event.id}`)});
+
+    this.errorMessage = '';
 
     if (!this.event.nom) {
       console.log("Le nom est vide");

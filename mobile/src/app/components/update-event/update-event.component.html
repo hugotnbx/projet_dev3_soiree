@@ -51,6 +51,10 @@
       >
       </ion-input>
     </ion-item>
+
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <br>
+
   </ion-list>
   <ion-button id="eventButton" (click)="updateEvent()">Modifier mon événement</ion-button>
 </ion-content>
