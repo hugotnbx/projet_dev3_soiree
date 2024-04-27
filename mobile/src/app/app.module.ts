@@ -18,7 +18,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LocalStorageService } from './services/local-storage.service';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
-import { Deeplinks } from '@awesome-cordova-plugins/deeplinks';
+//import { Deeplinks } from '@ionic-native/deeplinks/ngx'
 @NgModule({
   declarations: [AppComponent,CreationProfilComponent,LoginComponent,EvenementComponent,ProfilEventComponent,RejoindreEventComponent],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,FormsModule,RouterModule,AuthModule],
@@ -28,9 +28,10 @@ import { Deeplinks } from '@awesome-cordova-plugins/deeplinks';
     useClass: AuthInterceptor,
     multi: true
   },
-  Deeplinks
+  //Deeplinks
 ],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}
+

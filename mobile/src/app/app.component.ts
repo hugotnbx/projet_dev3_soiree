@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { Deeplinks } from '@awesome-cordova-plugins/deeplinks/ngx';
+import { Component ,NgZone} from '@angular/core';
+import { Platform, NavController } from '@ionic/angular';
+//import { Deeplinks } from '@ionic-native/deeplinks/ngx';
+import { Tab1Page } from './tab1/tab1.page';
+import { RejoindreEventComponent } from './components/rejoindre-event/rejoindre-event.component';
+import { App, URLOpenListenerEvent } from '@capacitor/app';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
@@ -8,19 +12,34 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor(
-    private route: Router,
-    private deeplinks: Deeplinks
+    private platform: Platform,
+    private navCtrl: NavController,
+    //private deeplinks: Deeplinks,
+    private zone:NgZone,
+    private router :Router,
+    
   ) {
     this.initializeApp();
   }
+
   initializeApp() {
-    this.deeplinks.route({
-      '/:id': {}
-    }).subscribe(match => {
-      this.route.navigateByUrl(`rejoindre`/*,match.$args['id']*/);
-    }, nomatch => {
-      
-      console.error('Got a deeplink that didn\'t match', nomatch);
+    this.platform.ready().then(() => {
+      this.setupDeepLinks();
     });
+  }
+
+  setupDeepLinks() {
+    App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
+      this.zone.run(() => {
+          // Example url: https://beerswift.app/tabs/tab2
+          // slug = /tabs/tab2
+          const slug = event.url.split(".app").pop();
+          if (slug) {
+              this.router.navigateByUrl(slug);
+          }
+          // If no match, do nothing - let regular routing
+          // logic take over
+      });
+  });
   }
 }
