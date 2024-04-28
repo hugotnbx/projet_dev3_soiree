@@ -43,7 +43,8 @@
 
     <ion-item *ngIf="event">
       <ion-input
-        label="Lit(s) disponible(s)"
+        type="number"
+        label="Nombre de lits disponibles"
         labelPlacement="floating"
         [clearInput]="false"
         placeholder={{event?.nbrLit}}
