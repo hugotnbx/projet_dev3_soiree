@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ManageEventService } from 'src/app/services/manage-event.service';
 
 @Component({
   selector: 'app-update-event',
@@ -17,7 +18,7 @@ export class UpdateEventComponent implements OnInit {
   minDate: string;
   errorMessage: string = '';
 
-  constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router) {
+  constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router, private manageEventService: ManageEventService) {
     const paramValue = this.route.snapshot.paramMap.get('id');
     //console.log(paramValue);
     this.readApi(`${environment.api}/events/${paramValue}`)
@@ -70,6 +71,8 @@ export class UpdateEventComponent implements OnInit {
         this.router.navigateByUrl(`/evenement/${this.event.id}`)});
 
     this.errorMessage = '';
+
+    this.manageEventService.shareUpdatedEvent(this.event);
 
     if (!this.event.nom) {
       console.log("Le nom est vide");

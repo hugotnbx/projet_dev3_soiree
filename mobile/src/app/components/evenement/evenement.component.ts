@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ManageEventService } from 'src/app/services/manage-event.service';
+import { Evenement } from 'src/app/interfaces/evenement';
 
 @Component({
   selector: 'app-evenement',
@@ -13,10 +15,14 @@ export class EvenementComponent  implements OnInit {
   event:any;
   eventprofil:any;
 
-  constructor(public http: HttpClient, private route: ActivatedRoute) {}
+  constructor(public http: HttpClient, private route: ActivatedRoute, private manageEventService: ManageEventService) {}
 
   ngOnInit() {
     this.loadEventInfos();
+
+    this.manageEventService.updatedEvent$.subscribe((updatedEvent: Evenement) => {
+      this.event = updatedEvent;
+    });
   }
 
   loadEventInfos(){

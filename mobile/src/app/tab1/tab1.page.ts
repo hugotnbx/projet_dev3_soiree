@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from '../services/local-storage.service';
 import { Router } from '@angular/router';
-import { NewEventService } from '../services/new-event.service';
+import { ManageEventService } from '../services/manage-event.service';
 import { Evenement } from '../interfaces/evenement';
 @Component({
   selector: 'app-tab1',
@@ -15,7 +15,7 @@ export class Tab1Page implements OnInit {
   events: any;
   tableEvents: any[] = [];
   userId:any;
-  constructor(public http:HttpClient, private localStorage:LocalStorageService, private router: Router, private newEventService: NewEventService) {
+  constructor(public http:HttpClient, private localStorage:LocalStorageService, private router: Router, private manageEventService: ManageEventService) {
   }
 
   loadEvents() {
@@ -73,9 +73,26 @@ export class Tab1Page implements OnInit {
     if(!this.localStorage.getItem('ACCESS_TOKEN') /*|| this.userId.exp < currentTime*/){
       this.router.navigateByUrl('login');
     }
+
     this.loadEvents();
 
-    this.newEventService.newEvent$.subscribe((newEvent: Evenement) => {
+    this.manageEventService.updatedEvent$.subscribe((updatedEvent: Evenement) => {
+      let index = 0;
+      for(let event of this.tableEvents){
+        if(event.id == updatedEvent.id){
+          this.tableEvents[index] = updatedEvent;
+        }
+        index++;
+      }
+      
+      this.tableEvents.sort((a, b) => {
+        const dateA = new Date(a.date + ' ' + a.heure);
+        const dateB = new Date(b.date + ' ' + b.heure);
+        return dateA.getTime() - dateB.getTime();
+      });
+    });
+
+    this.manageEventService.newEvent$.subscribe((newEvent: Evenement) => {
       this.tableEvents.push(newEvent);
 
       this.tableEvents.sort((a, b) => {
