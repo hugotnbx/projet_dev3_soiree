@@ -44,15 +44,20 @@
     
   <ion-card>
     <ion-card-header>
-      <ion-card-title>{{profil?.address}}</ion-card-title>
+      <ion-card-title>
+        <a href="https://www.google.com/maps/place/{{profil?.address}}" target="_blank" class="horizontal-align">
+          {{profil?.address}}
+        </a>
+      </ion-card-title>
       <ion-card-subtitle>Adresse</ion-card-subtitle>
     </ion-card-header>
-
   </ion-card>
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>{{profil?.numberPhone}}</ion-card-title>
+      <ion-card-title>
+        <a id="phoneCall" href="tel:{{ profil?.numberPhone }}">{{ profil?.numberPhone }}</a>
+      </ion-card-title>
       <ion-card-subtitle>Téléphone</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
