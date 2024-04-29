@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../services/local-storage.service';
+import { ManageUserService } from '../services/manage-user.service';
+import { Profil } from '../interfaces/profil';
 
 @Component({
   selector: 'app-tab3',
@@ -14,7 +16,7 @@ import { LocalStorageService } from '../services/local-storage.service';
 export class Tab3Page implements OnInit{
   profil:any;
   userId :any;
-  constructor(public http:HttpClient, private authService: AuthService, private router: Router,private localStorage:LocalStorageService) {}
+  constructor(public http:HttpClient, private authService: AuthService, private router: Router,private localStorage:LocalStorageService, private manageUserService: ManageUserService) {}
 
   loadProfil(){
     const token = localStorage.getItem("ACCESS_TOKEN");
@@ -47,5 +49,9 @@ export class Tab3Page implements OnInit{
 
   ngOnInit(): void {
     this.loadProfil();
+
+    this.manageUserService.updatedProfil$.subscribe((updatedProfil: Profil) => {
+      this.profil = updatedProfil;
+    });
   }
 }

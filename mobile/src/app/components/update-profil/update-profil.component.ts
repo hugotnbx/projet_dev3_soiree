@@ -4,11 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { environment } from 'src/environments/environment';
+import { ManageUserService } from 'src/app/services/manage-user.service';
+
 @Component({
   selector: 'app-update-profil',
   templateUrl: './update-profil.component.html',
   styleUrls: ['./update-profil.component.scss'],
 })
+
 export class UpdateProfilComponent  implements OnInit {
   profil:any = {
     idProfil : '',
@@ -24,7 +27,8 @@ export class UpdateProfilComponent  implements OnInit {
     description: ''
   };
   userId :any;
-  constructor(public http:HttpClient, private authService: AuthService, private router: Router,private localStorage:LocalStorageService) {}
+
+  constructor(public http:HttpClient, private authService: AuthService, private router: Router,private localStorage:LocalStorageService, private manageUserService: ManageUserService) {}
 
     loadProfil(){
       const token = localStorage.getItem("ACCESS_TOKEN");
@@ -42,17 +46,20 @@ export class UpdateProfilComponent  implements OnInit {
         this.profil= data;
       });
     }
+
     readApi(URL:string){
       return this.http.get(URL);
     }
-    UpdateProfil(){
+
+    updateProfil(){
       this.http.put(`${environment.api}/users/${this.profil.idProfil}`,this.profil).subscribe(()=>{
         this.router.navigateByUrl(`/tabs/tab3`);
       })
+
+      this.manageUserService.shareUpdatedProfil(this.profil);
     }
   
     ngOnInit(): void {
       this.loadProfil();
     }
-
 }
