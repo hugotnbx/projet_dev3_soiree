@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Relation } from '../interfaces/relation';
 import { LocalStorageService } from '../services/local-storage.service';
 import { Router } from '@angular/router';
+import { ManageEventService } from '../services/manage-event.service';
 
 @Component({
   selector: 'app-tab2',
@@ -37,7 +38,7 @@ export class Tab2Page implements OnInit {
   maxDate: string;
   minDate: string;
   
-  constructor(public http:HttpClient, private router: Router, private localStorage:LocalStorageService) {
+  constructor(public http:HttpClient, private router: Router, private localStorage:LocalStorageService, private manageEventService: ManageEventService) {
     const now = new Date();
     const maxYear = now.getFullYear() + 10; 
     this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10);
@@ -100,6 +101,8 @@ export class Tab2Page implements OnInit {
       });
 
     this.errorMessage = '';
+    
+    this.manageEventService.shareNewEvent(this.newEvent);
   }
 
   ngOnInit() {}
