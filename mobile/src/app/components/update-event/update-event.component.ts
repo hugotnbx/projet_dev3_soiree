@@ -17,6 +17,7 @@ export class UpdateEventComponent implements OnInit {
   maxDate: string;
   minDate: string;
   errorMessage: string = '';
+  updateEventDisabled: boolean = true;
 
   constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router, private manageEventService: ManageEventService) {
     const paramValue = this.route.snapshot.paramMap.get('id');
@@ -30,10 +31,6 @@ export class UpdateEventComponent implements OnInit {
     const maxYear = now.getFullYear() + 10;
     this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10);
     this.minDate = new Date().toISOString().slice(0, 10);
-  }
-
-  isNumAndPositive(value: any): boolean {
-    return isNaN(Number(value)) || value < 0;
   }
 
   dateEvent(){
@@ -55,6 +52,15 @@ export class UpdateEventComponent implements OnInit {
     console.log("Heure :", this.event.heure);
   }
 
+  errorDetected: boolean = false;
+
+  checkErrors() {
+    this.errorDetected = false; 
+
+    if (!this.event.nom || !this.event.lieu || this.event.nbrLit === null || this.event.nbrLit < 0) {
+        this.errorDetected = true; 
+    }
+  }
 
   ngOnInit() {}
 
@@ -94,19 +100,16 @@ export class UpdateEventComponent implements OnInit {
     return; 
   }
   
-   
     if (this.event.nbrLit < 0 || this.event.nbrLit > 99) {
       console.log("Nombre de lits invalide");
       return; 
     }
-  
-   
+
     if (this.event.nbrBob < 0 || this.event.nbrBob > 99) {
       console.log("Nombre de bobs invalide");
       return;
     }
   
-   
     const specialCharsRegex = /[!@#$%^&*(),.?":{}|<>]/;
     if (!this.event.lieu || specialCharsRegex.test(this.event.lieu) || this.event.lieu.length > 50) {
       console.log("Lieu invalide");
@@ -117,8 +120,8 @@ export class UpdateEventComponent implements OnInit {
       console.log("Le nom est trop long");
       return; 
     }
+    
   }
-  
   
   // isAdmin(role: string): boolean {
   //   return role === 'Admin';

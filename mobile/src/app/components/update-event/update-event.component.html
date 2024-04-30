@@ -1,22 +1,30 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1" text="" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
     <ion-title>Modifier l'événement</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item *ngIf="event">
+    <ion-item *ngIf="event">   
       <ion-input
         label="Nom de l'événement"
         labelPlacement="floating"
         [clearInput]="true"
         placeholder={{event?.nom}}
         [(ngModel)]="event.nom"
+        (ngModelChange)="checkErrors()"
       >
       </ion-input>
     </ion-item>
-
+    <div style="display: flex; align-items: center;">
+      <ion-icon name="alert-circle" color="danger" *ngIf="!event.nom" slot="end"></ion-icon>
+      <ion-text color="danger" *ngIf="!event.nom" class="error-message" style="margin-left: 8px;">Spécifiez un nom</ion-text>
+    </div>
+    
   <ion-item>
     <ion-label position="stacked">Date et Heure</ion-label>
     <br>
@@ -37,9 +45,14 @@
         [clearInput]="true"
         placeholder={{event?.lieu}}
         [(ngModel)]="event.lieu"
+        (ngModelChange)="checkErrors()"
       >
       </ion-input>
     </ion-item>
+    <div style="display: flex; align-items: center;">
+      <ion-icon name="alert-circle" color="danger" *ngIf="!event.lieu" slot="end"></ion-icon>
+      <ion-text color="danger" *ngIf="!event.lieu" class="error-message" style="margin-left: 8px;">Spécifiez un lieu</ion-text>
+    </div>
 
     <ion-item *ngIf="event">
       <ion-input
@@ -49,14 +62,16 @@
         [clearInput]="false"
         placeholder={{event?.nbrLit}}
         [(ngModel)]="event.nbrLit"
+        (ngModelChange)="checkErrors()"
       >
       </ion-input>
     </ion-item>
-
+    <div style="display: flex; align-items: center;">
+      <ion-icon name="alert-circle" color="danger" *ngIf="event.nbrLit !== 0 && !event.nbrLit" slot="end"></ion-icon>
+      <ion-text color="danger" *ngIf="event.nbrLit !== 0 && !event.nbrLit " class="error-message" style="margin-left: 8px;">Spécifiez un nombre de Lit</ion-text>
+    </div>
     <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     <br>
-
   </ion-list>
-  <ion-button id="eventButton" (click)="updateEvent()" [disabled]="event.nom === '' || event.lieu === '' || isNumAndPositive(event.nbrLit) || event.nbrLit === null">Modifier mon événement</ion-button>
+  <ion-button id="eventButton" (click)="updateEvent()" [disabled]="errorDetected">Modifier mon événement</ion-button>
 </ion-content>
-
