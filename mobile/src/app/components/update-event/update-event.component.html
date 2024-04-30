@@ -6,25 +6,28 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item *ngIf="event">
+    <ion-item *ngIf="event">   
       <ion-input
         label="Nom de l'événement"
         labelPlacement="stacked"
         [clearInput]="true"
         placeholder={{event?.nom}}
         [(ngModel)]="event.nom"
+        (ngModelChange)="checkErrors()"
       >
-      <ion-icon slot="start" name="beer-outline" aria-hidden="true"></ion-icon>
+      <ion-icon slot="start" name="beer-outline" aria-hidden="true"></ion-icon>     
       </ion-input>
     </ion-item>
-
+    <div style="display: flex; align-items: center;">
+      <ion-icon name="alert-circle" color="danger" *ngIf="!event.nom" slot="end"></ion-icon>
+      <ion-text color="danger" *ngIf="!event.nom" class="error-message" style="margin-left: 8px;">Spécifiez un nom</ion-text>
+    </div>
+    
   <ion-item>
     <ion-label position="stacked">Date et Heure</ion-label>
     <ion-datetime 
       displayFormat="YYYY-MM-DD HH:mm" 
-      pickerFormat="YYYY-MM-DDTHH:mmZ"
-      max="{{ maxDate }}"
-      min="{{ minDate }}"
+      pickerFormat="YYYY-MM-DDTHH:mmZ" 
       [(ngModel)]="eventDateTime"
       (ionChange)="onDateTimeChange($event)"
     ></ion-datetime>
@@ -37,10 +40,15 @@
         [clearInput]="true"
         placeholder={{event?.lieu}}
         [(ngModel)]="event.lieu"
+        (ngModelChange)="checkErrors()"
       >
       <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
       </ion-input>
     </ion-item>
+    <div style="display: flex; align-items: center;">
+      <ion-icon name="alert-circle" color="danger" *ngIf="!event.lieu" slot="end"></ion-icon>
+      <ion-text color="danger" *ngIf="!event.lieu" class="error-message" style="margin-left: 8px;">Spécifiez un lieu</ion-text>
+    </div>
 
     <ion-item *ngIf="event">
       <ion-input
@@ -49,24 +57,35 @@
         [clearInput]="false"
         placeholder={{event?.nbrLit}}
         [(ngModel)]="event.nbrLit"
+        (ngModelChange)="checkErrors()"
       >
-      <ion-icon slot="start" name="bed-outline" aria-hidden="true"></ion-icon>
+        <ion-icon slot="start" name="bed-outline" aria-hidden="true"></ion-icon>
       </ion-input>
-
+    
       <ion-input
         label="Bob(s)"
         labelPlacement="stacked"
         [clearInput]="false"
         placeholder={{event?.nbrBob}}
         [(ngModel)]="event.nbrBob"
+        (ngModelChange)="checkErrors()"
       >
-      <ion-icon slot="start" name="car-outline" aria-hidden="true"></ion-icon>
+        <ion-icon slot="start" name="car-outline" aria-hidden="true"></ion-icon>
       </ion-input>
     </ion-item>
+    <div style="display: flex; align-items: center;">
+      <ion-icon name="alert-circle" color="danger" *ngIf="event.nbrLit !== 0 && !event.nbrLit" slot="end"></ion-icon>
+      <ion-text color="danger" *ngIf="event.nbrLit !== 0 && !event.nbrLit " class="error-message" style="margin-left: 8px;">Spécifiez un nombre de Lit</ion-text>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <ion-icon name="alert-circle" color="danger" *ngIf="event.nbrBob !== 0 && !event.nbrBob" slot="end"></ion-icon>
+      <ion-text color="danger" *ngIf="event.nbrBob !== 0 && !event.nbrBob" class="error-message" style="margin-left: 8px;">Spécifiez un nombre de Bob</ion-text>
+    </div>
+    
   </ion-list>
-  <ion-button shape="round" size="small" (click)="updateEvent()">
+  <ion-button shape="round" size="small" (click)="updateEvent()" [disabled]="errorDetected">
     Modifier l'événement
     <ion-icon name="send-outline"></ion-icon>
-  </ion-button>
+</ion-button>
 </ion-content>
 

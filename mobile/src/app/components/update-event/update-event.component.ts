@@ -15,6 +15,7 @@ export class UpdateEventComponent implements OnInit {
   eventDateTime!: string;
   maxDate: string;
   minDate: string;
+  updateEventDisabled: boolean = true;
 
   constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router) {
     const paramValue = this.route.snapshot.paramMap.get('id');
@@ -55,6 +56,16 @@ export class UpdateEventComponent implements OnInit {
   readApi(URL: string) {
     return this.http.get(URL);
   }
+  errorDetected: boolean = false;
+
+checkErrors() {
+    this.errorDetected = false; 
+
+    if (!this.event.nom || !this.event.lieu || this.event.nbrBob < 0 || !this.event.nbrLit || !this.event.nbrBob || this.event.nbrLit < 0 || this.event.nbrBob > 99 || this.event.nbrLit > 99) {
+        this.errorDetected = true; 
+    }
+}
+
 
   updateEvent() {
     // Envoyer une requête PUT avec les données de l'événement
@@ -83,9 +94,9 @@ export class UpdateEventComponent implements OnInit {
     if (this.event.nbrLit < 0 || this.event.nbrLit > 99) {
       console.log("Nombre de lits invalide");
       return; 
-    }
+   }
+
   
-   
     if (this.event.nbrBob < 0 || this.event.nbrBob > 99) {
       console.log("Nombre de bobs invalide");
       return;
@@ -102,6 +113,7 @@ export class UpdateEventComponent implements OnInit {
       console.log("Le nom est trop long");
       return; 
     }
+    
   }
   
   
@@ -109,3 +121,13 @@ export class UpdateEventComponent implements OnInit {
   //   return role === 'Admin';
   // }
 }
+
+
+
+
+
+
+
+
+
+
