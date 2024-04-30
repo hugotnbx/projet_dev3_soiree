@@ -32,6 +32,10 @@ export class UpdateEventComponent implements OnInit {
     this.minDate = new Date().toISOString().slice(0, 10);
   }
 
+  isNumAndPositive(value: any): boolean {
+    return isNaN(Number(value)) || value < 0;
+  }
+
   dateEvent(){
     this.eventDateTime = this.event.date + 'T' + this.event.heure;
   }

@@ -57,6 +57,6 @@
     <br>
 
   </ion-list>
-  <ion-button id="eventButton" (click)="updateEvent()">Modifier mon événement</ion-button>
+  <ion-button id="eventButton" (click)="updateEvent()" [disabled]="event.nom === '' || event.lieu === '' || isNumAndPositive(event.nbrLit) || event.nbrLit === null">Modifier mon événement</ion-button>
 </ion-content>
 

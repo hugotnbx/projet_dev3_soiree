@@ -52,6 +52,10 @@ export class Tab2Page implements OnInit {
     console.log(this.userId.username);
   }
 
+  isNumAndPositive(value: any): boolean {
+    return isNaN(Number(value)) || value < 0;
+  }
+
   eventDateTime!: string;
 
   onDateTimeChange(event: CustomEvent) {
