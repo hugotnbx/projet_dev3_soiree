@@ -7,7 +7,7 @@ import { Contributions } from 'src/contributions/entities/contributions.entity';
 @Entity()
 export class UsersRelations {
     @PrimaryColumn()
-    idProfil:string;
+    idProfil:number;
 
     @PrimaryColumn()
     idEvent:number;
@@ -17,9 +17,6 @@ export class UsersRelations {
     
     @Column()
     idStatus: number;
-
-    @Column({ nullable: true })
-    role: string;
 
     @ManyToOne(() => Events, event => event.usersRelations)
     @JoinColumn({ name: 'idEvent' })

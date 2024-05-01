@@ -22,17 +22,15 @@ export class evenement implements Evenement{
 }
 
 export class relation implements Relation{
-    idProfil:string;
+    idProfil:number;
     idEvent:number;
     idContribution:number;
     idStatus:number;
-    role:string;
 
     constructor(relationData:Relation){
         this.idProfil=relationData.idProfil;
         this.idEvent=relationData.idEvent;
         this.idContribution=relationData.idContribution;
         this.idStatus=relationData.idStatus;
-        this.role=relationData.role;
     }
 }

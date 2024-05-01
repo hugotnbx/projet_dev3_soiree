@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Relation } from '../interfaces/relation';
 import { LocalStorageService } from '../services/local-storage.service';
+import { Router } from '@angular/router';
+import { ManageEventService } from '../services/manage-event.service';
 
 @Component({
   selector: 'app-tab2',
@@ -27,17 +29,16 @@ export class Tab2Page implements OnInit {
   }
 
   relationData:Relation={
-    idProfil:"",
+    idProfil:0,
     idEvent:0,
     idContribution:1,
     idStatus:3,
-    role:"admin"
   }
 
   maxDate: string;
   minDate: string;
   
-  constructor(public http:HttpClient, private localStorage:LocalStorageService) {
+  constructor(public http:HttpClient, private router: Router, private localStorage:LocalStorageService, private manageEventService: ManageEventService) {
     const now = new Date();
     const maxYear = now.getFullYear() + 10; 
     this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10);
@@ -49,6 +50,10 @@ export class Tab2Page implements OnInit {
     this.userId=JSON.parse(atob(this.userId[1]))
     this.relationData.idProfil=this.userId.username;
     console.log(this.userId.username);
+  }
+
+  isNumAndPositive(value: any): boolean {
+    return isNaN(Number(value)) || value < 0;
   }
 
   eventDateTime!: string;
@@ -73,14 +78,21 @@ export class Tab2Page implements OnInit {
 
   newEvent:any;
   newRelation:any;
+  errorMessage: string = '';
 
   creationEvent() {
+
+    if (this.eventData.nbrLit > 10) {
+      this.errorMessage = "Vous ne pouvez pas proposer plus de 10 lits";      
+      return; 
+    }
+
     this.newEvent = new evenement(this.eventData);
   
     this.http.post<any>(`${environment.api}/events`, this.newEvent)
       .subscribe(eventResponse => {
         console.log(eventResponse); 
-        this.relationData.idEvent=eventResponse.id; 
+        this.relationData.idEvent=eventResponse.id;
   
         this.newRelation = new relation(this.relationData);
   
@@ -88,7 +100,13 @@ export class Tab2Page implements OnInit {
           .subscribe(relationResponse => {
             console.log(relationResponse);
           });
+        
+          this.router.navigateByUrl(`/evenement/${eventResponse.id}`);
       });
+
+    this.errorMessage = '';
+    
+    this.manageEventService.shareNewEvent(this.newEvent);
   }
 
   ngOnInit() {}

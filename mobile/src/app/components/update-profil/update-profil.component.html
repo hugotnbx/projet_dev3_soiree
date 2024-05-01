@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1" text="" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Modifier mon profil</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-card>
+
+      <ion-card-header>
+        <ion-list>
+
+         <ion-item>
+            <ion-input
+            label="Nom d'utilisateur"
+            labelPlacement="floating"
+            [clearInput]="true"
+            placeholder={{profil?.username}}
+            [(ngModel)]="profil.username"
+             
+          >
+          <ion-icon slot="start" name="at-outline" aria-hidden="true"></ion-icon>
+          </ion-input>
+          </ion-item> 
+
+          <ion-item>
+            <ion-input
+            label="Mot de passe"
+            labelPlacement="floating"
+            [clearInput]="true"
+            placeholder={{profil?.password}}
+            [(ngModel)]="profil.password"
+            type="password"
+          >
+          </ion-input>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-input
+            label="Nom"
+            labelPlacement="floating"
+            [clearInput]="true"
+            placeholder={{profil?.name}}
+            [(ngModel)]="profil.name"
+          >
+          </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+        label="Prénom"
+        labelPlacement="floating"
+        [clearInput]="true"
+        placeholder={{profil?.firstName}}
+        [(ngModel)]="profil.firstName"
+        ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+        label="Adresse"
+        labelPlacement="floating"
+        [clearInput]="true"
+        placeholder={{profil?.address}}
+        [(ngModel)]="profil.address"
+        ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+        type="email"
+        label="Mail"
+        labelPlacement="floating"
+        fill="solid"
+        [clearInput]="true"
+        helperText=" "
+        placeholder={{profil?.mail}}
+        [(ngModel)]="profil.mail"
+        email
+        ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+        label="Telephone"
+        labelPlacement="floating"
+        [clearInput]="true"
+        placeholder={{profil?.numberPhone}}
+        [(ngModel)]="profil.numberPhone"
+        ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+            label="Instagram"
+            labelPlacement="floating"
+            [clearInput]="true"
+            placeholder={{profil?.instagram}}
+            [(ngModel)]="profil.instagram"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+        label="Facebook"
+        labelPlacement="floating"
+        [clearInput]="true"
+        placeholder={{profil?.facebook}}
+        [(ngModel)]="profil.facebook"
+        ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+        label="Description"
+        labelPlacement="floating"
+        [clearInput]="true"
+        placeholder={{profil?.description}}
+        [(ngModel)]="profil.description"
+        ></ion-input>
+          </ion-item>
+
+        </ion-list>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-button id="userButton" (click)="updateProfil()">Modifier mon profil</ion-button>
+      </ion-card-content>
+
+  </ion-card>
+</ion-content>

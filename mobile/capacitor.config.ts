@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId:'com.example.testapp',
-  appName: 'iziplan',
+  appId: 'com.iziplan.app',
+  appName: 'Iziplan',
   webDir: 'www',
  
   bundledWebRuntime: false,

@@ -19,6 +19,11 @@ export class EventsController {
 
   }
 
+  @Get('get-event-relations/:idProfil')
+    async getStatus(@Param('idProfil') idProfil: number): Promise<Events[]> {
+        return this.eventsService.getEventRelations(idProfil);
+    }
+
   @Get('/:id')
   @ApiOperation({ summary: 'Récupérer un événement à partir de son id', description: 'Récupère un événement à partir de son id.' })
   @ApiParam({ name: 'id', description: 'id de l\'événement à récupérer', type: 'number' })

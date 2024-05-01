@@ -6,7 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfilEventComponent } from './components/profil-event/profil-event.component';
 import { UpdateEventComponent } from './components/update-event/update-event.component';
 import { RejoindreEventComponent } from './components/rejoindre-event/rejoindre-event.component';
-import { RegisterPage } from './pages/register/register.page';
+import { UpdateProfilComponent } from './components/update-profil/update-profil.component';
 const routes: Routes = [
   {
     path: '',
@@ -49,7 +49,12 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'update-profil',
+    component : UpdateProfilComponent
   }
+  
 ];
 
 @NgModule({

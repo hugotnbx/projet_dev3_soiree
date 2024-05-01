@@ -16,58 +16,51 @@
             <div padding>
 
               <ion-item>
-                <ion-label position="floating">Nom d'utilisateur</ion-label>
-                <ion-input name="username" type="text" placeholder="Votre nom d'utilisateur" ngModel required></ion-input>
+                <ion-input label="Nom d'utilisateur" labelPlacement="floating" name="username" type="text" placeholder="Votre nom d'utilisateur" ngModel required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">Nom</ion-label>
-                <ion-input name="name" type="text" placeholder="Votre nom" ngModel required></ion-input>
+                <ion-input label="Nom" labelPlacement="floating" name="name" type="text" placeholder="Votre nom" ngModel required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">Prénom</ion-label>
-                <ion-input name="firstName" type="text" placeholder="Votre prénom" ngModel required></ion-input>
+                <ion-input label="Prénom" labelPlacement="floating" name="firstName" type="text" placeholder="Votre prénom" ngModel required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">Adresse e-mail</ion-label>
-                <ion-input name="mail" type="email" placeholder="Votre adresse e-mail" ngModel required></ion-input>
+                <ion-input label="Adresse e-mail" fill="solid" labelPlacement="floating" name="mail" type="email" placeholder="Votre adresse e-mail" helperText=" " ngModel email required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">Mot de passe</ion-label>
-                <ion-input name="password" type="password" placeholder="Votre mot de passe" ngModel required></ion-input>
+                <ion-input label="Mot de passe" labelPlacement="floating" name="password" type="password" placeholder="Votre mot de passe" ngModel required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">Confirmation du mot de passe</ion-label>
-                <ion-input name="confirm" type="password" placeholder="Confirmer votre mot de passe" ngModel required></ion-input>
+                <ion-input label="Confirmation du mot de passe" labelPlacement="floating" name="confirm" type="password" placeholder="Confirmer votre mot de passe" ngModel required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">Numéro de téléphone</ion-label>
-                <ion-input name="numberPhone" type="tel" placeholder="Votre numéro de téléphone"  ngModel required></ion-input>
+                <ion-input label="Numéro de téléphone" labelPlacement="floating" name="numberPhone" type="tel" placeholder="Votre numéro de téléphone" ngModel></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">Adresse</ion-label>
-                <ion-input name="address" type="text" placeholder="Votre adresse"  ngModel required></ion-input>
+                <ion-input label="Adresse" labelPlacement="floating" name="address" type="text" placeholder="Votre adresse" ngModel></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">Compte Facebook</ion-label>
-                <ion-input name="facebook" type="text" placeholder="Votre compte Facebook"  ngModel required></ion-input>
+                <ion-input label="Compte Facebook" labelPlacement="floating" name="facebook" type="text" placeholder="Votre compte Facebook" ngModel></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">Compte Instagram</ion-label>
-                <ion-input name="instagram" type="text" placeholder="Votre compte Instagram"  ngModel required></ion-input>
+                <ion-input label="Compte Instagram" labelPlacement="floating" name="instagram" type="text" placeholder="Votre nom d'utilisateur Instagram" ngModel></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label position="floating">Description</ion-label>
-                <ion-input name="description" type="text" placeholder="Votre description"  ngModel required></ion-input>
+                <ion-input label="Description" labelPlacement="floating" name="description" type="text" placeholder="Votre description" ngModel></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input label="Photo de profil" labelPlacement="floating" type="file" accept="image/*" capture="environment" #profilePicInput></ion-input>
               </ion-item>
             </div>
             <br>

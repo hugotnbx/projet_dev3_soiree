@@ -1,0 +1,22 @@
+ion-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+  
+    ion-title {
+      font-size: 20px;
+    }
+}
+  
+#userButton {
+  width: 90%;
+  height: auto;
+  margin-left: 5%;
+}
+
+ion-back-button {
+  color: black;
+  width: 80px;
+  height: 65px;
+}

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ManageEventService } from 'src/app/services/manage-event.service';
 
 @Component({
   selector: 'app-update-event',
@@ -15,8 +16,10 @@ export class UpdateEventComponent implements OnInit {
   eventDateTime!: string;
   maxDate: string;
   minDate: string;
+  errorMessage: string = '';
+  updateEventDisabled: boolean = true;
 
-  constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router) {
+  constructor(public http:HttpClient,private route: ActivatedRoute,private router: Router, private manageEventService: ManageEventService) {
     const paramValue = this.route.snapshot.paramMap.get('id');
     //console.log(paramValue);
     this.readApi(`${environment.api}/events/${paramValue}`)
@@ -49,6 +52,15 @@ export class UpdateEventComponent implements OnInit {
     console.log("Heure :", this.event.heure);
   }
 
+  errorDetected: boolean = false;
+
+  checkErrors() {
+    this.errorDetected = false; 
+
+    if (!this.event.nom || !this.event.lieu || this.event.nbrLit === null || this.event.nbrLit < 0) {
+        this.errorDetected = true; 
+    }
+  }
 
   ngOnInit() {}
 
@@ -56,12 +68,21 @@ export class UpdateEventComponent implements OnInit {
     return this.http.get(URL);
   }
 
-  updateEvent() {
-    // Envoyer une requête PUT avec les données de l'événement
+  updateEvent(){
+
+    if (this.event.nbrLit > 10) {
+      this.errorMessage = "Vous ne pouvez pas proposer plus de 10 lits";      
+      return; 
+    }
+
     this.http.put<any>(`${environment.api}/events/` + this.event.id, this.event)
       .subscribe(response => {
         //console.log(response); 
         this.router.navigateByUrl(`/evenement/${this.event.id}`)});
+
+    this.errorMessage = '';
+
+    this.manageEventService.shareUpdatedEvent(this.event);
 
     if (!this.event.nom) {
       console.log("Le nom est vide");
@@ -79,19 +100,16 @@ export class UpdateEventComponent implements OnInit {
     return; 
   }
   
-   
     if (this.event.nbrLit < 0 || this.event.nbrLit > 99) {
       console.log("Nombre de lits invalide");
       return; 
     }
-  
-   
+
     if (this.event.nbrBob < 0 || this.event.nbrBob > 99) {
       console.log("Nombre de bobs invalide");
       return;
     }
   
-   
     const specialCharsRegex = /[!@#$%^&*(),.?":{}|<>]/;
     if (!this.event.lieu || specialCharsRegex.test(this.event.lieu) || this.event.lieu.length > 50) {
       console.log("Lieu invalide");
@@ -102,8 +120,8 @@ export class UpdateEventComponent implements OnInit {
       console.log("Le nom est trop long");
       return; 
     }
+    
   }
-  
   
   // isAdmin(role: string): boolean {
   //   return role === 'Admin';

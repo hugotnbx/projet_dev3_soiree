@@ -3,9 +3,9 @@ import { ApiProperty } from "@nestjs/swagger";
 export class UsersRelationsDto {
     @ApiProperty({
         required:true,
-        type:'string',
+        type:'number',
     })
-    readonly  idProfil: string;
+    readonly  idProfil: number;
 
     @ApiProperty({
         required:true,
@@ -24,10 +24,4 @@ export class UsersRelationsDto {
         type:'number',
     })
     readonly  idStatus: number;
-
-    @ApiProperty({
-        required:false,
-        type:'string',
-    })
-    readonly  role: string;
 }

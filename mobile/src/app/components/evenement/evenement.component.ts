@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ManageEventService } from 'src/app/services/manage-event.service';
+import { Evenement } from 'src/app/interfaces/evenement';
+
 import { Share } from '@capacitor/share';
 @Component({
   selector: 'app-evenement',
@@ -13,10 +16,14 @@ export class EvenementComponent  implements OnInit {
   event:any;
   eventprofil:any;
 
-  constructor(public http: HttpClient, private route: ActivatedRoute) {}
+  constructor(public http: HttpClient, private route: ActivatedRoute, private manageEventService: ManageEventService) {}
 
   ngOnInit() {
     this.loadEventInfos();
+
+    this.manageEventService.updatedEvent$.subscribe((updatedEvent: Evenement) => {
+      this.event = updatedEvent;
+    });
   }
 
   loadEventInfos(){
@@ -27,7 +34,7 @@ export class EvenementComponent  implements OnInit {
       this.event = data;
     });
 
-    this.readApi(`${environment.api}/users-relations/${paramValue}`).subscribe((data) => {
+    this.readApi(`${environment.api}/users-relations/get-user-relations/${paramValue}`).subscribe((data) => {
       console.log(data);
       this.eventprofil = data;
     });
@@ -45,8 +52,12 @@ export class EvenementComponent  implements OnInit {
     return this.http.get(URL);
   }
 
-  getImageUrl(role: string): string {
-    return `./assets/role/${role}.png`;
+  getImageUrl(status: string): string {
+    /* if (!status || typeof status !== 'string' || !/^[a-z]+$/.test(status)) {
+        throw new Error('Le statut est invalide.');
+    } */
+
+    return `./assets/role/${status}.png`;
   }
 
   /* isAdmin(role: string): boolean {

@@ -7,23 +7,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h1>Créer mon événement</h1>
+  <h1>Créer un événement</h1>
 
   <ion-list>
     <ion-item>
       <ion-input
         label="Nom de l'événement"
-        labelPlacement="stacked"
+        labelPlacement="floating"
         [clearInput]="true"
         placeholder="ex: Bière entre potes"
         [(ngModel)]="eventData.nom"
       >
-      <ion-icon slot="start" name="beer-outline" aria-hidden="true"></ion-icon>
       </ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Date et Heure</ion-label>
+    <br>
     <ion-datetime 
       displayFormat="YYYY-MM-DD HH:mm" 
       pickerFormat="YYYY-MM-DDTHH:mmZ" 
@@ -37,40 +37,29 @@
   <ion-item>
     <ion-input
         label="Lieu"
-        labelPlacement="stacked"
+        labelPlacement="floating"
         [clearInput]="true"
         placeholder="ex: 11 Rue de l'avenir"
         [(ngModel)]="eventData.lieu"
       >
-      <ion-icon slot="start" name="time-outline" aria-hidden="true"></ion-icon>
     </ion-input>
   </ion-item>
 
   <ion-item>
     <ion-input
-        label="Lit(s) disponible(s)"
-        labelPlacement="stacked"
-        [clearInput]="false"
-        placeholder="ex: 6lits"
+        type="number"
+        label="Nombre de lits disponibles"
+        labelPlacement="floating"
+        [clearOnEdit]="true"
+        placeholder="ex: 6 lits"
         [(ngModel)]="eventData.nbrLit"
       >
-      <ion-icon slot="start" name="bed-outline" aria-hidden="true"></ion-icon>
-    </ion-input>
-
-    <ion-input
-        label="Bob(s)"
-        labelPlacement="stacked"
-        [clearInput]="false"
-        placeholder="ex: 5 bobs"
-        [(ngModel)]="eventData.nbrBob"
-      >
-      <ion-icon slot="start" name="car-outline" aria-hidden="true"></ion-icon>
     </ion-input>
   </ion-item>
 
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <br>
+
   </ion-list>
-  <ion-button shape="round" size="small" (click)="creationEvent()">
-    Créer
-    <ion-icon name="send-outline"></ion-icon>  
-  </ion-button>
+  <ion-button id="eventButton" (click)="creationEvent()" [disabled]="eventData.nom === '' || eventData.lieu === '' || isNumAndPositive(eventData.nbrLit) || eventData.nbrLit === null">Créer mon événement</ion-button>
 </ion-content>
