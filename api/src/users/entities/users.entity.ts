@@ -1,6 +1,7 @@
 import {Entity, Column, PrimaryColumn, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import { UsersRelations } from 'src/users-relations/entities/users-relations.entity';
 
+@Unique(["mail", "username"])
 @Entity()
 export class Users {
     @PrimaryGeneratedColumn()
