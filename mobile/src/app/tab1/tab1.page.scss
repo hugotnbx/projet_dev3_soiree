@@ -37,3 +37,9 @@ h1 {
     max-width: 150px;
     max-height: 150px;
 }
+
+.disabled-event {
+    opacity: 0.5; /* Réduire l'opacité pour indiquer que l'événement est désactivé */
+    pointer-events: none; /* Désactiver les événements de souris pour empêcher les clics */
+    /* Ajoutez d'autres styles pour indiquer visuellement que l'événement est désactivé */
+  }

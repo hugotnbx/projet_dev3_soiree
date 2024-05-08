@@ -38,6 +38,7 @@ export class EventsService {
       eventsEntities.lieu = eventsDto.lieu;
       eventsEntities.nbrLit = eventsDto.nbrLit;
       eventsEntities.nbrBob = eventsDto.nbrBob;
+      eventsEntities.etatdelete = eventsDto.etatdelete;
       const events = this.eventsRepository.create(eventsEntities);
       await this.eventsRepository.save(events);
       return events;

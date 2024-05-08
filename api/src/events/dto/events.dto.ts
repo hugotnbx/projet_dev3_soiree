@@ -42,4 +42,10 @@ export class EventsDto {
         type:'number',
     })
     readonly  nbrBob: number ;
+
+    @ApiProperty({
+        required:true,
+        type:'boolean',
+    })
+    readonly  etatdelete: boolean ;
 }
