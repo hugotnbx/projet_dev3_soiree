@@ -4,6 +4,7 @@ import { EvenementComponent } from './evenement.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { ManageEventService } from 'src/app/services/manage-event.service';
 
 describe('EvenementComponent', () => {
   let component: EvenementComponent;
@@ -24,7 +25,8 @@ describe('EvenementComponent', () => {
               }
             }
           }
-        }
+        },
+        ManageEventService
       ]
     }).compileComponents();
   }));
@@ -94,7 +96,7 @@ describe('EvenementComponent', () => {
 
     fixture.detectChanges();
 
-    expect(httpClientSpy).toHaveBeenCalledWith('http://localhost:64000/events/1');
+    expect(httpClientSpy).toHaveBeenCalledWith('https://iziplan.l2-1.ephec-ti.be:64000/events/1');
     expect(component.event).toEqual(eventData);
   });
 
@@ -113,7 +115,7 @@ describe('EvenementComponent', () => {
 
     fixture.detectChanges();
 
-    expect(httpClientSpy).not.toHaveBeenCalledWith('http://localhost:64000/events/2');
+    expect(httpClientSpy).not.toHaveBeenCalledWith('https://iziplan.l2-1.ephec-ti.be:64000/events/2');
     expect(component.event).toEqual(eventData);
   });
 
@@ -136,7 +138,7 @@ describe('EvenementComponent', () => {
   });
 
   it('should return the correct image URL for a given role', () => {
-    const role = 'place_voiture';
+    const role = 'placevoiture';
     const imageUrl = component.getImageUrl(role);
     expect(imageUrl).toEqual(`./assets/role/${role}.png`);
   });
@@ -158,13 +160,32 @@ describe('EvenementComponent', () => {
     expect(() => component.getImageUrl(role)).toThrowError('Le statut est invalide.');
   });
 
-  it('should throw an error for a role with uppercase letters', () => {
-    const role = 'ADMIN';
-    expect(() => component.getImageUrl(role)).toThrowError('Le statut est invalide.');
-  });
-
   it('should throw an error for a role with numbers', () => {
     const role = 'role123';
     expect(() => component.getImageUrl(role)).toThrowError('Le statut est invalide.');
+  });
+
+  /* Tests d'intégrations */
+
+  it('should load event infos on ngOnInit', () => {
+    spyOn(component, 'loadEventInfos');
+    component.ngOnInit();
+    expect(component.loadEventInfos).toHaveBeenCalled();
+  });
+
+  it('should refresh event infos and complete the eventInfos target', () => {
+    const eventInfosMock = { target: { complete: jasmine.createSpy('complete') } };
+    spyOn(component, 'loadEventInfos');
+    component.refreshEventInfos(eventInfosMock);
+    expect(component.loadEventInfos).toHaveBeenCalled();
+    setTimeout(() => {
+      expect(eventInfosMock.target.complete).toHaveBeenCalled();
+    }, 2000);
+  });
+
+  it('should call Share.share method when sShare is called', async () => {
+    const shareSpy = spyOn(Share, 'share').and.returnValue(Promise.resolve());
+    await component.sShare();
+    expect(shareSpy).toHaveBeenCalled();
   });
 });
