@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ManageEventService } from 'src/app/services/manage-event.service';
 import { Evenement } from 'src/app/interfaces/evenement';
 
+import { Share } from '@capacitor/share';
 @Component({
   selector: 'app-evenement',
   templateUrl: './evenement.component.html',
@@ -62,4 +63,20 @@ export class EvenementComponent  implements OnInit {
   /* isAdmin(role: string): boolean {
     return role === 'Admin';
   } */
+  /*async sShare(){
+    await Share.share({
+      title: "Participer à l'événement",
+      text: `Je suis intéressé par votre événement "${this.event.name}"`,
+      url: `iziplan//rejoindre`
+    })
+  }*/
+
+  async sShare() {
+    await Share.share({
+      title: 'See cool stuff',
+      text: 'Really awesome thing you need to see right meow',
+      url: 'http://ionicframework.com/',
+      dialogTitle: 'Share with buddies',
+    });
+  }
 }
