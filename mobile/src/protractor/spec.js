@@ -165,8 +165,8 @@ describe('Launching app tests', function() {
   it('should successfully create an event', () => {
     browser.get('http://localhost:8100/tabs/tab2');
 
-    element(by.css('input[name="Nom"]')).sendKeys('Mon nouvel événement');
-    element(by.css('input[name="Lieu"]')).sendKeys('Lieu de l\'événement');
+    element(by.css('input[name="Nom"]')).sendKeys('Test end to end');
+    element(by.css('input[name="Lieu"]')).sendKeys('Rue du test end to end');
     element(by.css('input[name="nbrLit"]')).sendKeys('6'); 
 
     browser.executeScript("arguments[0].click();", element(by.id('eventButton')));
