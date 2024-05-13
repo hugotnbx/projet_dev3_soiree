@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryColumn, OneToMany, PrimaryGeneratedColumn,Unique} from 'typeorm';
+import {Entity, Column, PrimaryColumn, OneToMany, PrimaryGeneratedColumn, Unique} from 'typeorm';
 import { UsersRelations } from 'src/users-relations/entities/users-relations.entity';
 
 @Unique(["mail", "username"])

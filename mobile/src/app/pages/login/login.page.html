@@ -15,12 +15,12 @@
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
             <div padding>
               <br>
-                  <ion-row *ngIf='isNotLogged'>
-                  <div text-center id="register">
-                  Vous n'avez pas rentrer le bon mot de passe ou le bon nom d'utilisateur.
-                  </div>
-                  </ion-row>
-                  <br>
+              <ion-row *ngIf='isNotLogged'>
+              <div text-center id="loginError">
+              Nom d'utilisateur ou mot de passe incorrect
+              </div>
+              </ion-row>
+              <br>
               <ion-item>
                 <ion-input label="Nom d'utilisateur" labelPlacement="floating" name="username" placeholder="Votre nom d'utilisateur" ngModel required></ion-input>
               </ion-item>
