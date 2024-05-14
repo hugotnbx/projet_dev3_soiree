@@ -24,7 +24,6 @@ export class LoginPage implements OnInit {
       //this.router.navigateByUrl('');
     }, 
     error => {this.isNotLogged=true}
-  );
+    );
   }
-
 }
