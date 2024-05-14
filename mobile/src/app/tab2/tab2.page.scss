@@ -52,3 +52,37 @@ ion-item {
     margin-left: 15px;
     font-size: 10px;
 }
+
+.custom-popover {
+    max-height: 50vh;
+    --top: 50px;
+ }
+
+.option-card.selected {
+    background-color: #ffbf00 /* Jaune */
+}
+
+.ion-label {
+   
+    background-color: inherit;
+    color: inherit; /* Utiliser la couleur du parent */
+}
+
+.selected {
+    background-color: #ffbf00; /* Bleu si sélectionné */
+    color: black; /* Texte blanc si sélectionné */
+}
+
+ion-card:not(.selected) {
+    background-color: #F9E6AC; /* Jaune si non sélectionné */
+    color: black; /* Texte noir si non sélectionné */
+}
+
+.centred-element {
+    display: flex;
+    justify-content: center; // Pour centrer horizontalement
+    align-items: center; // Pour centrer verticalement
+}
+.ion-padding{
+    height: 120px;
+}

@@ -1,0 +1,15 @@
+ion-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+.custom-popover.popover-top {
+    top: 50px;
+  }
+
+.selected ion-label {
+    background-color: #ffbf00; /* Bleu si sélectionné */
+    color: black; /* Texte blanc si sélectionné */
+}

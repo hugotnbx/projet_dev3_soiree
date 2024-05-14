@@ -8,6 +8,11 @@ import { Relation } from '../interfaces/relation';
 import { LocalStorageService } from '../services/local-storage.service';
 import { Router } from '@angular/router';
 import { ManageEventService } from '../services/manage-event.service';
+import { PopoverController } from '@ionic/angular';
+import { PopoverComponent } from '../components/popover/popover.component';
+
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-tab2',
@@ -37,8 +42,9 @@ export class Tab2Page implements OnInit {
 
   maxDate: string;
   minDate: string;
+  selectedContributions: any[] = [];
   
-  constructor(public http:HttpClient, private router: Router, private localStorage:LocalStorageService, private manageEventService: ManageEventService) {
+  constructor(public http:HttpClient, private router: Router, private localStorage:LocalStorageService, private manageEventService: ManageEventService, private popCtrl: PopoverController) {
     const now = new Date();
     const maxYear = now.getFullYear() + 10; 
     this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10);
@@ -50,6 +56,8 @@ export class Tab2Page implements OnInit {
     this.userId=JSON.parse(atob(this.userId[1]))
     this.relationData.idProfil=this.userId.username;
     console.log(this.userId.username);
+
+  
   }
 
   isNumAndPositive(value: any): boolean {
@@ -57,6 +65,25 @@ export class Tab2Page implements OnInit {
   }
 
   eventDateTime!: string;
+
+  async openPopover(ev : any) {
+    const popover = await this.popCtrl.create({
+      component : PopoverComponent,
+      event : ev,
+      translucent: true,
+      cssClass: 'custom-popover popover-top',
+      mode: 'ios',
+      backdropDismiss: true,
+      animated: true,
+    })
+    popover.onDidDismiss().then((dataReturned) => {
+      if (dataReturned !== null) {
+          this.selectedContributions = dataReturned.data;
+          //this.selectedContributions = [...this.selectedContributions, ...dataReturned.data];
+      }
+    });
+    return await popover.present()
+  }
 
   onDateTimeChange(event: CustomEvent) {
     this.eventDateTime = event.detail.value;
@@ -74,6 +101,19 @@ export class Tab2Page implements OnInit {
 
     console.log("Date :", this.eventData.date);
     console.log("Heure :", this.eventData.heure);
+  }
+
+  contributions: any[] = [];
+
+  /*toggleSelection(contrib: { selected: boolean; }) {
+    contrib.selected = !contrib.selected;
+  }*/
+
+  readApi(url: string) {
+    this.http.get<any[]>(url).subscribe((data) => {
+      this.contributions = data;
+      console.log(data)
+    });
   }
 
   newEvent:any;
@@ -109,6 +149,9 @@ export class Tab2Page implements OnInit {
     this.manageEventService.shareNewEvent(this.newEvent);
   }
 
-  ngOnInit() {}
+
+  ngOnInit() {
+    this.readApi(`${environment.api}/contributions`);
+  }
 
 }

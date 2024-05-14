@@ -18,10 +18,11 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LocalStorageService } from './services/local-storage.service';
 import { UpdateProfilComponent } from './components/update-profil/update-profil.component';
+import { PopoverComponent } from './components/popover/popover.component';
 //import { Share } from '@capacitor/share';
 //import { Deeplinks } from '@ionic-native/deeplinks/ngx'
 @NgModule({
-  declarations: [AppComponent,CreationProfilComponent,LoginComponent,EvenementComponent,ProfilEventComponent,RejoindreEventComponent,UpdateProfilComponent],
+  declarations: [AppComponent,CreationProfilComponent,LoginComponent,EvenementComponent,ProfilEventComponent,RejoindreEventComponent,UpdateProfilComponent, PopoverComponent],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,FormsModule,RouterModule,AuthModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },LocalStorageService,//Share,
     {

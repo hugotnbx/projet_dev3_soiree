@@ -3,7 +3,7 @@ import { UsersRelations } from 'src/users-relations/entities/users-relations.ent
 
 @Entity()
 export class Contributions {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     idContribution:number;
 
     @Column()
