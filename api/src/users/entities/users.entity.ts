@@ -1,13 +1,13 @@
 import {Entity, Column, PrimaryColumn, OneToMany, PrimaryGeneratedColumn, Unique} from 'typeorm';
 import { UsersRelations } from 'src/users-relations/entities/users-relations.entity';
 
-@Unique(["mail", "username"])
+//@Unique(["mail", "username"])
 @Entity()
 export class Users {
     @PrimaryGeneratedColumn()
     idProfil: number;
 
-    @Column({ length: 20 })
+    @Column({ length: 20 ,unique:true})
     username: string;
 
     @Column({ length: 50 })
@@ -19,7 +19,7 @@ export class Users {
     @Column({ length: 50 })
     firstName: string;
 
-    @Column({ length: 100 })
+    @Column({ length: 100 ,unique:true})
     mail: string;
 
     @Column({ length: 20 , nullable:true })
