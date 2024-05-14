@@ -13,6 +13,7 @@ export class AuthService {
       const user = await this.usersService.readOnUsername(username);
       //const password = await bcrypt.hash(pass,10);
       //if (user?.password !== pass || user?.username != username){
+      console.log("bcrypt compare result:" + await bcrypt.compare(pass,user?.password))
       if (!await bcrypt.compare(pass,user?.password) || user?.username != username){
         throw new UnauthorizedException();
       }
