@@ -33,8 +33,8 @@ export class UsersService{
     }
 
     async create(usersDto : UsersDto) {
-      //const salt = await bcrypt.genSalt();
-      const salt = 10;
+      //const salt = await bcrypt.genSalt(10);
+      const salt = 1;
       const usersEntities = new Users();
       usersEntities.idProfil = usersDto.idProfil;
       usersEntities.username = usersDto.username;
