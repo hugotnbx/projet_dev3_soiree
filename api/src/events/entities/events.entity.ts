@@ -24,6 +24,9 @@ export class Events {
     @Column()
     nbrBob:number;
 
+    @Column({ default: false })
+    etatdelete:boolean;
+
     @OneToMany(() => UsersRelations, usersRelations => usersRelations.event)
     usersRelations: UsersRelations[];
 }

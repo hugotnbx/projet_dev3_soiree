@@ -12,14 +12,13 @@
   </ion-refresher>
     <h1>Mes événements</h1>
 
-    <ion-card *ngFor="let event of tableEvents;index as i" class="ion-text-center" [routerLink]="['/evenement',event?.id]">
-
+    <ion-card *ngFor="let event of tableEvents; index as i" class="ion-text-center" [routerLink]="['/evenement', event?.id]" [ngClass]="{ 'disabled-event': event?.etatdelete }">
       <ion-card-header>
         <ion-card-title>{{ event?.nom }}</ion-card-title>
         <ion-card-subtitle>{{ event?.date }} à {{ event?.heure }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        {{ event?.lieu }}      
+        {{ event?.etatdelete ? 'Événement annulé' : event?.lieu }}    
       </ion-card-content>
     </ion-card>
 </ion-content>

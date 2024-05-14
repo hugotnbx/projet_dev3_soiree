@@ -37,3 +37,14 @@ h1 {
     max-width: 150px;
     max-height: 150px;
 }
+
+.disabled-event {
+    opacity: 0.5;
+    background-color: #D3D3D3;
+  }
+
+.disabled-event ion-card-header ion-card-title,
+.disabled-event ion-card-header ion-card-subtitle,
+.disabled-event ion-card-content {
+  color: black;
+}

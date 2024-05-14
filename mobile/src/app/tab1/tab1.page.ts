@@ -5,6 +5,9 @@ import { LocalStorageService } from '../services/local-storage.service';
 import { Router } from '@angular/router';
 import { ManageEventService } from '../services/manage-event.service';
 import { Evenement } from '../interfaces/evenement';
+import { ButtonStateService } from '../services/button-state.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -15,7 +18,19 @@ export class Tab1Page implements OnInit {
   events: any;
   tableEvents: any[] = [];
   userId:any;
-  constructor(public http:HttpClient, private localStorage:LocalStorageService, private router: Router, private manageEventService: ManageEventService) {
+  
+  private _isButtonDisabled: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isButtonDisabled$: Observable<boolean> = this._isButtonDisabled.asObservable();
+  isButtonDisabled: boolean = false;
+
+  constructor(public http:HttpClient, private localStorage:LocalStorageService, private router: Router, private manageEventService: ManageEventService, private buttonStateService: ButtonStateService) {}
+
+  disableButton() {
+    this._isButtonDisabled.next(true);
+  }
+
+  enableButton() {
+    this._isButtonDisabled.next(false);
   }
 
   loadEvents() {
@@ -100,6 +115,10 @@ export class Tab1Page implements OnInit {
         const dateB = new Date(b.date + ' ' + b.heure);
         return dateA.getTime() - dateB.getTime();
       });
-    })
+    });
+    
+    this.buttonStateService.isButtonDisabled$.subscribe((isDisabled: boolean) => {
+      this.isButtonDisabled = isDisabled;
+    });
   }
 }

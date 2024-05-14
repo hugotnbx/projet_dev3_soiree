@@ -7,10 +7,17 @@ import { ProfilEventComponent } from './components/profil-event/profil-event.com
 import { UpdateEventComponent } from './components/update-event/update-event.component';
 import { RejoindreEventComponent } from './components/rejoindre-event/rejoindre-event.component';
 import { UpdateProfilComponent } from './components/update-profil/update-profil.component';
+import { Tab1Page } from './tab1/tab1.page';
+
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+
+  {
+    path: 'tab1',
+    component: Tab1Page
   },
 
   {
