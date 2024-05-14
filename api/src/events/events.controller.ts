@@ -43,6 +43,15 @@ export class EventsController {
     return this.eventsService.create(eventsDto);
   }
 
+  @Post('/deletevent/:id')
+  @ApiOperation({ summary: 'Supprimer un événement', description: 'Supprimer un événement en le grisant. Les informations générales restent toute fois disponible' })
+  @ApiBody({ type: EventsDto })
+  @ApiResponse({ status: 201, description: 'Suppression réaliser avec succès.' })
+  @ApiResponse({ status: 404, description: 'La suppression à échouer, veuillez réessayer.' })
+  async toggleEtatDelete(@Param('id') id: number): Promise<void> {
+    await this.eventsService.toggleEtatDelete(id);
+  }
+
   @Put('/:id')
   @ApiOperation({ summary: 'Mettre à jour un événement existant', description: 'Met à jour un événement existant avec les informations générales fournies.' })
   @ApiParam({ name: 'id', description: 'ID de l\'accueil à mettre à jour', type: 'number' })

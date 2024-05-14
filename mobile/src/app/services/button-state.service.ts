@@ -17,4 +17,22 @@ export class ButtonStateService {
   enableButton() {
     this._isButtonDisabled.next(false);
   }
+
+  private _disabledEvents: Set<number> = new Set<number>();
+
+  disableButtonForEvent(eventId: number) {
+      this._disabledEvents.add(eventId);
+      this.updateButtonState();
+  }
+
+  enableButtonForEvent(eventId: number) {
+      this._disabledEvents.delete(eventId);
+      this.updateButtonState();
+  }
+
+  private updateButtonState() {
+      const isButtonDisabled = this._disabledEvents.size > 0;
+      this._isButtonDisabled.next(isButtonDisabled);
+  }
+
 }

@@ -24,7 +24,7 @@ export class Events {
     @Column()
     nbrBob:number;
 
-    @Column()
+    @Column({ default: false })
     etatdelete:boolean;
 
     @OneToMany(() => UsersRelations, usersRelations => usersRelations.event)

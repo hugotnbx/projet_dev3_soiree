@@ -42,10 +42,10 @@
         <ion-card-content>Bobs</ion-card-content>
       </ion-card>
     </ion-row>
-    <ion-button [routerLink]="['/update-event',event?.id]">
+    <ion-button [routerLink]="['/update-event',event?.id]" [ngClass]="{ 'disabled-event': event?.etatdelete }">
       <ion-icon aria-hidden="true" name="pencil-outline" style="height: 35px; width:150px; color: black;"></ion-icon>
     </ion-button>
-    <ion-button (click)="onClickDelete()" #deleteButton>
+    <ion-button (click)="onClickDelete()" #deleteButton [ngClass]="{ 'disabled-event': event?.etatdelete }">
       <ion-icon aria-hidden="true" name="trash-outline" style="height: 35px; width:150px; color: black;"></ion-icon>
     </ion-button>    
 

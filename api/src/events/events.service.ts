@@ -19,7 +19,7 @@ export class EventsService {
 
     async getEventRelations(idProfil:number): Promise<Events[]> {
       return this.eventsRepository.createQueryBuilder('events')
-        .select(['events.id', 'events.nom', 'events.heure', 'events.lieu', 'events.date'])
+        .select(['events.id', 'events.nom', 'events.heure', 'events.lieu', 'events.date', 'events.etatdelete'])
         .leftJoinAndSelect('events.usersRelations', 'usersRelations')
         .where('usersRelations.idProfil = :idProfil', { idProfil })
         .getMany();
@@ -54,5 +54,15 @@ export class EventsService {
       const events = await this.eventsRepository.findOne({where:{id}});
       await this.eventsRepository.delete({id});
       return events;
+    }
+
+    async toggleEtatDelete(id: number): Promise<void> {
+      const event = await this.eventsRepository.findOne({ where: { id } }); // Spécifier l'option de recherche
+      if (!event) {
+        throw new Error('Événement non trouvé');
+      }
+      // Basculez l'état de suppression de l'événement
+      event.etatdelete = !event.etatdelete;
+      await this.eventsRepository.save(event);
     }
 }
