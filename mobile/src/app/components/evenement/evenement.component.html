@@ -3,6 +3,9 @@
     <ion-back-button defaultHref="/tabs/tab1" text="" icon="chevron-back-outline"></ion-back-button>
   </ion-buttons>
   <ion-title id="event-name">{{ event?.nom }}</ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="sShare()"><ion-icon id="shareEventButton" name="share-outline"></ion-icon></ion-button>
+  </ion-buttons>
 </ion-toolbar>
 
 <ion-content [fullscreen]="true" class="ion-text-center">
@@ -42,14 +45,15 @@
         <ion-card-content>Bobs</ion-card-content>
       </ion-card>
     </ion-row>
-    <ion-button [routerLink]="['/update-event',event?.id]" [ngClass]="{ 'disabled-event': event?.etatdelete }">
-      <ion-icon aria-hidden="true" name="pencil-outline" style="height: 35px; width:150px; color: black;"></ion-icon>
-    </ion-button>
-    <ion-button (click)="sShare()"><ion-icon name="share-outline"></ion-icon></ion-button>
-
-    <ion-button (click)="onClickDelete()" #deleteButton [ngClass]="{ 'disabled-event': event?.etatdelete }">
-      <ion-icon aria-hidden="true" name="trash-outline" style="height: 35px; width:150px; color: black;"></ion-icon>
-    </ion-button>    
+    <ion-row>
+      <ion-button id="updateEventButton" class="eventActionsButton" [routerLink]="['/update-event',event?.id]" [ngClass]="{ 'disabled-event': event?.etatdelete }">
+        <ion-icon aria-hidden="true" name="pencil-outline" style="height: 35px; width:150px; color: black;"></ion-icon>
+      </ion-button>
+    
+      <ion-button id="cancelEventButton" class="eventActionsButton" (click)="onClickDelete()" #deleteButton [ngClass]="{ 'disabled-event': event?.etatdelete }">
+        <ion-icon aria-hidden="true" name="trash-outline" style="height: 35px; width:150px; color: black;"></ion-icon>
+      </ion-button>
+    </ion-row>    
 
     <h1>Liste des invités</h1>
 

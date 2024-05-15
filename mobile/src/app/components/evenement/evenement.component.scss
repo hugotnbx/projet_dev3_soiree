@@ -91,7 +91,24 @@ ion-back-button {
   height: 65px;
 }
 
+.eventActionsButton {
+  width: 150px;
+}
+
+#updateEventButton {
+  margin-left: 35px;
+}
+
+#cancelEventButton {
+  margin-right: 35px;
+}
+
 .disabled-event {
   opacity: 0.5;
   pointer-events: none;
+}
+
+#shareEventButton {
+  color: black;
+  margin-right: 20px;
 }
