@@ -35,6 +35,11 @@
                 <ion-input label="Mot de passe" labelPlacement="floating" name="password" type="password" placeholder="Votre mot de passe" ngModel required></ion-input>
               </ion-item>
 
+              <ion-row *ngIf='isNotTheSame'>
+                <div text-center id="registerError">
+                Les mots de passes ne correspondent pas
+                </div>
+              </ion-row>
               <ion-item>
                 <ion-input label="Confirmation du mot de passe" labelPlacement="floating" name="confirm" type="password" placeholder="Confirmer votre mot de passe" ngModel required></ion-input>
               </ion-item>
