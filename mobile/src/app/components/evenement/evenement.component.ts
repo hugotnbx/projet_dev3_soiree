@@ -8,8 +8,9 @@ import { Evenement } from 'src/app/interfaces/evenement';
 import { ButtonStateService } from '../../services/button-state.service';
 import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-
 import { Share } from '@capacitor/share';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+
 @Component({
   selector: 'app-evenement',
   templateUrl: './evenement.component.html',
@@ -22,16 +23,38 @@ export class EvenementComponent implements OnInit, OnDestroy {
   isButtonDisabled: boolean = false; // Variable locale pour stocker l'état du bouton
   buttonStateSubscription: Subscription | undefined;
 
-  constructor(public http: HttpClient, private route: ActivatedRoute, private manageEventService: ManageEventService, private router: Router, private buttonStateService: ButtonStateService, private alertController: AlertController) {}
+  constructor(public http: HttpClient, private route: ActivatedRoute, private localStorage:LocalStorageService, private manageEventService: ManageEventService, private router: Router, private buttonStateService: ButtonStateService, private alertController: AlertController) {}
+
+  isAdmin: boolean = false;
+  userId: any;
+  profil: any;
 
   ngOnInit() {
     this.loadEventInfos();
+    this.loadProfil(); 
 
     this.manageEventService.updatedEvent$.subscribe((updatedEvent: Evenement) => {
       this.event = updatedEvent;
     });
   }
 
+  loadProfil(){
+    const token = localStorage.getItem("ACCESS_TOKEN");
+    this.userId = token?.split(".")
+    //console.log(atob(this.userId[1]))
+    this.userId=JSON.parse(atob(this.userId[1]))
+    console.log(this.userId.username);
+    const currentTime = Math.floor(Date.now() / 1000)
+    if(!this.localStorage.getItem('ACCESS_TOKEN') || this.userId.exp < currentTime){
+      this.router.navigateByUrl('login');
+    }
+    this.readApi(`${environment.api}/users/${this.userId.username}`)
+    .subscribe((data) =>{
+      console.log(data);
+      this.profil= data;
+    });
+  }
+  
   loadEventInfos() {
     const paramValue = this.route.snapshot.paramMap.get('id');
 
@@ -46,6 +69,15 @@ export class EvenementComponent implements OnInit, OnDestroy {
     this.readApi(`${environment.api}/users-relations/get-user-relations/${paramValue}`).subscribe((data) => {
       console.log(data);
       this.eventprofil = data;
+
+      
+      for (let relation of this.eventprofil) {
+        if (relation.idStatus === 3 && relation.idProfil === this.userId.username) { 
+          this.isAdmin = true;
+          console.log("l'utilisateur connecter est un admin");
+          break;
+        }
+      }
     });
   }
 
@@ -105,16 +137,13 @@ export class EvenementComponent implements OnInit, OnDestroy {
 
   getImageUrl(status: string): string {
     if (!status || typeof status !== 'string' || !/^[a-zA-Z]+$/.test(status)) {
-        throw new Error('Le statut est invalide.');
-    } 
+      throw new Error('Le statut est invalide.');
+    }
 
     return `./assets/role/${status}.png`;
   }
 
-  /* isAdmin(role: string): boolean {
-    return role === 'Admin';
-  } */
-  /*async sShare(){
+  /*async sShare() {
     await Share.share({
       title: "Participer à l'événement",
       text: `Je suis intéressé par votre événement "${this.event.name}"`,
