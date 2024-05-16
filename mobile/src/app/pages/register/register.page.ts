@@ -13,7 +13,7 @@ export class RegisterPage implements OnInit {
   constructor(private  authService:  AuthService, private  router:  Router) { }
 
   ngOnInit() {}
-  
+  isNotTheSame = false;
   register(form:NgForm){
     if (form.value.confirm == form.value.password){
       this.authService.register(form.value).subscribe((res) => {
@@ -21,6 +21,7 @@ export class RegisterPage implements OnInit {
       });
     }
     else{
+      this.isNotTheSame=true;
       console.log("mdp ne match pas")
     }
   }
