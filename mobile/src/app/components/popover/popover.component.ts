@@ -4,55 +4,57 @@ import { HttpClient } from '@angular/common/http';
 import { Contribution } from 'src/app/interfaces/contribution';
 import { contribution } from './popover'
 import { PopoverController } from '@ionic/angular';
+import { Tab2Page } from 'src/app/tab2/tab2.page';
 
 import { IonicStorageModule } from '@ionic/storage-angular';
-import { Storage } from '@ionic/storage-angular';
+import { Storage } from '@ionic/storage-angular'
+
+import { NavParams } from '@ionic/angular';;
 
 @Component({
   selector: 'app-popover',
   templateUrl: './popover.component.html',
   styleUrls: ['./popover.component.scss'],
 })
-export class PopoverComponent implements OnInit {
+export class PopoverComponent implements OnInit{
 
   contributionData:Contribution={
     idContribution:0,
     nom:"",
     prix:0,
   }
+  existingContributions: any[] = [];
 
-  constructor(private http: HttpClient, private popCtrl: PopoverController) { }
+  constructor(private http: HttpClient, private popCtrl: PopoverController, private navParams: NavParams) { 
+    this.readApi(`${environment.api}/contributions`);
+  }
 
   contributions: any[] = [];
+  filteredContributions: any[] = [];
   showInput: boolean = false;
   newContribution: string = '';
   atLeastOneSelected: boolean = false;
+  searchTerm: string = '';
 
-  ngOnInit() {
-    this.readApi(`${environment.api}/contributions`);
-    //this.loadSelectedContributions();
-  }
+  ngOnInit() {}
 
-  // loadSelectedContributions() {
-  //   this.storage.get('selectedContributions').then((selectedContributions) => {
-  //     if (selectedContributions) {
-  //       this.selectedContributions = selectedContributions;
-  //       this.updateSelections();
-  //     }
-  //   });
-  // }
-
-  // updateSelections() {
-  //   this.contributions.forEach(contrib => {
-  //     contrib.selected = this.selectedContributions.some(selected => selected.id === contrib.id);
-  //   });
-  // }
-
-  readApi(url: string) {
-    this.http.get<any[]>(url).subscribe((data) => {
-      this.contributions = data;
-    });
-  }
+readApi(url: string) {
+  this.http.get<any[]>(url).subscribe((data) => {
+    this.contributions = data;
+    this.existingContributions = this.navParams.get('existingContributions') || [];
+    if (this.existingContributions.length == 0){}
+    else{ 
+      for (let i in this.existingContributions){
+        for (let a in this.contributions){
+          if (this.existingContributions[i].idContribution == this.contributions[a].idContribution){
+            this.contributions[a].selected = this.existingContributions[i].selected
+          }
+        }
+      }
+    }
+    this.filterContributions();
+  });
+}
 
   toggleInput() {
     if (!this.showInput) {
@@ -63,13 +65,13 @@ export class PopoverComponent implements OnInit {
   newContribtion:any;
 
   ajouterContribution(){
-    //console.log(this.newContribution)
     this.newContribtion = new contribution (this.contributionData);
   
     this.http.post<any>(`${environment.api}/contributions`, this.newContribtion)
       .subscribe(contributionResponse => {
         console.log(contributionResponse);
         this.contributions.push(contributionResponse);
+        this.filterContributions();
 
         this.contributionData = {
           idContribution: 0,
@@ -97,12 +99,15 @@ export class PopoverComponent implements OnInit {
     }
     this.atLeastOneSelected = this.selectedContributions.length > 0;
     this.showInput = false;
-
-    // this.storage.set('selectedContributions', this.selectedContributions);
   }
 
   afficherContribution(){
     this.popCtrl.dismiss(this.selectedContributions);
   }
 
+  filterContributions() {
+    this.filteredContributions = this.contributions.filter((contrib) => {
+      return contrib.nom.toLowerCase().includes(this.searchTerm.toLowerCase());
+    });
+  }
 }

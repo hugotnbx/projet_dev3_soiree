@@ -40,9 +40,13 @@ export class Tab2Page implements OnInit {
     idStatus:3,
   }
 
+  
+
   maxDate: string;
   minDate: string;
   selectedContributions: any[] = [];
+  selectedContributionsMap: any[] = [];
+  showContrib: boolean = false;
   
   constructor(public http:HttpClient, private router: Router, private localStorage:LocalStorageService, private manageEventService: ManageEventService, private popCtrl: PopoverController) {
     const now = new Date();
@@ -75,14 +79,44 @@ export class Tab2Page implements OnInit {
       mode: 'ios',
       backdropDismiss: true,
       animated: true,
+      componentProps: {
+        existingContributions: this.selectedContributionsMap
+      }
     })
     popover.onDidDismiss().then((dataReturned) => {
       if (dataReturned !== null) {
           this.selectedContributions = dataReturned.data;
-          //this.selectedContributions = [...this.selectedContributions, ...dataReturned.data];
+          //console.log(this.selectedContributions)
+          if (this.selectedContributions == undefined){}
+          else {
+            if (this.selectedContributionsMap.length == 0){
+              this.selectedContributionsMap = this.selectedContributions.slice()
+            }
+            else{
+              for (let i in this.selectedContributions){
+                let alreadyIn:Boolean = false;
+                for (let a in this.selectedContributionsMap){
+                  if (this.selectedContributions[i].idContribution == this.selectedContributionsMap[a].idContribution){
+                    alreadyIn = true;
+                    break;
+                  }
+                }
+                if (!alreadyIn){
+                  this.selectedContributionsMap.push(this.selectedContributions[i])
+                }
+              }
+            }
+          }
+          if (this.selectedContributionsMap.length > 0 && (this.selectedContributions == undefined || this.selectedContributions.length > 0))
+          this.showContrib = true;
+
+          //this.popCtrl.dismiss(this.selectedContributionsMap);
       }
     });
     return await popover.present()
+  }
+
+  pushTableContrib(tableContribMap: any[], tableContrib:any){
   }
 
   onDateTimeChange(event: CustomEvent) {
@@ -105,10 +139,6 @@ export class Tab2Page implements OnInit {
 
   contributions: any[] = [];
 
-  /*toggleSelection(contrib: { selected: boolean; }) {
-    contrib.selected = !contrib.selected;
-  }*/
-
   readApi(url: string) {
     this.http.get<any[]>(url).subscribe((data) => {
       this.contributions = data;
@@ -128,6 +158,8 @@ export class Tab2Page implements OnInit {
     }
 
     this.newEvent = new evenement(this.eventData);
+
+    
   
     this.http.post<any>(`${environment.api}/events`, this.newEvent)
       .subscribe(eventResponse => {
@@ -135,11 +167,19 @@ export class Tab2Page implements OnInit {
         this.relationData.idEvent=eventResponse.id;
   
         this.newRelation = new relation(this.relationData);
-  
-        this.http.post<any>(`${environment.api}/users-relations`, this.newRelation)
-          .subscribe(relationResponse => {
-            console.log(relationResponse);
-          });
+        
+        for(let long = 0 ; long < this.selectedContributionsMap.length ; long++){
+          if (this.selectedContributionsMap[long].selected == true){
+            console.log(this.selectedContributionsMap[0].idContribution);
+            this.relationData.idContribution=this.selectedContributionsMap[long].idContribution;
+            // this.Rejoindre.idStatus = this.selectedOption;
+            //console.log(this.Rejoindre);
+            this.http.post<any>(`${environment.api}/users-relations`, this.relationData)
+            .subscribe(response => {
+              console.log(response); 
+            });
+          }
+        }
         
           this.router.navigateByUrl(`/evenement/${eventResponse.id}`);
       });
@@ -147,6 +187,19 @@ export class Tab2Page implements OnInit {
     this.errorMessage = '';
     
     this.manageEventService.shareNewEvent(this.newEvent);
+  }
+
+  removeContribution(item:any){
+    item.selected = false;
+    const index = this.selectedContributionsMap.indexOf(item);
+    if (index > -1) {
+      this.selectedContributionsMap.splice(index, 1);
+    }
+
+    if (this.selectedContributionsMap.length == 0){
+      this.showContrib = false;
+    }
+
   }
 
 

@@ -58,31 +58,28 @@ ion-item {
     --top: 50px;
  }
 
-.option-card.selected {
-    background-color: #ffbf00 /* Jaune */
-}
-
-.ion-label {
-   
-    background-color: inherit;
-    color: inherit; /* Utiliser la couleur du parent */
-}
-
-.selected {
-    background-color: #ffbf00; /* Bleu si sélectionné */
-    color: black; /* Texte blanc si sélectionné */
-}
-
-ion-card:not(.selected) {
-    background-color: #F9E6AC; /* Jaune si non sélectionné */
-    color: black; /* Texte noir si non sélectionné */
-}
 
 .centred-element {
     display: flex;
-    justify-content: center; // Pour centrer horizontalement
-    align-items: center; // Pour centrer verticalement
+    justify-content: center;
+    align-items: center;
 }
 .ion-padding{
     height: 120px;
 }
+
+.custom-contribution-item {
+    --background: #F9E6AC;
+    --border-radius: 15px;
+    margin-bottom: 10px;
+    --ion-item-background: #F9E6AC;
+    --padding-start: 15px;
+    --padding-end: 15px;
+    --inner-border-radius: 15px;
+    border-radius: 15px;
+  }
+  
+  ion-item-sliding {
+    --border-radius: 15px;
+    margin-bottom: 10px;
+  }
