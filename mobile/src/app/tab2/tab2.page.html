@@ -60,6 +60,17 @@
     </ion-input>
   </ion-item>
 
+  <ion-button (click)="openPopover($event)" class="custom-popover" class="popover-top">Contributions</ion-button>
+  
+  <ion-list class="aliment">
+    <ion-label>
+      <h2>Contributions</h2>
+    </ion-label>
+    <ion-card *ngFor="let item of selectedContributions">
+      <ion-card-content class="item-label">{{ item.nom }} - {{ item.prix }}€</ion-card-content>
+    </ion-card>
+  </ion-list>
+
   <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
   <br>
 
