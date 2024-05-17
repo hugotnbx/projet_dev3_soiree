@@ -112,16 +112,21 @@ export class Tab1Page implements OnInit {
     if(this.tableEvents.length!==0){
       //alert(`${this.tableEvents}`)
       this.tableEvents.forEach((event:any) => {
+        /*if(this.oneDayDiff(event.date)){
+          
+        }*/
+        const dixMin = new Date(new Date().getTime() + 10 * 60 * 1000);
         let notification = {
           id:id,
           title:event.nom,
           body:`${event.nom} à ${event?.heure}`,
           largeBody:`Ne passez pas à coté de ${event.nom} à ${event?.heure}`,
-          summaryText:`${event.nom}`
+          summaryText:`${event.nom}`,
+          schedule: { at: dixMin },
         }
         id+=1;
         this.notifs["notifications"].push(notification);
-        //alert(`${this.notifs["notifications"]}`)
+        
       });
       this.notif.scheduleNotification(this.notifs);
 
