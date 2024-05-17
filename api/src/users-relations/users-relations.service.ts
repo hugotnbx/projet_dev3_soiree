@@ -52,6 +52,12 @@ export class UsersRelationsService {
       return usersRelations;
     }
 
+    async update(idEvent : number , idContribution : number, data : Partial<UsersRelations> ){
+      await this.UsersRelationsRepository.update({idEvent , idContribution},data);
+      const users = this.UsersRelationsRepository.findOne({where:{idEvent , idContribution}})
+      return users;
+    }
+
     async delete(idProfil:number,idEvent:number){
       const usersRelations = await this.UsersRelationsRepository.findOne({where:{ idProfil,idEvent}});
       await this.UsersRelationsRepository.delete({idProfil,idEvent});

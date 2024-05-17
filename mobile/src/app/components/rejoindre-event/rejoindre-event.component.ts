@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
-//import { IonViewWillEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-rejoindre-event',
@@ -9,71 +9,67 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./rejoindre-event.component.scss'],
 })
 export class RejoindreEventComponent  implements OnInit {
-  
-  aliments:any;
+ 
+  showContent = false;
 
-  Rejoindre= {
-    idEvent:125,
-    idProfil:"neut",
-    idContribution:"",
-    idStatus:1,
-    role:""
+  Rejoindre={
+    idProfil:1,
+    idContribution:0,
+    idEvent:0,
+    idStatus:0
   };
+  code : any;
+  errorMessage: string = '';
 
-  constructor(public http:HttpClient) {}
-  
-  readApi(URL:string){
-    return this.http.get(URL);
+  constructor(public http:HttpClient,private route :ActivatedRoute) {
+    
   }
-
   ngOnInit() {
-    this.readApi(`${environment.api}/contributions`)
-    .subscribe((data) =>{
-    
-      this.aliments= data;
-    
-      for(let long = 0 ; long < this.aliments.length ; long++){
-        this.aliments[long].selected = false;
-      }
-      console.log(this.aliments);
-    });
   }
 
+  aliments:any; 
   selectedOption: number = 1;
 
+  verifications() {
+    this.http.get(`${environment.api}/events/verif/${this.code}`)
+      .subscribe((data) => {
+        let keys = Object.values(data);
+        console.log(keys)
+      
+        this.aliments = { ...data };
+        console.log("data", data);
+        for (let long = 0; long < this.aliments[0].usersRelations.length; long++) {
+          this.aliments[0].usersRelations[long].contribution.selected = false;
+        }
+        this.showContent = true;
+        console.log("aliments :", this.aliments[0].usersRelations);
+      },
+      error => {
+        this.errorMessage = "Cet événement n'existe pas.";
+      });
+  }
+
+    
+  
   selectOption(option: number) {
     this.selectedOption = option;
     console.log(this.selectedOption);
-  }
+  } 
 
   toggleSelection(ali: { selected: boolean; }) {
     ali.selected = !ali.selected;
-  }
+  } 
 
-  getTotal() {
-    let total = 0;
-    if (this.aliments && typeof this.aliments === 'object') {
-      for (let key in this.aliments) {
-        if (this.aliments.hasOwnProperty(key) && this.aliments[key].selected) {
-          total += parseFloat(this.aliments[key].prix);
-        }
-      }
-    } else {
-      console.error("Erreur : this.aliments n'est pas un objet valide");
-      return "0.00";
-    }
-    return total.toFixed(2);
-  }
-  
 
   rejoindreEvent() {
-    for(let long = 0 ; long < this.aliments.length ; long++){
-      if (this.aliments[long].selected == true){
-        console.log(this.aliments[0].idContribution);
-        this.Rejoindre.idContribution=this.aliments[long].idContribution;
-        this.Rejoindre.idStatus = this.selectedOption;
+    this.Rejoindre.idStatus = this.selectedOption;
+    this.Rejoindre.idEvent = this.aliments[0].id
+    for(let long = 0 ; long < this.aliments[0].usersRelations.length ; long++){
+      if (this.aliments[0].usersRelations[long].contribution.selected == true){
+        console.log(this.aliments[0].usersRelations[long].idContribution);
+        this.Rejoindre.idContribution=this.aliments[0].usersRelations[long].idContribution;
         console.log(this.Rejoindre);
-        this.http.post<any>(`${environment.api}/users-relations`, this.Rejoindre)
+        this.http.put<any>(`${environment.api}/users-relations/${this.Rejoindre.idEvent}/${this.Rejoindre.idContribution}`, this.Rejoindre)
         .subscribe(response => {
           console.log(response); 
         });

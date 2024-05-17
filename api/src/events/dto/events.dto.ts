@@ -32,6 +32,13 @@ export class EventsDto {
     readonly  date : Date;
 
     @ApiProperty({
+        required:true,
+        type:'string',
+    })
+    readonly  code : string;
+
+
+    @ApiProperty({
         required:false,
         type:'number',
     })
