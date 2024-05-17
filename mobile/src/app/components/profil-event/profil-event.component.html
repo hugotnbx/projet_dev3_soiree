@@ -1,8 +1,11 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>{{profil?.firstName}} {{profil?.name}}</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/tabs/tab1" text="" icon="chevron-back-outline"></ion-back-button>
+  </ion-buttons>
+  <div class="toolbar-image-container">
+    <img src="../../assets/icon/IZIPLAN.png" alt="Logo" class="toolbar-image">
+  </div>   
+</ion-toolbar>
 
 <ion-content [fullscreen]="true">
   <h1 id="title">Profil</h1>

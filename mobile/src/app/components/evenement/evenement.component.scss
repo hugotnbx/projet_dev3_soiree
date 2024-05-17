@@ -24,8 +24,7 @@ ion-button {
 }
 
 ion-row {
-  margin-top: 0;
-  margin-bottom: 5%;
+  margin: 0 0 5% 0;
   justify-content: space-between;
 }
 
@@ -33,9 +32,9 @@ ion-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: -20px;
-  margin-bottom: 10px;
   background-color: #F9E6AC;
+  margin-bottom: 10px;
+  padding: -20px;
 }
 
 .profile-container {
@@ -45,7 +44,7 @@ ion-row {
 }
 
 .profile-image-container {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .profile-image {
@@ -64,30 +63,32 @@ ion-row {
 
 ion-card-title.idProfil, ion-card-subtitle.role {
   text-align: left;
+  margin: 0;
 }
 
 ion-card-title.idProfil {
-  font-size: 20px;
-  margin: 0;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 6px;
 }
 
 ion-card-subtitle.role {
-  font-size: 15px;
-  margin: 0;
+  font-size: 12px;
 }
 
 ion-thumbnail.image-container {
-  width: 50px;
-  height: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  margin: 0;
+  margin: -65px 20px 0 0;
+  padding-bottom: 20px;
+  width: auto;
+  height: auto;
 }
 
 .image-container img {
-  width: 100%;
-  height: auto;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
 }
 
@@ -138,67 +139,4 @@ ion-back-button {
 #shareEventButton {
   color: black;
   margin-right: 20px;
-}
-
-.status {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  background-color: #F9E6AC;
-}
-
-.profile-container {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
-
-.profile-image-container {
-  margin-right: 20px;
-}
-
-.profile-image {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-}
-
-.text-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex: 1;
-}
-
-ion-card-title.idProfil, ion-card-subtitle.role {
-  text-align: left;
-}
-
-ion-card-title.idProfil {
-  font-size: 20px;
-  margin: 0;
-}
-
-ion-card-subtitle.role {
-  font-size: 15px;
-  margin: 0;
-}
-
-ion-thumbnail.image-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: auto;
-  height: auto;
-  margin-top: -60px;
-  margin-right: 20px;
-  padding-bottom: 20px;
-}
-
-.image-container img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
 }

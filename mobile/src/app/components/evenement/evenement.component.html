@@ -64,8 +64,8 @@
             <img src="../../../assets/icon/user.png" alt="Photo" class="profile-image">
           </ion-thumbnail>
           <div class="text-container">
-            <ion-card-title class="idProfil">{{ profil.user?.username }}</ion-card-title>
-            <ion-card-subtitle class="role">{{ profil.status?.status }}</ion-card-subtitle>
+            <ion-card-title class="idProfil">{{ profil.user?.firstName }} {{ profil.user?.name }}</ion-card-title>
+            <ion-card-subtitle class="role">&#64;{{ profil.user?.username }}</ion-card-subtitle>
           </div>
         </div>
       </ion-card-header>
