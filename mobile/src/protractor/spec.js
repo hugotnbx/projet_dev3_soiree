@@ -77,7 +77,7 @@ describe('Register pages tests', function() {
   it('should not register user because email is already taken', () => {
     browser.get('http://localhost:8100/register');
 
-    element(by.css('input[name="username"]')).sendKeys('testuser2');
+    element(by.css('input[name="username"]')).sendKeys('testuser22');
     element(by.css('input[name="name"]')).sendKeys('Test');
     element(by.css('input[name="firstName"]')).sendKeys('User');
     element(by.css('input[name="mail"]')).sendKeys('usertest@example.com');
@@ -99,7 +99,7 @@ describe('Register pages tests', function() {
     element(by.css('input[name="username"]')).sendKeys('testuser');
     element(by.css('input[name="name"]')).sendKeys('Test');
     element(by.css('input[name="firstName"]')).sendKeys('User');
-    element(by.css('input[name="mail"]')).sendKeys('usertest2@example.com');
+    element(by.css('input[name="mail"]')).sendKeys('usertest22@example.com');
     element(by.css('input[name="password"]')).sendKeys('user123');
     element(by.css('input[name="confirm"]')).sendKeys('user123');
 
@@ -115,10 +115,10 @@ describe('Register pages tests', function() {
   it('should register user with valid data', () => {
     browser.get('http://localhost:8100/register');
 
-    element(by.css('input[name="username"]')).sendKeys('testuser');
+    element(by.css('input[name="username"]')).sendKeys('testuser3');
     element(by.css('input[name="name"]')).sendKeys('Test');
     element(by.css('input[name="firstName"]')).sendKeys('User');
-    element(by.css('input[name="mail"]')).sendKeys('testuser@example.com');
+    element(by.css('input[name="mail"]')).sendKeys('testuser3@example.com');
     element(by.css('input[name="password"]')).sendKeys('user123');
     element(by.css('input[name="confirm"]')).sendKeys('user123');
 
@@ -216,7 +216,7 @@ describe('Tabs redirections', function() {
     browser.get('http://localhost:8100/tabs/tab3');
 
     element(by.css('[href="/tabs/tab1"]')).click();
-    
+
     browser.waitForAngular();
 
     expect(browser.getCurrentUrl()).toEqual('http://localhost:8100/tabs/tab1');
@@ -251,16 +251,16 @@ describe('Events creation tests', function() {
     expect(errorMessage.getText()).toContain('Vous ne pouvez pas proposer plus de 10 lits'); */
   });
 
-  /* it('should successfully create an event', () => {
+  it('should successfully create an event', () => {
     browser.get('http://localhost:8100/tabs/tab2');
     element(by.css('input[name="Nom"]')).sendKeys('Test end to end');
     element(by.css('input[name="Lieu"]')).sendKeys('Rue du test end to end');
     element(by.css('input[name="nbrLit"]')).sendKeys('6'); 
     browser.executeScript("arguments[0].click();", element(by.id('eventButton')));
-    ;
+    
     browser.waitForAngular();
     expect(browser.getCurrentUrl()).toContain('http://localhost:8100/evenement/');
-  }); */
+  }); 
 });
 
 describe('Profil informations tests', function() {
@@ -294,3 +294,137 @@ describe('Home page tests', function() {
     expect(browser.getCurrentUrl()).toContain('http://localhost:8100/evenement/');
   });
 });
+
+describe('Event page tests for admin', function() {
+  it('should display the event name', () => {
+    browser.get('http://localhost:8100/evenement/10');
+
+    let eventName = element(by.id('event-name'));
+
+    expect(eventName.isPresent()).toBe(true);
+    expect(eventName.getText()).toBe('Test'); 
+  });
+
+  it('should display the correct date and time', () => {
+    let dateTime = element(by.id('date-time'));
+
+    expect(dateTime.isPresent()).toBe(true);
+    expect(dateTime.getText()).toBe('2024-05-17 à 20:00'); 
+  });
+
+  it('should display the correct location', () => {
+    let location = element(by.id('location'));
+
+    expect(location.isPresent()).toBe(true);
+    expect(location.getText()).toBe('11 Rue du test end to end'); 
+  });
+
+  it('should display the correct number of free beds', () => {
+    let nbrLit = element(by.id('nbrLit'));
+
+    expect(nbrLit.isPresent()).toBe(true);
+    expect(nbrLit.getText()).toBe('2'); 
+  });
+
+  it('should display the correct number of bobs', () => {
+    let nbrBob = element(by.id('nbrBob'));
+
+    expect(nbrBob.isPresent()).toBe(true);
+    expect(nbrBob.getText()).toBe('0'); 
+  });
+
+  it('should display the share button if admin', () => {
+    let shareButton = element(by.id('shareEventButton'));
+
+    expect(shareButton.isPresent()).toBe(true);
+  });
+
+  it('should display the update button if admin', () => {
+    let updateButton = element(by.id('updateEventButton'));
+
+    expect(updateButton.isPresent()).toBe(true);
+  });
+
+  it('should display the cancel button if admin', () => {
+    let cancelButton = element(by.id('cancelEventButton'));
+
+    expect(cancelButton.isPresent()).toBe(true);
+  });
+
+  it('should display the users of the event', () => {
+    const profileCards = element.all(by.css('ion-card.status'));
+
+    expect(profileCards.count()).toBeGreaterThan(0);
+  });
+
+  it('should navigate to the profile of the user on profile card click', () => {
+    let profileCard = element.all(by.css('ion-card.status')).first();
+
+    profileCard.click();
+
+    expect(browser.getCurrentUrl()).toContain('http://localhost:8100/profil-event/'); 
+  });
+}); 
+
+describe('Event page tests for guests', function() {
+  it('should display the event name', () => {
+    browser.get('http://localhost:8100/evenement/4');
+
+    let eventName = element(by.id('event-name'));
+
+    expect(eventName.isPresent()).toBe(true);
+    expect(eventName.getText()).toBe('soiree poker'); 
+  });
+
+  it('should display the correct date and time', () => {
+    let dateTime = element(by.id('date-time'));
+
+    expect(dateTime.isPresent()).toBe(true);
+    expect(dateTime.getText()).toBe('2024-05-23 à 18:11'); 
+  });
+
+  it('should display the correct location', () => {
+    let location = element(by.id('location'));
+
+    expect(location.isPresent()).toBe(true);
+    expect(location.getText()).toBe('chez oim'); 
+  });
+
+  it('should display the correct number of free beds', () => {
+    let nbrLit = element(by.id('nbrLit'));
+
+    expect(nbrLit.isPresent()).toBe(true);
+    expect(nbrLit.getText()).toBe('2'); 
+  });
+
+  it('should display the correct number of bobs', () => {
+    let nbrBob = element(by.id('nbrBob'));
+
+    expect(nbrBob.isPresent()).toBe(true);
+    expect(nbrBob.getText()).toBe('0'); 
+  });
+
+  it('should display the share button if admin', () => {
+    let shareButton = element(by.id('shareEventButton'));
+
+    expect(shareButton.isPresent()).toBe(false);
+  });
+
+  it('should display the update button if admin', () => {
+    let updateButton = element(by.id('updateEventButton'));
+
+    expect(updateButton.isPresent()).toBe(false);
+  });
+
+  it('should display the cancel button if admin', () => {
+    let cancelButton = element(by.id('cancelEventButton'));
+
+    expect(cancelButton.isPresent()).toBe(false);
+  });
+
+  it('should display the users of the event', () => {
+    const profileCards = element.all(by.css('ion-card.status'));
+
+    expect(profileCards.count()).toBeGreaterThan(0);
+  });
+}); 
