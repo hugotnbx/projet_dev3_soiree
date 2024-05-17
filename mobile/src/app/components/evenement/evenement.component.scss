@@ -33,7 +33,7 @@ ion-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: -20px;
   margin-bottom: 10px;
   background-color: #F9E6AC;
 }
@@ -41,6 +41,7 @@ ion-row {
 .profile-container {
   display: flex;
   align-items: center;
+  flex: 1;
 }
 
 .profile-image-container {
@@ -58,6 +59,7 @@ ion-row {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex: 1;
 }
 
 ion-card-title.idProfil, ion-card-subtitle.role {
@@ -136,4 +138,67 @@ ion-back-button {
 #shareEventButton {
   color: black;
   margin-right: 20px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background-color: #F9E6AC;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.profile-image-container {
+  margin-right: 20px;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+ion-card-title.idProfil, ion-card-subtitle.role {
+  text-align: left;
+}
+
+ion-card-title.idProfil {
+  font-size: 20px;
+  margin: 0;
+}
+
+ion-card-subtitle.role {
+  font-size: 15px;
+  margin: 0;
+}
+
+ion-thumbnail.image-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: auto;
+  height: auto;
+  margin-top: -60px;
+  margin-right: 20px;
+  padding-bottom: 20px;
+}
+
+.image-container img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 }
