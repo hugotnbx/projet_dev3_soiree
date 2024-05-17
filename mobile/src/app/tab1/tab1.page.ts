@@ -7,7 +7,11 @@ import { ManageEventService } from '../services/manage-event.service';
 import { Evenement } from '../interfaces/evenement';
 import { ButtonStateService } from '../services/button-state.service';
 import { BehaviorSubject, Observable } from 'rxjs';
-
+import { NotificationsService } from '../services/notifications.service';
+import { LocalNotifications, ScheduleOptions } from '@capacitor/local-notifications';
+import { LocalNotificationSchema } from '@capacitor/local-notifications';
+import { LocalNotificationDescriptor } from '@capacitor/local-notifications';
+import { EvenementComponent } from '../components/evenement/evenement.component';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -18,13 +22,16 @@ export class Tab1Page implements OnInit {
   events: any;
   tableEvents: any[] = [];
   userId:any;
+  notifs:any;
+  
   
   private _isButtonDisabled: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isButtonDisabled$: Observable<boolean> = this._isButtonDisabled.asObservable();
   isButtonDisabled: boolean = false;
 
-  constructor(public http:HttpClient, private localStorage:LocalStorageService, private router: Router, private manageEventService: ManageEventService, private buttonStateService: ButtonStateService) {}
+  constructor(public http:HttpClient, private localStorage:LocalStorageService, private router: Router, private manageEventService: ManageEventService, private buttonStateService: ButtonStateService, private notif:NotificationsService) {
 
+  }
   disableButton() {
     this._isButtonDisabled.next(true);
   }
@@ -58,11 +65,12 @@ export class Tab1Page implements OnInit {
       });
     console.log(this.tableEvents);
     });
+    this.callNotif();
   }
 
   refreshEvents(events:any) {
     this.loadEvents();
-
+    this.callNotif();
     setTimeout(() => {
       events.target.complete();
     }, 2000);
@@ -78,13 +86,64 @@ export class Tab1Page implements OnInit {
   readApi(URL:string){
     return this.http.get(URL);
   }
+  oneDayDiff(date1: Date): boolean {
+    const date1Time = new Date(date1).getTime();
+    const date2Time = new Date().getTime();
+    const differenceInMilliseconds = Math.abs(date1Time - date2Time);
+    const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
+    return differenceInDays === 1;
+  }
+  callNotif(){
+    let id = 0;
+    this.notifs = {notifications:[]};
+    /*this.events.array.forEach((event:any) => {
+      if (this.oneDayDiff(event.date)){
+        let notification = {
+          id:id,
+          title:event.nom,
+          body:`${event.nom} à ${event?.heure}`,
+          largeBody:`Ne passez pas à coté de ${event.nom} à ${event?.heure}`,
+          summaryText:`${event.nom}`
+        }
+        id+=1;
+        this.notifs["notifications"].push(notification);
+      }
+    });*/
+    if(this.tableEvents.length!==0){
+      //alert(`${this.tableEvents}`)
+      this.tableEvents.forEach((event:any) => {
+        let notification = {
+          id:id,
+          title:event.nom,
+          body:`${event.nom} à ${event?.heure}`,
+          largeBody:`Ne passez pas à coté de ${event.nom} à ${event?.heure}`,
+          summaryText:`${event.nom}`
+        }
+        id+=1;
+        this.notifs["notifications"].push(notification);
+        //alert(`${this.notifs["notifications"]}`)
+      });
+      this.notif.scheduleNotification(this.notifs);
+
+    }
+    
+  }
 
   ngOnInit() {
-    /*const token = localStorage.getItem("ACCESS_TOKEN");
-    this.userId = token?.split(".")
-    const currentTime = Math.floor(Date.now() / 1000)
-    this.userId=JSON.parse(atob(this.userId))
-    //console.log(`user exp : ${this.userId.exp} and current time : ${currentTime}`)*/
+    /*for(let event of this.events){
+      let notification = {
+        id:id,
+        title:event.nom,
+        body:`${event.nom} à ${event?.heure}`,
+        largeBody:`Ne passez pas à coté de ${event.nom} à ${event?.heure}`,
+        summaryText:`${event.nom}`
+      }
+      id+=1;
+      this.notifs["notifications"].push(notification);
+      alert(`${this.notifs["notifications"]}`)
+    }
+    this.notif.scheduleNotification(this.notifs);*/
+
     if(!this.localStorage.getItem('ACCESS_TOKEN') /*|| this.userId.exp < currentTime*/){
       this.router.navigateByUrl('login');
     }
@@ -120,5 +179,8 @@ export class Tab1Page implements OnInit {
     this.buttonStateService.isButtonDisabled$.subscribe((isDisabled: boolean) => {
       this.isButtonDisabled = isDisabled;
     });
+
+    this.callNotif();
+
   }
 }
