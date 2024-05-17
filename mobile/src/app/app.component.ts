@@ -28,7 +28,7 @@ export class AppComponent {
     this.initializeApp();
   }
   ngOnInit() {
-    console.log('Initializing HomePage');
+    //console.log('Initializing HomePage');
 
     // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
