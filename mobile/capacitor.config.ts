@@ -9,19 +9,13 @@ const config: CapacitorConfig = {
   server: {
       androidScheme: 'https' // Schéma par défaut pour Android
     },
+
+  plugins: {
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  }
   
-  /*plugins: {
-    Deeplinks: {
-      scheme: 'iziplan', // Le schéma doit correspondre à celui utilisé pour votre site web
-      host: 'app', // L'hôte de votre site web
-      androidPathPrefix: '/', // Le préfixe de chemin pour Android
-      iosPathPrefix: '/', // Le préfixe de chemin pour iOS
-      debug: true
-    }
-    AppLinks: {
-      androidScheme: 'iziplan',
-    }
-  }*/
 };
 
 export default config;

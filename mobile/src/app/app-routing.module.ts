@@ -60,6 +60,10 @@ const routes: Routes = [
   {
     path: 'update-profil',
     component : UpdateProfilComponent
+  },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
   }
   
 ];
