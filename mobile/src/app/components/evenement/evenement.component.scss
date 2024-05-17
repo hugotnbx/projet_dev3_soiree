@@ -11,10 +11,6 @@ ion-card-content {
   margin-top: -10px;
 }
 
-ion-button {
-  margin-top: -20px;
-}
-
 .eventInfos {
   margin-bottom: -8px;
 }
@@ -129,7 +125,8 @@ ion-back-button {
 }
 
 .eventActionsButton {
-  width: 172px;
+  width: 170px;
+  margin-top: -20px;
 }
 
 #actionsButton {
