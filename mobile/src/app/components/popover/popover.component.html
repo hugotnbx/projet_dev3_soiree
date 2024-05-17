@@ -1,7 +1,10 @@
 <ion-list class="popover-top">
   <ion-list-header>Contributions</ion-list-header>
-  <ion-searchbar placeholder="Custom Placeholder"></ion-searchbar>
-  <ion-item *ngFor="let item of contributions" [class.selected]="item.selected" (click)="toggleSelection(item)">
+  <ion-searchbar 
+    placeholder="Rechercher une contribution" 
+    [(ngModel)]="searchTerm" 
+    (ionInput)="filterContributions()"></ion-searchbar>
+  <ion-item *ngFor="let item of filteredContributions" [class.selected]="item.selected" (click)="toggleSelection(item)">
     <ion-label>{{ item.nom }}</ion-label>
   </ion-item>
     <ion-item class=clicked (click)="toggleInput()">
