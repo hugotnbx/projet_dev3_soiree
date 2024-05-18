@@ -28,6 +28,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;
   userId: any;
   profil: any;
+  nbrBobs = 0;
 
   ngOnInit() {
     this.loadEventInfos();
@@ -86,6 +87,8 @@ export class EvenementComponent implements OnInit, OnDestroy {
           break;
         }
       }
+
+      this.countBobs(this.eventprofil);
     });
   }
 
@@ -165,5 +168,13 @@ export class EvenementComponent implements OnInit, OnDestroy {
       text: `rejoins l\'événement ${this.event.nom}. Utilise le code ${this.event.code} dans l'applications Iiplan pour le rejoindre.`,
       dialogTitle: `rejoindre événement ${this.event.nom}`,
     });
+  }
+
+  countBobs(data:any){
+    for(let user of data){
+      if(user.idStatus == 2) {
+        this.nbrBobs++;
+      }
+    }
   }
 }

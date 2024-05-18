@@ -1,6 +1,7 @@
 ion-card {
     background-color: #F9E6AC;
     border-radius: 20px;
+    margin-bottom: -8px;
 }
 
 ion-button {
@@ -48,4 +49,13 @@ h1 {
 .disabled-event ion-card-header ion-card-subtitle,
 .disabled-event ion-card-content {
   color: black;
+}
+
+ion-card-title {
+    margin-top: 5px;
+    margin-bottom: -5px;
+}
+
+ion-card-subtitle {
+    text-transform: lowercase;
 }

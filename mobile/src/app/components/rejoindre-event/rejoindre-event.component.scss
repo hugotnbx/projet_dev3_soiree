@@ -1,63 +1,126 @@
 .options {
-    justify-content: center;
-  }
+  justify-content: center;
+}
   
-  .option-card {
-    border-radius: 15px;
-    margin: 10px;
-    cursor: pointer;
-    background-color: #F9E6AC;
-  }
-  
-  .option-card.selected {
-    background-color: #ffbf00 /* Jaune */
-  }
-  
-  ion-card-header {
-    text-align: center;
-  }
+.option-card {
+  border-radius: 15px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #F9E6AC;
+}
+                                  
+.option-card.selected {
+  background-color: #ffbf00 
+}
 
-  page-produits-alimentaires {
-  
-    .total {
-      .total-label {
-        font-weight: bold;
-      }
+ion-card {
+  border-radius: 20px;
+}
+                                    
+ion-card-header {
+  text-align: center;
+}
+
+page-produits-alimentaires {
+  .total {
+    .total-label {
+      font-weight: bold;
     }
-    
   }
-  ion-item {
-    border-radius: 20px;
-    margin: 15px;
-    padding: 10px; /* Ajustez selon vos préférences */
-    height: 50px; /* Hauteur des blocs ajustée */
-  }
-  
-  .ion-label {
-   
-    background-color: inherit;
-    color: inherit; /* Utiliser la couleur du parent */
-  }
-  
-  .selected {
-    background-color: #ffbf00; /* Bleu si sélectionné */
-    color: black; /* Texte blanc si sélectionné */
-  }
-  
-  ion-card:not(.selected) {
-    background-color: #F9E6AC; /* Jaune si non sélectionné */
-    color: black; /* Texte noir si non sélectionné */
-  }
-  
-  ion-footer{
-    background-color: white;
-  }
+}
 
-  .centred-element {
-    display: flex;
-    justify-content: center; // Pour centrer horizontalement
-    align-items: center; // Pour centrer verticalement
+ion-item {
+  border-radius: 20px;
+  margin: 15px;
+  padding: 10px;
+  height: 50px; 
+}
+
+.ion-label {
+
+  background-color: inherit;
+  color: inherit; 
+}
+
+.selected {
+  background-color: #ffbf00; 
+  color: black;
+}
+
+ion-card:not(.selected) {
+  background-color: #F9E6AC; 
+  color: black; 
+}
+
+h1 {
+  text-align: left;
+  font-weight: bold;
+  margin-left: 3%;
+  margin-bottom: 30px;
+}
+
+h2 {
+  text-align: left;
+  font-size: 20px;
+  margin-left: 3%;
+}
+
+.ios {
+  h1 {
+      font-size: 25px;
   }
+}
+
+.md {
+  h1 {
+      font-size: 30px;
+  }
+}
+
+ion-footer{
+  background-color: white;
+}
+
+.centred-element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .ion-padding{
     height: 120px;
 }
+
+ion-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.toolbar-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.toolbar-image {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+ion-back-button {
+  color: black;
+  width: 80px;
+  height: 65px;
+  margin-right: -80px;
+}
+
+#rejoindreButton {
+  width: 90%;
+  height: auto;
+  margin-left: 5%;
+}
+

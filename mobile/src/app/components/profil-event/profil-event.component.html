@@ -43,9 +43,11 @@
       </a>
     </ion-card-content>
   
-    <ion-card-content class="horizontal-align">
-      <ion-icon name="logo-facebook" size="large"></ion-icon>
-      <label>{{profil?.facebook}}</label>
+    <ion-card-content>
+      <a href="https://www.facebook.com/search/people/?q={{profil?.facebook}}" target="_blank" class="horizontal-align">
+        <ion-icon name="logo-facebook" size="large"></ion-icon>
+         <label>{{profil?.facebook}}</label>
+      </a>
     </ion-card-content>
   </ion-card>
     

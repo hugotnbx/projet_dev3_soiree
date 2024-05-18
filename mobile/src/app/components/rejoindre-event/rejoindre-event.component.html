@@ -1,33 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/tab1" text="" icon="chevron-back-outline"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Rejoindre un événement</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/tabs/tab1" text="" icon="chevron-back-outline"></ion-back-button>
+  </ion-buttons>
+  <div class="toolbar-image-container">
+    <img src="../../assets/icon/IZIPLAN.png" alt="Logo" class="toolbar-image">
+  </div>   
+</ion-toolbar>
 
 <ion-content class="ion-padding">
+  <h1>Rejoindre un événement</h1>
   <div *ngIf="!showContent">
-    <ion-item>
-      <ion-input
-          label="Mots de passe"
-          labelPlacement="floating"
-          [clearOnEdit]="true"
-          [(ngModel)]="code"
-        >
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-button expand="full" color="primary" (click)="verifications()">
-        <ion-label color="dark">Rejoindre</ion-label>
-      </ion-button>
-    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-input
+            label="Code d'événement"
+            labelPlacement="floating"
+            [clearOnEdit]="true"
+            [(ngModel)]="code"
+          >
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <br>
+    <ion-button id="rejoindreButton" color="primary" (click)="verifications()">Rejoindre l'événement</ion-button>
   </div>
   <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
   
   <div *ngIf="showContent">
-    <h2>Désirez-vous être Bob ?</h2>
+    <h2>Souhaitez-vous faire Bob ?</h2>
     <ion-row class="options">
       <ion-col size="6">
         <ion-card class="option-card" (click)="selectOption(2)" [class.selected]="selectedOption === 2">
@@ -47,17 +47,13 @@
     </ion-row>
     <h2>Que souhaitez-vous apporter?</h2>
     
-
     <ion-list class="aliment">
       <ion-card *ngFor="let aliment of aliments[0].usersRelations; let i = index" [class.selected]="aliment.contribution.selected" (click)="toggleSelection(aliment.contribution)">
         <ion-card-content class="item-label">{{ aliment.contribution.nom }} - {{ aliment.contribution.prix }}€</ion-card-content>
       </ion-card>
     </ion-list>
-
-    <ion-button shape="round" size="small" class="centred-element" (click)="rejoindreEvent()" >
-      Créer
-      <ion-icon name="send-outline" ></ion-icon>  
-    </ion-button>
+  
+    <ion-button id="rejoindreButton" color="primary" (click)="rejoindreEvent()">Rejoindre l'événement</ion-button>
   </div>
 
 
