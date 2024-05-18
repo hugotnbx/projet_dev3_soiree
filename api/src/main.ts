@@ -5,12 +5,12 @@ import * as fs from 'fs';
 import * as https from 'https';
 
 async function bootstrap() {
-  // const httpsOptions = {
-  // key: fs.readFileSync('/etc/letsencrypt/archive/l2-1.ephec-ti.be/privkey1.pem'),
-  // cert: fs.readFileSync('/etc/letsencrypt/archive/l2-1.ephec-ti.be/fullchain1.pem'),
-  // };
-  const app = await NestFactory.create(AppModule,/*{httpsOptions,}*/);
-  
+  const httpsOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/archive/l2-1.ephec-ti.be/privkey1.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/archive/l2-1.ephec-ti.be/fullchain1.pem'),
+  };
+  const app = await NestFactory.create(AppModule,{httpsOptions,});
+
   const config = new DocumentBuilder()
   .setTitle('Documentation API - Projet Iziplan')
   .setVersion('1.0')

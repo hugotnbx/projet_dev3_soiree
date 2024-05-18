@@ -9,16 +9,14 @@ import { StatusesModule } from './statuses/statuses.module';
 import { ContributionsModule } from './contributions/contributions.module';
 import { UsersRelationsModule } from './users-relations/users-relations.module';
 import { AuthModule } from './auth/auth/auth.module';
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3333,
-      username:  'iziplan_user',
-      password:  'iziplan_psw',
-      database:  'iziplan_db',
+      host: process.env.DB_HOST,
+      username:  process.env.DB_USERNAME,
+      password:  process.env.DB_PASSWORD,
+      database:  process.env.DB_DATABASE,
       autoLoadEntities:true,
       synchronize: true //attention à enlever lors de la production
     }),
