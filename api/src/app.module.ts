@@ -9,7 +9,6 @@ import { StatusesModule } from './statuses/statuses.module';
 import { ContributionsModule } from './contributions/contributions.module';
 import { UsersRelationsModule } from './users-relations/users-relations.module';
 import { AuthModule } from './auth/auth/auth.module';
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({

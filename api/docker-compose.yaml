@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   mysql:
     image: mysql:latest
@@ -30,6 +29,6 @@ services:
       - ~/www/certificate:/etc/letsencrypt/
     networks:
       - iziplan_networks
-    
+
 networks:
    iziplan_networks:
