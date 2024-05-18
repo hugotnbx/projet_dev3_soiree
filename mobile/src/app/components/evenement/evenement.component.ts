@@ -72,8 +72,8 @@ export class EvenementComponent implements OnInit, OnDestroy {
 
       const uniqueUsers = new Map();
       for (let relation of this.eventprofil) {
-        if (!uniqueUsers.has(relation.user.id)) {
-          uniqueUsers.set(relation.user.id, relation);
+        if (!uniqueUsers.has(relation.idProfil)) {
+          uniqueUsers.set(relation.idProfil, relation);
         }
       }
 
