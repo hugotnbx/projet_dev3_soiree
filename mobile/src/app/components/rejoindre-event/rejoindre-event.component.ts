@@ -13,13 +13,14 @@ export class RejoindreEventComponent  implements OnInit {
   showContent = false;
 
   Rejoindre={
-    idProfil:1,
+    idProfil:0,
     idContribution:0,
     idEvent:0,
     idStatus:0
   };
   code : any;
   errorMessage: string = '';
+  userId: any;
 
   constructor(public http:HttpClient,private route :ActivatedRoute) {
     
@@ -62,6 +63,10 @@ export class RejoindreEventComponent  implements OnInit {
 
 
   rejoindreEvent() {
+    const token = localStorage.getItem("ACCESS_TOKEN");
+    this.userId = token?.split(".")
+  
+    this.Rejoindre.idProfil = JSON.parse(atob(this.userId[1])).username
     this.Rejoindre.idStatus = this.selectedOption;
     this.Rejoindre.idEvent = this.aliments[0].id
     for(let long = 0 ; long < this.aliments[0].usersRelations.length ; long++){
