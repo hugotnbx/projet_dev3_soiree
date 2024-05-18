@@ -1,16 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Events } from './entities/events.entity';
 import { EventsDto } from './dto/events.dto';
-import { UsersRelations } from 'src/users-relations/entities/users-relations.entity';
-import { UsersRelationsDto } from 'src/users-relations/dto/users-relations.dto';
 
 @Injectable()
 export class EventsService {
+  
     constructor(
       @InjectRepository(Events)
       private readonly eventsRepository: Repository<Events>,
+
     ) {}
 
     async findAll(): Promise<Events[]> {
@@ -29,6 +29,35 @@ export class EventsService {
       return await this.eventsRepository.findOne({where:{id}})
     }
 
+    async verify(code: string): Promise<Events[]> {
+      try {
+        
+        
+        const event = await this.eventsRepository.findOne({ where: { code } });
+    
+        const eventWithContributions = await this.eventsRepository.createQueryBuilder('event')
+        .select([
+          'event.id',
+          'event.nom',
+          'usersRelations.idEvent',
+          'usersRelations.idContribution',
+          'contribution.idContribution',
+          'contribution.nom',
+          'contribution.prix'
+        ])
+        .leftJoin('event.usersRelations', 'usersRelations')
+        .leftJoin('usersRelations.contribution', 'contribution')
+        .where('event.id = :eventId', { eventId: event.id })
+        .andWhere('usersRelations.idStatus = :statusId', { statusId: 3 })
+        .getMany();
+    
+        return eventWithContributions;
+    
+      } catch (error) {
+        throw new Error(`Erreur lors de la vérification de l'événement: ${code}`);
+      }
+    }
+    
     async create(eventsDto : EventsDto) {
       const eventsEntities = new Events();
       eventsEntities.id = eventsDto.id;

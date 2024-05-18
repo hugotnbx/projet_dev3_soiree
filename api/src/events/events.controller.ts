@@ -33,6 +33,16 @@ export class EventsController {
     return this.eventsService.read(id);
   }
 
+
+  @Get('/verif/:id')
+  @ApiOperation({ summary: 'Récupérer un événement à partir de son id', description: 'Récupère un événement à partir de son id.' })
+  @ApiParam({ name: 'id', description: 'id de l\'événement à récupérer', type: 'number' })
+  @ApiResponse({ status: 200, description: 'Succès de la requête. Retourne l\'événement d\' correspondant à l\'id spécifié.' })
+  @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
+  async verifById(@Param('id') id: string): Promise<Events[]> {
+    return this.eventsService.verify(id);
+  }
+
   @Public()
   @Post()
   @ApiOperation({ summary: 'Créer un nouvel événement', description: 'Crée un nouvel événement avec ses informations générales associées.' })

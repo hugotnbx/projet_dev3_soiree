@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { UsersRelationsService } from './users-relations.service';
 import { UsersRelations } from './entities/users-relations.entity';
 import { UsersRelationsDto } from './dto/users-relations.dto';
@@ -51,6 +51,15 @@ export class UsersRelationsController {
     @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
     async create(@Body() usersRelationsDto: UsersRelationsDto): Promise<UsersRelations> {
         return this.usersRelationsService.create(usersRelationsDto);
+    }
+
+    @Put('/:idEvent/:idContribution')
+    @ApiOperation({ summary: 'Modifie lien entre un événement et un profil', description: 'Modifie un nouveau lien entre un événement et un profil.' })
+    @ApiBody({ type: UsersRelationsDto })
+    @ApiResponse({ status: 201, description: 'Lien entre l\'événement et le profil mofifié avec succès.' })
+    @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
+    async update(@Param('idEvent') idEvent: number,@Param('idContribution') idContribution: number,@Body() usersRelationsDto: UsersRelationsDto): Promise<UsersRelations> {
+        return this.usersRelationsService.update(idEvent, idContribution , usersRelationsDto);
     }
 
     @Delete('/?idEvent=:idEvent&idProfil=:idProfil')

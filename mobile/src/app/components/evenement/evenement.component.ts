@@ -153,10 +153,9 @@ export class EvenementComponent implements OnInit, OnDestroy {
 
   async sShare() {
     await Share.share({
-      title: 'See cool stuff',
-      text: 'Really awesome thing you need to see right meow',
-      url: 'http://ionicframework.com/',
-      dialogTitle: 'Share with buddies',
+      title: 'Iziplan',
+      text: `rejoins l\'événement ${this.event.nom}. Utilise le code ${this.event.code} dans l'applications Iiplan pour le rejoindre.`,
+      dialogTitle: `rejoindre événement ${this.event.nom}`,
     });
   }
 }
