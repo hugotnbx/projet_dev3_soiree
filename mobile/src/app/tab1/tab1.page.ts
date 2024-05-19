@@ -115,14 +115,16 @@ export class Tab1Page implements OnInit {
         /*if(this.oneDayDiff(event.date)){
           
         }*/
-        const dixMin = new Date(new Date().getTime() + 10 * 60 * 1000);
+        let dixMinAvant = new Date(new Date(`${event?.date}T${event?.heure}`).getTime() - 10 * 60 * 1000);
         let notification = {
           id:id,
           title:event.nom,
-          body:`${event.nom} à ${event?.heure}`,
-          largeBody:`Ne passez pas à coté de ${event.nom} à ${event?.heure}`,
+          body:`${event?.nom} à ${event?.heure}`,
+          largeBody:`Ne passez pas à coté de ${event?.nom} à ${event?.heure}`,
           summaryText:`${event.nom}`,
-          schedule: { at: dixMin },
+          schedule: { at: dixMinAvant },
+          //smallIcon:"ic_launcher_round"
+
         }
         id+=1;
         this.notifs["notifications"].push(notification);
