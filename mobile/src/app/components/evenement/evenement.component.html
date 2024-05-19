@@ -25,7 +25,11 @@
     <ion-card class="eventInfos">
 
       <ion-card-header>
-        <ion-card-title id="location">{{ event?.lieu }}</ion-card-title>
+        <ion-card-title id="location">
+          <a href="https://www.google.com/maps/place/{{event?.lieu}}" target="_blank" class="horizontal-align">
+          <label>{{event?.lieu}}</label>
+          </a>
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>Adresse</ion-card-content>
     </ion-card>

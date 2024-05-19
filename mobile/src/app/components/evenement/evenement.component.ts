@@ -169,8 +169,8 @@ export class EvenementComponent implements OnInit, OnDestroy {
   async sShare() {
     await Share.share({
       title: 'Iziplan',
-      text: `rejoins l\'événement ${this.event.nom}. Utilise le code ${this.event.code} dans l'applications Iiplan pour le rejoindre.`,
-      dialogTitle: `rejoindre événement ${this.event.nom}`,
+      text: `Rejoins l'événement ${this.event.nom}. Utilise le code suivant pour le rejoindre dans l'application Iziplan :\n\n${this.event.code}\n\n`,
+      dialogTitle: `Rejoindre l'événement ${this.event.nom}`,
     });
   }
 
