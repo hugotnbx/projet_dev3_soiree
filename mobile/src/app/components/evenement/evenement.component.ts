@@ -10,6 +10,7 @@ import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Share } from '@capacitor/share';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { Relation } from 'src/app/interfaces/relation';
 
 @Component({
   selector: 'app-evenement',
@@ -19,6 +20,8 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class EvenementComponent implements OnInit, OnDestroy {
   event: any;
   eventprofil: any;
+  relations: any;
+
   @ViewChild('deleteButton') deleteButton!: ElementRef;
   isButtonDisabled: boolean = false; // Variable locale pour stocker l'état du bouton
   buttonStateSubscription: Subscription | undefined;
@@ -26,6 +29,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
   constructor(public http: HttpClient, private route: ActivatedRoute, private localStorage:LocalStorageService, private manageEventService: ManageEventService, private router: Router, private buttonStateService: ButtonStateService, private alertController: AlertController) {}
 
   isAdmin: boolean = false;
+  isBed: boolean = false;
   userId: any;
   profil: any;
   nbrBobs = 0;
@@ -67,6 +71,10 @@ export class EvenementComponent implements OnInit, OnDestroy {
       });
     });
 
+    this.readApi(`${environment.api}/users-relations/${paramValue}`).subscribe((data) => {
+      this.relations = data;
+    });
+
     this.readApi(`${environment.api}/users-relations/get-user-relations/${paramValue}`).subscribe((data) => {
       console.log(data);
       this.eventprofil = data;
@@ -85,6 +93,10 @@ export class EvenementComponent implements OnInit, OnDestroy {
           this.isAdmin = true;
           console.log("l'utilisateur connecter est un admin");
           break;
+        }
+
+        if(relation.idStatus === 1 && this.event.nbrLit > 0 && relation.idProfil === this.userId.username){
+          this.isBed = true;
         }
       }
 
@@ -154,14 +166,6 @@ export class EvenementComponent implements OnInit, OnDestroy {
     return `./assets/role/${status}.png`;
   }
 
-  /*async sShare() {
-    await Share.share({
-      title: "Participer à l'événement",
-      text: `Je suis intéressé par votre événement "${this.event.name}"`,
-      url: `iziplan//rejoindre`
-    })
-  }*/
-
   async sShare() {
     await Share.share({
       title: 'Iziplan',
@@ -177,4 +181,26 @@ export class EvenementComponent implements OnInit, OnDestroy {
       }
     }
   }
+  
+  takeBed(){ 
+    this.event.nbrLit -= 1;
+
+    this.http.put<any>(`${environment.api}/events/` + this.event.id, this.event)
+      .subscribe(response => {
+        console.log(response);
+      }); 
+
+    for (let relation of this.relations) {
+      if (relation.idProfil === this.userId.username) {
+        relation.idStatus = 4;
+        console.log('Nouvel idStatus:', relation.idStatus);
+
+        this.http.put<any>(`${environment.api}/users-relations/${relation.idEvent}/${relation.idProfil}/${relation.idContribution}`, relation)
+        .subscribe(response => {
+          console.log(response);
+        });
+      }
+    }
+    this.loadEventInfos();
+  } 
 }

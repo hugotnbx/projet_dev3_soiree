@@ -55,6 +55,10 @@
       </ion-button>
     </ion-row> 
 
+    <ion-row *ngIf="isBed" id="takeBedButtonContainer">
+      <ion-button id="takeBedButton" (click)="takeBed()" [ngClass]="{ 'disabled-event': event?.etatdelete }">Demander un lit</ion-button>
+    </ion-row> 
+
     <h1>Liste des invités</h1>
 
     <ion-card *ngFor="let profil of eventprofil; index as i" class="status" [routerLink]="['/profil-event', profil?.idProfil]">

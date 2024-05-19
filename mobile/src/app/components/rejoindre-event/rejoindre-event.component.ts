@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -22,7 +22,7 @@ export class RejoindreEventComponent  implements OnInit {
   errorMessage: string = '';
   userId: any;
 
-  constructor(public http:HttpClient,private route :ActivatedRoute) {
+  constructor(public http:HttpClient,private route :ActivatedRoute, private router: Router) {
     
   }
   ngOnInit() {
@@ -80,5 +80,6 @@ export class RejoindreEventComponent  implements OnInit {
         });
       }
     }
+    this.router.navigateByUrl('/tabs/tab1');
   }
 }

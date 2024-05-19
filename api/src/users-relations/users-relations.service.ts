@@ -52,6 +52,12 @@ export class UsersRelationsService {
       return usersRelations;
     }
 
+    async updateOnEventId(idEvent: number, idProfil: number, idContribution: number, data: Partial<UsersRelations>) {
+      await this.UsersRelationsRepository.update({ idEvent, idProfil, idContribution }, data);
+      const userRelation = await this.UsersRelationsRepository.findOne({ where: { idEvent, idProfil, idContribution } });
+      return userRelation;
+    }    
+
     async update(idEvent : number , idContribution : number, data : Partial<UsersRelations> ){
       await this.UsersRelationsRepository.update({idEvent , idContribution},data);
       const users = this.UsersRelationsRepository.findOne({where:{idEvent , idContribution}})

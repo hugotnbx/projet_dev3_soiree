@@ -62,6 +62,15 @@ export class UsersRelationsController {
         return this.usersRelationsService.update(idEvent, idContribution , usersRelationsDto);
     }
 
+    @Put('/:idEvent/:idProfil/:idContribution')
+    @ApiOperation({ summary: 'Modifie lien entre un événement et un profil', description: 'Modifie un nouveau lien entre un événement et un profil.' })
+    @ApiBody({ type: UsersRelationsDto })
+    @ApiResponse({ status: 201, description: 'Lien entre l\'événement et le profil mofifié avec succès.' })
+    @ApiResponse({ status: 404, description: 'Page introuvable, veuillez réessayer.' })
+    async updateOnEventId(@Param('idEvent') idEvent: number, @Param('idProfil') idProfil: number, @Param('idContribution') idContribution: number, @Body() usersRelationsDto: UsersRelationsDto): Promise<UsersRelations> {
+        return this.usersRelationsService.updateOnEventId(idEvent, idProfil, idContribution, usersRelationsDto);
+    }
+
     @Delete('/?idEvent=:idEvent&idProfil=:idProfil')
     @ApiOperation({ summary: 'Supprimer un lien entre un événement et un profil à partir de l\'id de l\'événement et l\id du profil', description: 'Supprime un lien entre un événement et un profil à partir de l\'id de l\'événement et l\id du profil.' })
     @ApiQuery({ name: 'idEvent', description: 'id de l\'événement', type: 'number' })

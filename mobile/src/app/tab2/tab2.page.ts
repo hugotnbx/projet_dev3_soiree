@@ -40,8 +40,6 @@ export class Tab2Page implements OnInit {
     idStatus:3,
   }
 
-  
-
   maxDate: string;
   minDate: string;
   selectedContributions: any[] = [];
@@ -60,8 +58,6 @@ export class Tab2Page implements OnInit {
     this.userId=JSON.parse(atob(this.userId[1]))
     this.relationData.idProfil=this.userId.username;
     console.log(this.userId.username);
-
-  
   }
 
   isNumAndPositive(value: any): boolean {
