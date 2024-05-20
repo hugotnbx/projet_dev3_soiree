@@ -9,19 +9,18 @@ const config: CapacitorConfig = {
   server: {
       androidScheme: 'https' // Schéma par défaut pour Android
     },
-  
-  /*plugins: {
-    Deeplinks: {
-      scheme: 'iziplan', // Le schéma doit correspondre à celui utilisé pour votre site web
-      host: 'app', // L'hôte de votre site web
-      androidPathPrefix: '/', // Le préfixe de chemin pour Android
-      iosPathPrefix: '/', // Le préfixe de chemin pour iOS
-      debug: true
-    }
-    AppLinks: {
-      androidScheme: 'iziplan',
-    }
-  }*/
+
+  plugins: {
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    },
+    LocalNotifications: {
+      //smallIcon:"ic_launcher_round",
+      smallIcon:"ic_launcher_round",
+      iconColor: "#488AFF",
+      sound: "beep.wav",
+    },
+  },
 };
 
 export default config;
