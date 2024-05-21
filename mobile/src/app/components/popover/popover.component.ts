@@ -106,8 +106,12 @@ readApi(url: string) {
   }
 
   filterContributions() {
-    this.filteredContributions = this.contributions.filter((contrib) => {
-      return contrib.nom.toLowerCase().includes(this.searchTerm.toLowerCase());
-    });
+    if (this.searchTerm.trim() === '') {
+      this.filteredContributions = [];
+    } else {
+      this.filteredContributions = this.contributions.filter((contrib) => {
+        return contrib.nom.toLowerCase().includes(this.searchTerm.toLowerCase());
+      });
+    }
   }
 }

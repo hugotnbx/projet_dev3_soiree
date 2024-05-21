@@ -77,8 +77,9 @@ export class Tab2Page implements OnInit {
       animated: true,
       componentProps: {
         existingContributions: this.selectedContributionsMap
-      }
+      },
     })
+
     popover.onDidDismiss().then((dataReturned) => {
       if (dataReturned !== null) {
           this.selectedContributions = dataReturned.data;
@@ -110,9 +111,6 @@ export class Tab2Page implements OnInit {
       }
     });
     return await popover.present()
-  }
-
-  pushTableContrib(tableContribMap: any[], tableContrib:any){
   }
 
   onDateTimeChange(event: CustomEvent) {

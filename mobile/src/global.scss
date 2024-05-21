@@ -24,3 +24,19 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+.custom-popover.popover-top {
+    --width: 90%; /* Prendre presque toute la largeur de l'écran */
+    --left: 5%; /* Centrer en laissant un petit espace sur les côtés */
+    --top: 10px; /* Positionner légèrement en dessous du bouton */
+    --transform: none; /* Éliminer les transformations par défaut */
+    --max-height: 50vh; /* Ajuster la hauteur maximale si nécessaire */
+    --border-radius: 10px; /* Ajouter un petit arrondi aux coins */
+    --backdrop-opacity: 0.3; /* Ajuster l'opacité du backdrop si nécessaire */
+}
+  
+.custom-popover.popover-top ion-content {
+    max-height: 50vh; /* Activer le défilement si le contenu dépasse la hauteur */
+    overflow-y: auto; /* Activer le défilement vertical */
+}

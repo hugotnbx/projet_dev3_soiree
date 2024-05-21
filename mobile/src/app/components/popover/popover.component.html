@@ -1,12 +1,14 @@
-<ion-list class="popover-top">
+<ion-list>
   <ion-list-header>Contributions</ion-list-header>
   <ion-searchbar 
     placeholder="Rechercher une contribution" 
     [(ngModel)]="searchTerm" 
     (ionInput)="filterContributions()"></ion-searchbar>
-  <ion-item *ngFor="let item of filteredContributions" [class.selected]="item.selected" (click)="toggleSelection(item)">
-    <ion-label>{{ item.nom }}</ion-label>
-  </ion-item>
+  <ng-container *ngIf="filteredContributions.length > 0">
+    <ion-item *ngFor="let item of filteredContributions" [class.selected]="item.selected" (click)="toggleSelection(item)">
+      <ion-label>{{ item.nom }}</ion-label>
+    </ion-item>
+  </ng-container>
     <ion-item class=clicked (click)="toggleInput()">
       <ion-input
         label="+" 
