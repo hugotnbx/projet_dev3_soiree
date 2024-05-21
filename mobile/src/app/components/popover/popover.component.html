@@ -17,9 +17,9 @@
       ></ion-input>
     </ion-item>
     <ion-item *ngIf="showInput">
-      <ion-button (click)="ajouterContribution()">Ajouter</ion-button>
+      <ion-button class="contributionsButton" (click)="ajouterContribution()">Créer la contribution</ion-button>
     </ion-item>
     <ion-item *ngIf="atLeastOneSelected">
-      <ion-button (click)="afficherContribution()">OK</ion-button>
+      <ion-button class="contributionsButton" (click)="afficherContribution()">Ajouter</ion-button>
     </ion-item>
 </ion-list>

@@ -34,6 +34,7 @@ h1 {
     height: auto;
     margin-left: 5%;
     color: black;
+    margin-bottom: 20px;
 }
 
 ion-content {
@@ -54,9 +55,11 @@ ion-item {
     font-size: 10px;
 }
 
-.custom-popover {
-    max-height: 50vh;
-    --top: 50px;
+#contributionsButton {
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+    color: black;
  }
 
 
@@ -69,10 +72,14 @@ ion-item {
     height: 120px;
 }
 
+.contributions-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .custom-contribution-item {
     --background: #F9E6AC;
     --border-radius: 15px;
-    margin-bottom: 10px;
     --ion-item-background: #F9E6AC;
     --padding-start: 15px;
     --padding-end: 15px;
