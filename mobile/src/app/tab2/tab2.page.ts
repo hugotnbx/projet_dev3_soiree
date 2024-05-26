@@ -21,23 +21,23 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class Tab2Page implements OnInit {
 
-  userId:any;
+  userId: any;
 
-  eventData:Evenement={
-    id:0,
-    nom:"",
-    heure:"",
-    date:new Date().toISOString().slice(0, 10), 
-    lieu:"",
-    nbrLit:0,
-    nbrBob:0
+  eventData: Evenement = {
+    id: 0,
+    nom: "",
+    heure: "",
+    date: new Date().toISOString().slice(0, 10),
+    lieu: "",
+    nbrLit: 0,
+    nbrBob: 0
   }
 
-  relationData:Relation={
-    idProfil:0,
-    idEvent:0,
-    idContribution:1,
-    idStatus:3,
+  relationData: Relation = {
+    idProfil: 0,
+    idEvent: 0,
+    idContribution: 1,
+    idStatus: 3,
   }
 
   maxDate: string;
@@ -45,18 +45,17 @@ export class Tab2Page implements OnInit {
   selectedContributions: any[] = [];
   selectedContributionsMap: any[] = [];
   showContrib: boolean = false;
-  
-  constructor(public http:HttpClient, private router: Router, private localStorage:LocalStorageService, private manageEventService: ManageEventService, private popCtrl: PopoverController) {
+
+  constructor(public http: HttpClient, private router: Router, private localStorage: LocalStorageService, private manageEventService: ManageEventService, private popCtrl: PopoverController) {
     const now = new Date();
-    const maxYear = now.getFullYear() + 10; 
+    const maxYear = now.getFullYear() + 10;
     this.maxDate = new Date(maxYear, 11, 31).toISOString().slice(0, 10);
     this.minDate = new Date().toISOString().slice(0, 10);
 
-
     const token = localStorage.getItem("ACCESS_TOKEN");
     this.userId = token?.split(".")
-    this.userId=JSON.parse(atob(this.userId[1]))
-    this.relationData.idProfil=this.userId.username;
+    this.userId = JSON.parse(atob(this.userId[1]))
+    this.relationData.idProfil = this.userId.username;
     console.log(this.userId.username);
   }
 
@@ -66,10 +65,10 @@ export class Tab2Page implements OnInit {
 
   eventDateTime!: string;
 
-  async openPopover(ev : any) {
+  async openPopover(ev: any) {
     const popover = await this.popCtrl.create({
-      component : PopoverComponent,
-      event : ev,
+      component: PopoverComponent,
+      event: ev,
       translucent: true,
       cssClass: 'custom-popover popover-top',
       mode: 'ios',
@@ -82,32 +81,29 @@ export class Tab2Page implements OnInit {
 
     popover.onDidDismiss().then((dataReturned) => {
       if (dataReturned !== null) {
-          this.selectedContributions = dataReturned.data;
-          //console.log(this.selectedContributions)
-          if (this.selectedContributions == undefined){}
+        this.selectedContributions = dataReturned.data;
+        if (this.selectedContributions == undefined) { }
+        else {
+          if (this.selectedContributionsMap.length == 0) {
+            this.selectedContributionsMap = this.selectedContributions.slice()
+          }
           else {
-            if (this.selectedContributionsMap.length == 0){
-              this.selectedContributionsMap = this.selectedContributions.slice()
-            }
-            else{
-              for (let i in this.selectedContributions){
-                let alreadyIn:Boolean = false;
-                for (let a in this.selectedContributionsMap){
-                  if (this.selectedContributions[i].idContribution == this.selectedContributionsMap[a].idContribution){
-                    alreadyIn = true;
-                    break;
-                  }
+            for (let i in this.selectedContributions) {
+              let alreadyIn: Boolean = false;
+              for (let a in this.selectedContributionsMap) {
+                if (this.selectedContributions[i].idContribution == this.selectedContributionsMap[a].idContribution) {
+                  alreadyIn = true;
+                  break;
                 }
-                if (!alreadyIn){
-                  this.selectedContributionsMap.push(this.selectedContributions[i])
-                }
+              }
+              if (!alreadyIn) {
+                this.selectedContributionsMap.push(this.selectedContributions[i])
               }
             }
           }
-          if (this.selectedContributionsMap.length > 0 && (this.selectedContributions == undefined || this.selectedContributions.length > 0))
+        }
+        if (this.selectedContributionsMap.length > 0 && (this.selectedContributions == undefined || this.selectedContributions.length > 0))
           this.showContrib = true;
-
-          //this.popCtrl.dismiss(this.selectedContributionsMap);
       }
     });
     return await popover.present()
@@ -116,14 +112,14 @@ export class Tab2Page implements OnInit {
   onDateTimeChange(event: CustomEvent) {
     this.eventDateTime = event.detail.value;
     const dateTime = new Date(this.eventDateTime);
-    
+
     const date = dateTime.toLocaleDateString('fr-CA')
 
-    const hours = dateTime.getHours(); 
-    const minutes = dateTime.getMinutes(); 
+    const hours = dateTime.getHours();
+    const minutes = dateTime.getMinutes();
 
     const time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-  
+
     this.eventData.date = date;
     this.eventData.heure = time;
 
@@ -135,70 +131,71 @@ export class Tab2Page implements OnInit {
 
   readApi(url: string) {
     this.http.get<any[]>(url).subscribe((data) => {
-      this.contributions = data;
-      console.log(data)
+      this.contributions = data.filter(contribution => contribution.idContribution !== 1);
+      console.log(this.contributions);
     });
   }
 
-  newEvent:any;
-  newRelation:any;
+  newEvent: any;
+  newRelation: any;
   errorMessage: string = '';
 
   creationEvent() {
-
     if (this.eventData.nbrLit > 10) {
-      this.errorMessage = "Vous ne pouvez pas proposer plus de 10 lits";      
-      return; 
+      this.errorMessage = "Vous ne pouvez pas proposer plus de 10 lits";
+      return;
     }
 
     this.newEvent = new evenement(this.eventData);
 
-    
-  
     this.http.post<any>(`${environment.api}/events`, this.newEvent)
       .subscribe(eventResponse => {
-        console.log(eventResponse); 
-        this.relationData.idEvent=eventResponse.id;
-  
+        console.log(eventResponse);
+        this.relationData.idEvent = eventResponse.id;
+
         this.newRelation = new relation(this.relationData);
-        
-        for(let long = 0 ; long < this.selectedContributionsMap.length ; long++){
-          if (this.selectedContributionsMap[long].selected == true){
-            console.log(this.selectedContributionsMap[0].idContribution);
-            this.relationData.idContribution=this.selectedContributionsMap[long].idContribution;
-            // this.Rejoindre.idStatus = this.selectedOption;
-            //console.log(this.Rejoindre);
-            this.http.post<any>(`${environment.api}/users-relations`, this.relationData)
-            .subscribe(response => {
-              console.log(response); 
-            });
+
+        this.addContribution(1);
+
+        if (this.selectedContributionsMap.length > 0) {
+          for (let long = 0; long < this.selectedContributionsMap.length; long++) {
+            if (this.selectedContributionsMap[long].selected == true) {
+              console.log(this.selectedContributionsMap[long].idContribution);
+              this.addContribution(this.selectedContributionsMap[long].idContribution);
+            }
           }
+        } else {
+          this.addContribution(1);
         }
-        
-          this.router.navigateByUrl(`/evenement/${eventResponse.id}`);
+
+        this.router.navigateByUrl(`/evenement/${eventResponse.id}`);
       });
 
     this.errorMessage = '';
-    
     this.manageEventService.shareNewEvent(this.newEvent);
   }
 
-  removeContribution(item:any){
+  addContribution(idContribution: number) {
+    const relation = { ...this.relationData, idContribution: idContribution };
+    this.http.post<any>(`${environment.api}/users-relations`, relation)
+      .subscribe(response => {
+        console.log(response);
+      });
+  }
+
+  removeContribution(item: any) {
     item.selected = false;
     const index = this.selectedContributionsMap.indexOf(item);
     if (index > -1) {
       this.selectedContributionsMap.splice(index, 1);
     }
 
-    if (this.selectedContributionsMap.length == 0){
+    if (this.selectedContributionsMap.length == 0) {
       this.showContrib = false;
     }
-
   }
-
 
   ngOnInit() {
     this.readApi(`${environment.api}/contributions`);
   }
-
 }

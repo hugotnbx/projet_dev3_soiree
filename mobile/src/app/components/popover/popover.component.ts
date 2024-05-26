@@ -4,24 +4,19 @@ import { HttpClient } from '@angular/common/http';
 import { Contribution } from 'src/app/interfaces/contribution';
 import { contribution } from './popover'
 import { PopoverController } from '@ionic/angular';
-import { Tab2Page } from 'src/app/tab2/tab2.page';
-
-import { IonicStorageModule } from '@ionic/storage-angular';
-import { Storage } from '@ionic/storage-angular'
-
-import { NavParams } from '@ionic/angular';;
+import { NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-popover',
   templateUrl: './popover.component.html',
   styleUrls: ['./popover.component.scss'],
 })
-export class PopoverComponent implements OnInit{
+export class PopoverComponent implements OnInit {
 
-  contributionData:Contribution={
-    idContribution:0,
-    nom:"",
-    prix:0,
+  contributionData: Contribution = {
+    idContribution: 0,
+    nom: "",
+    prix: 0,
   }
   existingContributions: any[] = [];
 
@@ -38,23 +33,23 @@ export class PopoverComponent implements OnInit{
 
   ngOnInit() {}
 
-readApi(url: string) {
-  this.http.get<any[]>(url).subscribe((data) => {
-    this.contributions = data;
-    this.existingContributions = this.navParams.get('existingContributions') || [];
-    if (this.existingContributions.length == 0){}
-    else{ 
-      for (let i in this.existingContributions){
-        for (let a in this.contributions){
-          if (this.existingContributions[i].idContribution == this.contributions[a].idContribution){
-            this.contributions[a].selected = this.existingContributions[i].selected
+  readApi(url: string) {
+    this.http.get<any[]>(url).subscribe((data) => {
+      this.contributions = data.filter(contribution => contribution.idContribution !== 1);
+      this.existingContributions = this.navParams.get('existingContributions') || [];
+      if (this.existingContributions.length == 0) { }
+      else {
+        for (let i in this.existingContributions) {
+          for (let a in this.contributions) {
+            if (this.existingContributions[i].idContribution == this.contributions[a].idContribution) {
+              this.contributions[a].selected = this.existingContributions[i].selected
+            }
           }
         }
       }
-    }
-    this.filterContributions();
-  });
-}
+      this.filterContributions();
+    });
+  }
 
   toggleInput() {
     if (!this.showInput) {
@@ -62,16 +57,18 @@ readApi(url: string) {
     }
   }
 
-  newContribtion:any;
+  newContribtion: any;
 
-  ajouterContribution(){
-    this.newContribtion = new contribution (this.contributionData);
-  
+  ajouterContribution() {
+    this.newContribtion = new contribution(this.contributionData);
+
     this.http.post<any>(`${environment.api}/contributions`, this.newContribtion)
       .subscribe(contributionResponse => {
         console.log(contributionResponse);
-        this.contributions.push(contributionResponse);
-        this.filterContributions();
+        if (contributionResponse.idContribution !== 1) {
+          this.contributions.push(contributionResponse);
+          this.filterContributions();
+        }
 
         this.contributionData = {
           idContribution: 0,
@@ -81,7 +78,6 @@ readApi(url: string) {
 
         this.showInput = false;
       })
-      
   }
 
   selectedContributions: any[] = [];
@@ -90,18 +86,18 @@ readApi(url: string) {
     contrib.selected = !contrib.selected;
 
     if (contrib.selected) {
-        this.selectedContributions.push(contrib);
+      this.selectedContributions.push(contrib);
     } else {
-        const index = this.selectedContributions.findIndex(c => c === contrib);
-        if (index !== -1) {
-            this.selectedContributions.splice(index, 1);
-        }
+      const index = this.selectedContributions.findIndex(c => c === contrib);
+      if (index !== -1) {
+        this.selectedContributions.splice(index, 1);
+      }
     }
     this.atLeastOneSelected = this.selectedContributions.length > 0;
     this.showInput = false;
   }
 
-  afficherContribution(){
+  afficherContribution() {
     this.popCtrl.dismiss(this.selectedContributions);
   }
 
